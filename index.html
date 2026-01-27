@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Catalogo_Zhaicolex<</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      /* ============================= */
+/* AJUSTE DE CONTENEDORES PERFUME */
+/* ============================= */
+
+.cart-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* TARJETA INDIVIDUAL */
+.cart-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e5e5;
+  padding: 12px;
+  background: #fff;
+  height: 100%;
+}
+
+/* IMAGEN CONTROLADA */
+.cart-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  background: #f2f2f2;
+  margin-bottom: 12px;
+}
+
+/* TEXTO */
+.cart-info {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cart-info p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.price {
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+/* NEUTRALIZA <br> SIN ROMPER TU HTML */
+.cart-container br {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .cart-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+      /* ===== BUSCADOR DE PERFUMES ===== */
+.search-box {
+  width: 100%;
+  max-width: 520px;
+  margin: 25px auto 40px;
+  padding: 0 15px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+/* Placeholder elegante */
+#searchInput::placeholder {
+  color: #aaa;
+  letter-spacing: 0.5px;
+}
+
+/* Hover */
+#searchInput:hover {
+  border-color: #bbb;
+}
+
+/* Focus */
+#searchInput:focus {
+  border-color: #000;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: #fff;
+        color: #000;
+      }
+
+      /* ===== HEADER ===== */
+      header {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 16px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .logo {
+        font-size: 22px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+      }
+
+      nav ul li {
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      .header-icons {
+        display: flex;
+        gap: 16px;
+        font-size: 14px;
+      }
+
+      /* ===== MINICART (visual) ===== */
+      .minicart {
+        padding: 40px;
+        max-width: 420px;
+        border-left: 1px solid #e5e5e5;
+      }
+
+      .minicart h2 {
+        font-size: 18px;
+        margin-bottom: 24px;
+      }
+
+      .cart-item {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .cart-item img {
+        width: 280px;
+        height: 300px;
+        object-fit: cover;
+        background: #f2f2f2;
+      }
+
+      .cart-info {
+        font-size: 15px;
+      }
+
+      .cart-info p {
+        margin-bottom: 12px;
+      }
+
+      .price {
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: #f8f8f8;
+        padding: 40px;
+        margin-top: 60px;
+      }
+
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-bottom: 40px;
+      }
+
+      .footer-columns h4 {
+        font-size: 14px;
+        margin-bottom: 16px;
+      }
+
+      .footer-columns ul {
+        list-style: none;
+        font-size: 13px;
+      }
+
+      .footer-columns ul li {
+        margin-bottom: 8px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #ddd;
+        padding-top: 16px;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .payment-icons img {
+        height: 22px;
+        margin-left: 8px;
+      }
+      .cart-container {
+  display: flex;
+  gap: 20px;              /* separación entre productos */
+  justify-content: flex-start;
+}
+
+.cart-item {
+  display: flex;
+  gap: 10px;
+  width: 300px;           /* ajusta si quieres */
+  border: 1px solid #e5e5e5;
+  padding: 10px;
+}
+    </style>
+
+  </head>
+ 
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="logo">ZHAICOLEX INSPIRATIONS</div>
+
+      <nav>   
+        <ul>
+            <li><a href="/unisex.html">Unisex</a></li>
+          <li><a href="/hombre.html">Hombre</a></li>
+          <li><a href="/mujer.html">Mujer</a></li>
+          <li><a href="/catalogo.html"> Inicio </a></li>
+          <li><a href="/inicio_sesion.html"> Formulario de compra </a></li>
+        </ul>
+      </nav>
+<br>
+      <div class="header-icons">
+        
+        <br />
+        <span><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></span>
+        <br />
+        <span><a href="/carrito.html">Carrito</a></span>
+      </div>
+    </header>
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Buscar perfume..."
+        onkeyup="buscarPerfume()"
+      />
+    </div>
+    
+   <script>
+    function buscarPerfume() {
+      const input = document.getElementById("searchInput");
+      const filtro = input.value.toLowerCase();
+  
+      const items = document.querySelectorAll(".cart-item");
+  
+      items.forEach((item) => {
+        const nombre = item
+          .querySelector(".cart-info p:nth-child(2)")
+          .innerText.toLowerCase();
+  
+        if (nombre.includes(filtro)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+    <!-- MINICART (VISUAL) -->
+    <aside class="minicart">
+      <h2>Perfumes Unisex</h2>
+
+
+       <!-- CONTENEDOR 1 -->
+<div class="cart-container">
+
+  <div class="cart-item">
+    <img src="https://lorens.com.co/wp-content/uploads/1-Million-de-Paco-Rabanne-para-hombre-200ml.jpg" alt="1 Million" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+  
+  <br>
+
+  <div class="cart-item">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqATF09pnX-TkSvazo9wCzR69o1wdPHk8g0A&s" alt="1 Million Elixir" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million Elixir</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+  <br>
+  <div class="cart-item">
+    <img src="https://www.perfumerialasvillas.net/wp-content/uploads/2023/10/v01-63e4d37210a03-_nestor_parfum-amcc8aoexgd-oo6c8ph2h99.jpg" alt="1 Million Intense" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million Intense</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+  <br>
+  <div class="cart-item">
+    <img src="https://www.alcarrito.com/media/catalog/product/o/i/oip_88_.jpg?width=400&height=400&canvas=400,400&optimize=medium&bg-color=255,255,255&fit=bounds" alt="1 Million Lucky" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million Lucky</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+ 
+
+</div>
+
+    </aside>
+    <aside class="minicart">
+      <h2>Perfumes Unisex Nicho</h2>
+      <!-- CONTENEDOR 2 -->
+<div class="cart-container">
+
+  <div class="cart-item">
+    <img src="https://http2.mlstatic.com/D_NQ_NP_610698-MCO90079471847_082025-O.webp" alt="1 Million Privé" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million Privé</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+  
+  <br>
+
+  <div class="cart-item">
+    <img src="https://disfragancias.com/cdn/shop/products/One-million-royal.jpg?v=1699808190" alt="1 Million Royal" />
+    <div class="cart-info">
+      <p><strong>PACO RABANNE</strong></p>
+      <p>1 Million Royal</p>
+      <p>Perfume de Hombre</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+
+  <br>
+  <div class="cart-item">
+    <img src="https://fimgs.net/mdimg/perfume/o.7993.jpg" alt="Coconut Passion" />
+    <div class="cart-info">
+      <p><strong>VICTORIA’S SECRET</strong></p>
+      <p>Coconut Passion</p>
+      <p>Perfume de Mujer</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
+  <br>
+
+  <div class="cart-item">
+  <img src="https://media.falabella.com/falabellaCO/3443687_1/w=1500,h=1500,fit=cover" alt="Coco Mademoiselle" />
+  <div class="cart-info">
+    <p><strong>CHANEL</strong></p>
+    <p>Coco Mademoiselle</p>
+    <p>Perfume de Mujer</p>
+    <p>Replica 30ml</p>
+    <p class="price">$ 19.990</p>
+  </div>
+</div>
+
+</div>
+
+
+    </aside>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-columns">
+        <div>
+          <h4>Atención al cliente</h4>
+          <ul>
+            <li><a href="tel:+573151821269">Contactanos</a></li>
+
+            <li><a href="tel:+573151821269">Devoluciones</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>ZHAICOLEZ INSPIRATIONS</h4>
+          <ul>
+
+            
+            <li><a href="#" id="verSobreNosotros">Sobre Nosotros</a>
+            </li>
+            <a href="https://wa.me/573151821269" target="_blank"
+            >Trabaja con nosotros</a
+          </ul>
+        </div>
+
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#" id="verTerminos">Términos y Condiciones</a>
+            </li>
+            <li>Privacidad</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Síguenos</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/zhaicolexinspirations?igsh=MWN2NmU1YmVtbXdhMQ==" target="_blank">
+            Instagram
+            </a>
+            </li>
+            <li><a href="https://www.facebook.com/profile.php?id=61582595425156" target="_blank">
+              Facebook
+            </a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 ZHAICOLEX INSPIRATIONS</span>
+        <div class="payment-icons">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s" alt="Efectivo" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s" alt="Nequi" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s" alt="Bancolombia" />
+          
+        </div>
+      </div>
+    </footer>
+   <!-- AGREGAR ESTE CÓDIGO AL FINAL DEL BODY EN EL CATÁLOGO -->
+<style>
+  /* Estilos para el botón de agregar al carrito */
+  .cart-item {
+    position: relative;
+  }
+  
+  .add-to-cart-btn {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .add-to-cart-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .add-to-cart-btn:active {
+    transform: translateY(0);
+  }
+  
+  /* Badge del carrito */
+  .cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #000;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .header-icons {
+    position: relative;
+  }
+  </style>
+  
+ <!-- REEMPLAZAR EL SCRIPT ANTERIOR EN EL CATÁLOGO CON ESTE -->
+<script>
+  // ============================= 
+  // SISTEMA DE SESIÓN Y CARRITO
+  // ============================= 
+  
+  let sessionId = '';
+  
+  // Generar ID de sesión único
+  function generateSessionId() {
+    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+  
+  // Obtener o crear ID de sesión
+  function getSessionId() {
+    // Buscar en sessionStorage (se borra al cerrar navegador/pestaña)
+    let session = sessionStorage.getItem('zhaicolezSessionId');
+    
+    if (!session) {
+      // Crear nueva sesión
+      session = generateSessionId();
+      sessionStorage.setItem('zhaicolezSessionId', session);
+      console.log('Nueva sesión creada:', session);
+    } else {
+      console.log('Sesión existente:', session);
+    }
+    
+    return session;
+  }
+  
+  // Inicializar sesión al cargar página
+  sessionId = getSessionId();
+  
+  // ============================= 
+  // FUNCIONES DEL CARRITO
+  // ============================= 
+  
+  // Función para agregar botones a todos los productos
+  function addCartButtons() {
+    const cartItems = document.querySelectorAll('.cart-item');
+    
+    cartItems.forEach(item => {
+      // Verificar si ya tiene botón
+      if (item.querySelector('.add-to-cart-btn')) return;
+      
+      const cartInfo = item.querySelector('.cart-info');
+      const brand = cartInfo.querySelector('p:nth-child(1) strong')?.textContent || 'Marca';
+      const name = cartInfo.querySelector('p:nth-child(2)')?.textContent || 'Producto';
+      const type = cartInfo.querySelector('p:nth-child(3)')?.textContent || 'Perfume';
+      const size = cartInfo.querySelector('p:nth-child(4)')?.textContent || '30ml';
+      const priceText = cartInfo.querySelector('.price')?.textContent || '$ 19.990';
+      const price = parseInt(priceText.replace(/\D/g, ''));
+      const image = item.querySelector('img')?.src || '';
+      
+      // Crear botón
+      const button = document.createElement('button');
+      button.className = 'add-to-cart-btn';
+      button.textContent = '🛒 Agregar al carrito';
+      button.onclick = function() {
+        addToCart(brand, name, type, size, price, image);
+      };
+      
+      cartInfo.appendChild(button);
+    });
+  }
+  
+  // Función para agregar al carrito con sesión
+  function addToCart(brand, name, type, size, price, image) {
+    const cartKey = 'zhaicolezCart_' + sessionId;
+    let cart = [];
+    const savedCart = localStorage.getItem(cartKey);
+    
+    if (savedCart) {
+      cart = JSON.parse(savedCart);
+    }
+  
+    const existingIndex = cart.findIndex(item => 
+      item.brand === brand && item.name === name
+    );
+  
+    if (existingIndex !== -1) {
+      cart[existingIndex].quantity += 1;
+    } else {
+      cart.push({
+        brand,
+        name,
+        type,
+        size,
+        price,
+        image,
+        quantity: 1
+      });
+    }
+  
+    localStorage.setItem(cartKey, JSON.stringify(cart));
+    console.log('Producto agregado al carrito de sesión:', sessionId);
+    
+    // Mostrar notificación
+    showNotification('¡Producto agregado al carrito!');
+    updateCartBadge();
+  }
+  
+  // Mostrar notificación
+  function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #000;
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10000;
+      animation: slideIn 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.style.animation = 'slideOut 0.3s ease';
+      setTimeout(() => notification.remove(), 300);
+    }, 2000);
+  }
+  
+  // Actualizar badge del carrito
+  function updateCartBadge() {
+    const cartKey = 'zhaicolezCart_' + sessionId;
+    const savedCart = localStorage.getItem(cartKey);
+    let badge = document.querySelector('.cart-badge');
+    
+    if (savedCart) {
+      const cart = JSON.parse(savedCart);
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      if (totalItems > 0) {
+        if (!badge) {
+          badge = document.createElement('span');
+          badge.className = 'cart-badge';
+          const cartLink = document.querySelector('.header-icons span:last-child');
+          if (cartLink) {
+            cartLink.style.position = 'relative';
+            cartLink.appendChild(badge);
+          }
+        }
+        badge.textContent = totalItems;
+      } else if (badge) {
+        badge.remove();
+      }
+    }
+  }
+  
+  // Limpiar carritos antiguos (más de 7 días)
+  function cleanOldCarts() {
+    const now = Date.now();
+    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 días
+    
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('zhaicolezCart_session_')) {
+        try {
+          const timestamp = parseInt(key.split('_')[2]);
+          if (now - timestamp > maxAge) {
+            localStorage.removeItem(key);
+            console.log('Carrito antiguo eliminado:', key);
+          }
+        } catch (e) {
+          console.log('Error al limpiar:', e);
+        }
+      }
+    }
+  }
+  
+  // ============================= 
+  // ESTILOS Y ANIMACIONES
+  // ============================= 
+  
+  // Agregar animaciones CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes slideOut {
+      from {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+    }
+    
+    .cart-badge {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // ============================= 
+  // INICIALIZACIÓN
+  // ============================= 
+  
+  // Ejecutar al cargar la página
+  document.addEventListener('DOMContentLoaded', function() {
+    addCartButtons();
+    updateCartBadge();
+    cleanOldCarts();
+    
+    console.log('Sesión activa:', sessionId);
+    console.log('Para nueva sesión, cierra el navegador completamente');
+  });
+  
+  // También ejecutar después de que el buscador filtre productos
+  const originalBuscar = window.buscarPerfume;
+  window.buscarPerfume = function() {
+    if (originalBuscar) originalBuscar();
+    setTimeout(addCartButtons, 100);
+  };
+  </script>
+  </body>
+</html>
