@@ -6,23 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
-      /* ============================= */
-/* AJUSTE DE CONTENEDORES PERFUME */
-/* ============================= */
-
-.cart-container {
+  
+ .cart-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en PC */
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;                            /* separación entre productos */
+  
   margin-bottom: 40px;
 }
+
+/* Tablets */
+@media (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
 
 /* TARJETA INDIVIDUAL */
 .cart-item {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  width: 100%;  
   border: 1px solid #e5e5e5;
-  padding: 12px;
+  padding: 10px;
   background: #fff;
   height: 100%;
 }
@@ -38,7 +57,7 @@
 
 /* TEXTO */
 .cart-info {
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -46,6 +65,7 @@
 
 .cart-info p {
   margin: 0;
+  
   line-height: 1.4;
 }
 
@@ -58,14 +78,6 @@
 .cart-container br {
   display: none;
 }
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .cart-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
       /* ===== BUSCADOR DE PERFUMES ===== */
 .search-box {
   width: 100%;
@@ -117,13 +129,90 @@
       }
 
       /* ===== HEADER ===== */
-      header {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 16px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+  
+header {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 15px;
+    font-size: 14px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+/* Línea animada */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #0066ff;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0066ff;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Activo */
+nav ul li a.active {
+  color: #0066ff;
+}
+
+nav ul li a.active::after {
+  width: 100%;
+}
+
 
       .logo {
         font-size: 22px;
@@ -151,30 +240,13 @@
       /* ===== MINICART (visual) ===== */
       .minicart {
         padding: 40px;
-        max-width: 420px;
-        border-left: 1px solid #e5e5e5;
+        max-width: 100%;
+        border-left: none;
       }
 
       .minicart h2 {
         font-size: 18px;
         margin-bottom: 24px;
-      }
-
-      .cart-item {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-
-      .cart-item img {
-        width: 280px;
-        height: 300px;
-        object-fit: cover;
-        background: #f2f2f2;
-      }
-
-      .cart-info {
-        font-size: 15px;
       }
 
       .cart-info p {
@@ -187,67 +259,154 @@
       }
 
       /* ===== FOOTER ===== */
-      footer {
-        background: #f8f8f8;
-        padding: 40px;
-        margin-top: 60px;
-      }
+    /* ============================= */
+/* FOOTER */
+/* ============================= */
 
-      .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-
-      .footer-columns h4 {
-        font-size: 14px;
-        margin-bottom: 16px;
-      }
-
-      .footer-columns ul {
-        list-style: none;
-        font-size: 13px;
-      }
-
-      .footer-columns ul li {
-        margin-bottom: 8px;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid #ddd;
-        padding-top: 16px;
-        font-size: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .payment-icons img {
-        height: 22px;
-        margin-left: 8px;
-      }
-      .cart-container {
-  display: flex;
-  gap: 20px;              /* separación entre productos */
-  justify-content: flex-start;
+footer {
+  background: #111;
+  color: #fff;
+  padding: 40px 20px;
+  font-size: 14px;
 }
 
-.cart-item {
-  display: flex;
-  gap: 10px;
-  width: 300px;           /* ajusta si quieres */
-  border: 1px solid #e5e5e5;
-  padding: 10px;
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+ 
+  margin: 0 auto;
 }
+
+.footer-columns h4 {
+  margin-bottom: 10px;
+}
+
+.footer-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-columns li {
+  margin-bottom: 6px;
+}
+
+.footer-columns a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-columns a:hover {
+  color: #fff;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+/* PC */
+.payment-icons {
+  display: flex;
+  justify-content: flex-end; /* 👉 a la derecha */
+  align-items: center;
+}
+
+.payment-icons img {
+  height: 22px;
+  margin-left: 8px;
+  object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .payment-icons img {
+    height: 20px;
+    margin-left: 6px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .payment-icons {
+    justify-content: center; /* 👉 centrado en móvil */
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+}
+@media (max-width: 768px) {
+  nav ul {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+}@media (max-width: 768px) {
+.footer-bottom {
+  display: flex;
+  justify-content: flex-start; /* izquierda */
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+}
+
+
+}
+
+
     </style>
 
   </head>
  
-
   <body>
     <!-- HEADER -->
+    
     <header>
+      
+      
+      
       <div class="logo">ZHAICOLEX INSPIRATIONS</div>
 
       <nav>   
@@ -255,17 +414,18 @@
             <li><a href="unisex.html">Unisex</a></li>
           <li><a href="hombre.html">Hombre</a></li>
           <li><a href="mujer.html">Mujer</a></li>
-          <li><a href="catalogo.html"> Inicio </a></li>
+          <li><a href="catalogo.html" class="active">Inicio</a></li>
+
           <li><a href="inicio_sesion.html"> Formulario de compra </a></li>
+          <li><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></li>
+       
+        <li><a href="carrito.html">Carrito</a></li>
         </ul>
       </nav>
-<br>
+
       <div class="header-icons">
         
-        <br />
-        <span><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></span>
-        <br />
-        <span><a href="carrito.html">Carrito</a></span>
+        
       </div>
     </header>
     <div class="search-box">
@@ -273,8 +433,7 @@
         type="text"
         id="searchInput"
         placeholder="Buscar perfume..."
-        onkeyup="buscarPerfume()"
-      />
+        onkeyup="buscarPerfume()"/>
     </div>
     
    <script>
@@ -317,7 +476,7 @@
     </div>
   </div>
   
-  <br>
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqATF09pnX-TkSvazo9wCzR69o1wdPHk8g0A&s" alt="1 Million Elixir" />
@@ -329,7 +488,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
   <div class="cart-item">
     <img src="https://www.perfumerialasvillas.net/wp-content/uploads/2023/10/v01-63e4d37210a03-_nestor_parfum-amcc8aoexgd-oo6c8ph2h99.jpg" alt="1 Million Intense" />
     <div class="cart-info">
@@ -340,7 +499,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
   <div class="cart-item">
     <img src="https://www.alcarrito.com/media/catalog/product/o/i/oip_88_.jpg?width=400&height=400&canvas=400,400&optimize=medium&bg-color=255,255,255&fit=bounds" alt="1 Million Lucky" />
     <div class="cart-info">
@@ -465,20 +624,12 @@
 
       <div class="footer-bottom">
         <span>© 2026 ZHAICOLEX INSPIRATIONS</span>
-        <div class="payment-icons">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s" alt="Efectivo" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s" alt="Nequi" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s" alt="Bancolombia" />
-          
-        </div>
+        
       </div>
     </footer>
    <!-- AGREGAR ESTE CÓDIGO AL FINAL DEL BODY EN EL CATÁLOGO -->
 <style>
   /* Estilos para el botón de agregar al carrito */
-  .cart-item {
-    position: relative;
-  }
   
   .add-to-cart-btn {
     width: 100%;
