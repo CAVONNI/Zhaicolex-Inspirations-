@@ -74,10 +74,6 @@
   margin-top: 6px;
 }
 
-/* NEUTRALIZA <br> SIN ROMPER TU HTML */
-.cart-container br {
-  display: none;
-}
       /* ===== BUSCADOR DE PERFUMES ===== */
 .search-box {
   width: 100%;
@@ -220,12 +216,6 @@ nav ul li a.active::after {
         letter-spacing: 2px;
       }
 
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 24px;
-      }
-
       nav ul li {
         font-size: 14px;
         cursor: pointer;
@@ -260,8 +250,6 @@ nav ul li a.active::after {
 
       /* ===== FOOTER ===== */
     /* ============================= */
-/* FOOTER */
-/* ============================= */
 
 footer {
   background: #111;
@@ -411,19 +399,18 @@ footer {
 
       <nav>   
         <ul>
-            <li><a href="unisex.html">Unisex</a></li>
-          <li><a href="hombre.html">Hombre</a></li>
-          <li><a href="mujer.html">Mujer</a></li>
-          <li><a href="catalogo.html" class="active">Inicio</a></li>
+            <li><a href="unisex.html" class=active">Unisex</a></li>
+          <li><a href="hombre.html" class=active">Hombre</a></li>
+          <li><a href="mujer.html" class=active">Mujer</a></li>
+          <li><a href="catalogo.html" class=active">Inicio</a></li>
 
-          <li><a href="inicio_sesion.html"> Formulario de compra </a></li>
-          <li><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></li>
+          <li><a href="inicio_sesion.html" class=active"> Formulario de compra </a></li>
+          <li><a href="https://wa.me/573151821269" class=active">WhatsApp</a></li>
        
-        <li><a href="carrito.html">Carrito</a></li>
+        <li><a href="carrito.html"class=active">Carrito</a></li>
         </ul>
       </nav>
 
-      <div class="header-icons">
         
         
       </div>
@@ -531,7 +518,6 @@ footer {
     </div>
   </div>
   
-  <br>
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/One-million-royal.jpg?v=1699808190" alt="1 Million Royal" />
@@ -544,7 +530,7 @@ footer {
     </div>
   </div>
 
-  <br>
+  
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.7993.jpg" alt="Coconut Passion" />
     <div class="cart-info">
@@ -555,7 +541,7 @@ footer {
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
   <img src="https://media.falabella.com/falabellaCO/3443687_1/w=1500,h=1500,fit=cover" alt="Coco Mademoiselle" />

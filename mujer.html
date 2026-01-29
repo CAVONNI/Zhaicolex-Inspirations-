@@ -2,27 +2,46 @@
 <html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
-    <title>Catalogo_Zhaicolex</title>
+    <title>Catalogo_Zhaicolex<</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
-      /* ============================= */
-/* AJUSTE DE CONTENEDORES PERFUME */
-/* ============================= */
-
-.cart-container {
+  
+ .cart-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en PC */
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;                            /* separación entre productos */
+  
   margin-bottom: 40px;
 }
+
+/* Tablets */
+@media (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
 
 /* TARJETA INDIVIDUAL */
 .cart-item {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  width: 100%;  
   border: 1px solid #e5e5e5;
-  padding: 12px;
+  padding: 10px;
   background: #fff;
   height: 100%;
 }
@@ -38,7 +57,7 @@
 
 /* TEXTO */
 .cart-info {
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -46,24 +65,13 @@
 
 .cart-info p {
   margin: 0;
+  
   line-height: 1.4;
 }
 
 .price {
   font-weight: bold;
   margin-top: 6px;
-}
-
-/* NEUTRALIZA <br> SIN ROMPER TU HTML */
-.cart-container br {
-  display: none;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .cart-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
       /* ===== BUSCADOR DE PERFUMES ===== */
@@ -117,24 +125,95 @@
       }
 
       /* ===== HEADER ===== */
-      header {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 16px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+  
+header {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 15px;
+    font-size: 14px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+/* Línea animada */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #0066ff;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0066ff;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Activo */
+nav ul li a.active {
+  color: #0066ff;
+}
+
+nav ul li a.active::after {
+  width: 100%;
+}
+
 
       .logo {
         font-size: 22px;
         font-weight: bold;
         letter-spacing: 2px;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 24px;
       }
 
       nav ul li {
@@ -151,30 +230,13 @@
       /* ===== MINICART (visual) ===== */
       .minicart {
         padding: 40px;
-        max-width: 420px;
-        border-left: 1px solid #e5e5e5;
+        max-width: 100%;
+        border-left: none;
       }
 
       .minicart h2 {
         font-size: 18px;
         margin-bottom: 24px;
-      }
-
-      .cart-item {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-
-      .cart-item img {
-        width: 280px;
-        height: 300px;
-        object-fit: cover;
-        background: #f2f2f2;
-      }
-
-      .cart-info {
-        font-size: 15px;
       }
 
       .cart-info p {
@@ -187,85 +249,172 @@
       }
 
       /* ===== FOOTER ===== */
-      footer {
-        background: #f8f8f8;
-        padding: 40px;
-        margin-top: 60px;
-      }
+    /* ============================= */
+/* FOOTER */
+/* ============================= */
 
-      .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-
-      .footer-columns h4 {
-        font-size: 14px;
-        margin-bottom: 16px;
-      }
-
-      .footer-columns ul {
-        list-style: none;
-        font-size: 13px;
-      }
-
-      .footer-columns ul li {
-        margin-bottom: 8px;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid #ddd;
-        padding-top: 16px;
-        font-size: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .payment-icons img {
-        height: 22px;
-        margin-left: 8px;
-      }
-      .cart-container {
-  display: flex;
-  gap: 20px;              /* separación entre productos */
-  justify-content: flex-start;
+footer {
+  background: #111;
+  color: #fff;
+  padding: 40px 20px;
+  font-size: 14px;
 }
 
-.cart-item {
-  display: flex;
-  gap: 10px;
-  width: 300px;           /* ajusta si quieres */
-  border: 1px solid #e5e5e5;
-  padding: 10px;
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+ 
+  margin: 0 auto;
 }
+
+.footer-columns h4 {
+  margin-bottom: 10px;
+}
+
+.footer-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-columns li {
+  margin-bottom: 6px;
+}
+
+.footer-columns a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-columns a:hover {
+  color: #fff;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+/* PC */
+.payment-icons {
+  display: flex;
+  justify-content: flex-end; /* 👉 a la derecha */
+  align-items: center;
+}
+
+.payment-icons img {
+  height: 22px;
+  margin-left: 8px;
+  object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .payment-icons img {
+    height: 20px;
+    margin-left: 6px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .payment-icons {
+    justify-content: center; /* 👉 centrado en móvil */
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+}
+@media (max-width: 768px) {
+  nav ul {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+}@media (max-width: 768px) {
+.footer-bottom {
+  display: flex;
+  justify-content: flex-start; /* izquierda */
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+}
+
+
+}
+
 
     </style>
+
   </head>
-  
-  
+ 
   <body>
     <!-- HEADER -->
+    
     <header>
+      
+      
+      
       <div class="logo">ZHAICOLEX INSPIRATIONS</div>
 
-      <nav>
+      <nav>   
         <ul>
-          <li><a href="unisex.html">Unisex</a></li>
-          <li><a href="hombre.html">Hombre</a></li>
-          <li><a href="mujer.html">Mujer</a></li>
-          <li><a href="index.html"> Inicio </a></li>
-          <li><a href="inicio_sesion.html"> Formulario de compra </a></li>
+            <li><a href="unisex.html" class=active">Unisex</a></li>
+          <li><a href="hombre.html" class=active">Hombre</a></li>
+          <li><a href="mujer.html" class=active">Mujer</a></li>
+          <li><a href="catalogo.html" class=active">Inicio</a></li>
+
+          <li><a href="inicio_sesion.html" class=active"> Formulario de compra </a></li>
+          <li><a href="https://wa.me/573151821269" class=active">WhatsApp</a></li>
+       
+        <li><a href="carrito.html"class=active">Carrito</a></li>
         </ul>
       </nav>
-<br>
-      <div class="header-icons">
+
         
-        <br />
-        <span><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></span>
-        <br />
-        <span><a href="carrito.html">Carrito</a></span>
+        
       </div>
     </header>
     <div class="search-box">
@@ -273,170 +422,122 @@
         type="text"
         id="searchInput"
         placeholder="Buscar perfume..."
-        onkeyup="buscarPerfume()"
-      />
+        onkeyup="buscarPerfume()"/>
     </div>
     
-    <script>
-      function buscarPerfume() {
-        const input = document.getElementById("searchInput");
-        const filtro = input.value.toLowerCase();
-    
-        const items = document.querySelectorAll(".cart-item");
-    
-        items.forEach((item) => {
-          const nombre = item
-            .querySelector(".cart-info p:nth-child(2)")
-            .innerText.toLowerCase();
-    
-          if (nombre.includes(filtro)) {
-            item.style.display = "";
-          } else {
-            item.style.display = "none";
-          }
-        });
-      }
-    </script>
-
-    <!-- MINICART (VISUAL) -->
-    <aside class="minicart">
-      <h2>Perfumes Femeninos</h2>
-
+   <script>
+    function buscarPerfume() {
+      const input = document.getElementById("searchInput");
+      const filtro = input.value.toLowerCase();
   
-       <!-- CONTENEDOR 1 -->
-<div class="cart-container">
+      const items = document.querySelectorAll(".cart-item");
+  
+      items.forEach((item) => {
+        const nombre = item
+          .querySelector(".cart-info p:nth-child(2)")
+          .innerText.toLowerCase();
+  
+        if (nombre.includes(filtro)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  </script>
 
-  <div class="cart-item">
-    <img src="https://www.timeshopcolombia.com/images/stories/virtuemart/product/212-carolina-herrera-woman.jpg" alt="212 Mujer" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+  <!-- MINICART (VISUAL) -->
+<aside class="minicart">
+  <h2>Perfumes Femeninos</h2>
+
+  <div class="cart-container">
+
+    <!-- PRODUCTO -->
+    <div class="cart-item">
+      <img src="https://www.timeshopcolombia.com/images/stories/virtuemart/product/212-carolina-herrera-woman.jpg" alt="212 Mujer">
+      <div class="cart-info">
+        <p><strong>CAROLINA HERRERA</strong></p>
+        <p>212</p>
+        <p>Perfume de Mujer</p>
+        <p>Réplica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
 
-  <div class="cart-item">
-    <img src="https://locionesbogota.com/cdn/shop/products/Carolina_Herrera_-_212_Heroes_-_Eau_De_Parfum_-_80ml_-_Mujer_1024x1024_2x_538f3d42-c58d-40ed-a3ab-4a414c3a56e5.webp?v=1676302370" alt="212 Heroes Mujer" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 Heroes</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <!-- PRODUCTO -->
+    <div class="cart-item">
+      <img src="https://locionesbogota.com/cdn/shop/products/Carolina_Herrera_-_212_Heroes_-_Eau_De_Parfum_-_80ml_-_Mujer_1024x1024_2x_538f3d42-c58d-40ed-a3ab-4a414c3a56e5.webp?v=1676302370" alt="212 Heroes Mujer">
+      <div class="cart-info">
+        <p><strong>CAROLINA HERRERA</strong></p>
+        <p>212 Heroes</p>
+        <p>Perfume de Mujer</p>
+        <p>Réplica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
 
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/files/212-Sexy-Carolina-Herrera_caf873d7-8ea8-4412-9cc9-0e2f1e73909b.jpg?v=1707858939" alt="212 Sexy Mujer" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 Sexy</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://perfumeriaendurence.com/wp-content/uploads/2024/06/212-vip-club-fem-1.jpg" alt="212 VIP Club Edition" />
+      <div class="cart-info">
+        <p><strong>CAROLINA HERRERA</strong></p>
+        <p>212 VIP Club Edition</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
 
-</div>
-
-<!-- CONTENEDOR 2 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/files/carolinaherrera212vip.jpg?v=1713457355" alt="212 VIP Mujer" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 VIP</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://disfragancias.com/cdn/shop/files/Carolina-herrera-212-vip-rose-red.jpg?v=1705013713" alt="212 VIP Rosé Red" />
+      <div class="cart-info">
+        <p><strong>CAROLINA HERRERA</strong></p>
+        <p>212 VIP Rosé Red</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://perfumeriaendurence.com/wp-content/uploads/2024/06/212-vip-club-fem-1.jpg" alt="212 VIP Club Edition" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 VIP Club Edition</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+   
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/files/212-Sexy-Carolina-Herrera_caf873d7-8ea8-4412-9cc9-0e2f1e73909b.jpg?v=1707858939" alt="212 Sexy Mujer" />
+      <div class="cart-info">
+        <p><strong>CAROLINA HERRERA</strong></p>
+        <p>212 Sexy</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://exitocol.vtexassets.com/arquivos/ids/23649788/perfume-carolina-herrera-212-vip-rose-80ml-para-mujer.jpg?v=638566748696600000" alt="212 VIP Rosé" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 VIP Rosé</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/products/360dama.jpg?v=1650661775" alt="360 Mujer" />
+      <div class="cart-info">
+        <p><strong>PERRY ELLIS</strong></p>
+        <p>360° Perri Elis</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 3 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/files/Carolina-herrera-212-vip-rose-red.jpg?v=1705013713" alt="212 VIP Rosé Red" />
-    <div class="cart-info">
-      <p><strong>CAROLINA HERRERA</strong></p>
-      <p>212 VIP Rosé Red</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/products/360CollectionMujer.jpg?v=1677099750" alt="360 Rosé" />
+      <div class="cart-info">
+        <p><strong>PERRY ELLIS</strong></p>
+        <p>360° Rosé</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/products/360dama.jpg?v=1650661775" alt="360 Mujer" />
-    <div class="cart-info">
-      <p><strong>PERRY ELLIS</strong></p>
-      <p>360° Perri Elis</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://disfragancias.com/cdn/shop/files/Escada-agua-de-sol-2.png?v=1705182882" alt="Agua del Sol" />
+      <div class="cart-info">
+        <p><strong>ESCADA</strong></p>
+        <p>Agua del Sol</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/products/360CollectionMujer.jpg?v=1677099750" alt="360 Rosé" />
-    <div class="cart-info">
-      <p><strong>PERRY ELLIS</strong></p>
-      <p>360° Rosé</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
-    </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 4 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/files/Escada-agua-de-sol-2.png?v=1705182882" alt="Agua del Sol" />
-    <div class="cart-info">
-      <p><strong>ESCADA</strong></p>
-      <p>Agua del Sol</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
-    </div>
-  </div>
-  <br>
 
   <div class="cart-item">
     <img src="https://www.hites.com/dw/image/v2/BDPN_PRD/on/demandware.static/-/Sites-mastercatalog_HITES/default/dw7a06d044/images/original/mkp/1055400003900/10554000039001_1.jpg?sw=1000&sh=1000" alt="Amber Romance" />
@@ -448,7 +549,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLpOpJSE4-0zsvrV7sJvowipTEyJed6m02zQ&s" alt="Amor Amor" />
@@ -460,23 +560,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-
-</div>
-<!-- CONTENEDOR 5 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/files/Angel-Mugler.jpg?v=1705522932" alt="Angel Mujer" />
-    <div class="cart-info">
-      <p><strong>MUGLER</strong></p>
-      <p>Angel</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
-    </div>
-  </div>
-  <br>
-
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.48423.jpg" alt="BFF" />
     <div class="cart-info">
@@ -487,7 +570,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3WBIaAfk2vn17qVs8RkXB_2LTloD808qzQ&s" alt="Big Pony 2" />
@@ -500,11 +583,16 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 6 -->
-<div class="cart-container">
-
+  <div class="cart-item">
+    <img src="https://disfragancias.com/cdn/shop/files/Angel-Mugler.jpg?v=1705522932" alt="Angel Mujer" />
+    <div class="cart-info">
+      <p><strong>MUGLER</strong></p>
+      <p>Angel</p>
+      <p>Perfume de Mujer</p>
+      <p>Replica 30ml</p>
+      <p class="price">$ 19.990</p>
+    </div>
+  </div>
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Victoria_sSecretBombshell.png?v=1742872983" alt="Bombshell Mujer" />
     <div class="cart-info">
@@ -515,7 +603,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://i0.wp.com/irisfragancias.com/wp-content/uploads/2022/05/BON-BON-BOTELLA.png" alt="Bon Bon" />
@@ -527,7 +615,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://perfumeriaendurence.com/wp-content/uploads/2024/06/Born-in-paradise.jpg" alt="Born in Paradise" />
@@ -539,12 +627,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-
-</div>
-
-<!-- CONTENEDOR 7 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/versace-bright-crystal-eau-de-toilette-for-women-90ml.webp?v=1676302626" alt="Bright Crystal" />
     <div class="cart-info">
@@ -555,7 +637,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_723494-MLU74982275206_032024-O.webp" alt="Burberry Mujer" />
@@ -567,7 +648,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://www.yanbal.com/medias/20012793-01.jpg?context=bWFzdGVyfGltYWdlc3wxNTU3Mzd8aW1hZ2UvanBlZ3xhRGRrTDJnMk55OHhNVFE1TlRnd05EWXpNekV4T0M4eU1EQXhNamM1TTE4d01TNXFjR2N8NWM4ODIzZDM5OGU2MTQ4Y2NkZGRhMTdjMzdjZmIzMDJjZWJlZWI2NGY5YTg1NjNkZjgyYmRkODI0YWI2NDIyMA" alt="C Cori Rosé" />
@@ -580,11 +661,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 8 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/Can-Can-Paris-Hilton.png?v=1707501506" alt="Can Can" />
     <div class="cart-info">
@@ -595,8 +671,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
-
+  
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.93613.jpg" alt="Candied Fantasy" />
     <div class="cart-info">
@@ -607,7 +682,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://www.fraganza.com.co/cdn/shop/files/Capturadepantalla2024-08-11185411_345x@2x.jpg?v=1747962842" alt="Candy Love" />
@@ -620,10 +695,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 9 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVynAdOtZz-U_31pIUcmMQ_nSFu16i6taRBw&s" alt="Carolina Herrera Mujer" />
     <div class="cart-info">
@@ -634,7 +705,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+ 
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS57FHx17-zj3eAYyfpwLH_Ou207Hq5w5xHRA&s" alt="CH Mujer" />
@@ -646,7 +717,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBYPeOxlp8HF6fvoAf8TkYgwh6NcsJBx7RhA&s" alt="CH Sublime" />
@@ -659,11 +730,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 10 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Perfume_Chanel_Chance_Eau_De_Toilette.webp?v=1732318242" alt="Chance Chanel" />
     <div class="cart-info">
@@ -674,7 +740,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/s-l500.jpg?v=1679945239" alt="CK IN2U Mujer" />
@@ -686,7 +752,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.114707.jpg" alt="Cloud Blush" />
@@ -699,11 +764,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 11 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://media.falabella.com/falabellaCO/3443687_1/w=1500,h=1500,fit=cover" alt="Coco Mademoiselle" />
     <div class="cart-info">
@@ -714,7 +774,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.7993.jpg" alt="Coconut Passion" />
@@ -726,7 +786,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_724271-MLM74139471095_012024-O.webp" alt="Dazzle" />
@@ -739,11 +799,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 12 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyIWHSOXWe0kBKQTHJMVOwsul4qqnEgogp_A&s" alt="Escape CK" />
     <div class="cart-info">
@@ -754,7 +809,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-paco-rabanne-fame-eau-de-parfum-80ml-mujer-6795595_580x.jpg?v=1758669299" alt="Fame Mujer" />
@@ -766,7 +821,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRw0D5K9fkM2fcePlYWvh950uQiM3AxcIdT-w&s" alt="Fantasy Britney Spears" />
@@ -779,10 +834,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 13 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://www.perfumecenter.com.mx/cdn/shop/products/719346607049_d52702a1-8796-4815-a0ac-9e25dc447468_800x.jpg?v=1602236915" alt="Fantasy Remix" />
     <div class="cart-info">
@@ -793,7 +844,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxkWLL2A7gpwrc3hLIdeuCcnYp8zd4Uw-EyA&s" alt="Good Girl" />
@@ -805,8 +856,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
-
+ 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/goodgirlblush.jpg?v=1705179037" alt="Good Girl Blush" />
     <div class="cart-info">
@@ -818,11 +868,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 14 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/carolinaherreragoodgirllegere2.jpg?v=1760798630" alt="Good Girl Legere" />
     <div class="cart-info">
@@ -833,7 +878,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
 
   <div class="cart-item">
     <img src="https://www.lineaestetica.co/wp-content/uploads/2023/06/6251_1_6.jpg" alt="Good Girl Supreme" />
@@ -845,7 +889,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/perfume-guess-girl-original-100ml-mujer.jpg?v=1705204304&width=416" alt="Guess Mujer" />
@@ -857,12 +901,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-
-</div>
-
-<!-- CONTENEDOR 15 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeCXvFmoW3k1wp7P_qteX27ye6qh8IJbY-SA&s" alt="Gucci II Mujer" />
     <div class="cart-info">
@@ -873,7 +911,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://m.media-amazon.com/images/I/51ZC8fVAJQL._AC_UF350,350_QL80_.jpg" alt="Halloween Mujer" />
@@ -885,7 +923,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqcngB5ii_7zNtdcRs2JoPUJWcn8npaMM5sg&s" alt="Heiress" />
@@ -898,10 +936,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 16 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/IsseyMiyakeMujer.jpg?v=1650485483" alt="Issey Miyake Mujer" />
     <div class="cart-info">
@@ -912,8 +946,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
-
+ 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/perfume-dior-jadore-100-ml-perfumes-407.webp?v=1728598767" alt="J'adore" />
     <div class="cart-info">
@@ -924,7 +957,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_720384-MLA47619607464_092021-O.webp" alt="Jean Paul Gaultier Mujer" />
@@ -937,11 +970,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 17 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/LaVieEstBelle.jpg?v=1649788199" alt="La Vie Est Belle" />
     <div class="cart-info">
@@ -952,7 +980,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://facescr.vtexassets.com/arquivos/ids/192500/3349668612604.png?v=638624574353270000" alt="Lady Million" />
@@ -964,7 +992,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://static.wixstatic.com/media/7e4077_f82903ae7bf048dbad4dbe85e9df382b~mv2.jpg/v1/fill/w_520,h_578,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7e4077_f82903ae7bf048dbad4dbe85e9df382b~mv2.jpg" alt="Light Blue Mujer" />
@@ -977,11 +1005,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 18 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://static.wixstatic.com/media/85adb6_6a52ea54427d465c848af6678505cf3a~mv2.jpg/v1/fill/w_520,h_578,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/85adb6_6a52ea54427d465c848af6678505cf3a~mv2.jpg" alt="Lolita Lempicka" />
     <div class="cart-info">
@@ -992,7 +1015,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_774768-MLU74725956860_032024-O.webp" alt="Love Victoria Secret" />
@@ -1004,7 +1027,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY_M7nJZpEDfmmrlMfla4dnwBLFemVVgpwbw&s" alt="Mad About You" />
@@ -1017,10 +1040,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 19 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS68Q8cqtsjRj5BM0u5WpUpiRI3V_c0uZGjZg&s" alt="Meow Katy Perry" />
     <div class="cart-info">
@@ -1031,7 +1050,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/FantasyMidnight.jpg?v=1649536159" alt="Midnight Fantasy" />
@@ -1043,7 +1062,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/56720-medium_default/million-gold-rabbanne-edp-mujer.webp" alt="Million Gold Mujer" />
@@ -1056,11 +1075,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 20 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzggi7y2x5FZoRXtspG4P8xV9iq5aT1ntrQQ&s" alt="Moon Sparkle" />
     <div class="cart-info">
@@ -1071,7 +1085,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsg68Or8suwnxyUNC4BcIe6K8-ld7IVZ1TRQ&s" alt="Moschino Funny" />
@@ -1083,7 +1097,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGa_16xImyxonZpF5wnaYVcFu3S1pMqNOTOg&s" alt="Next Girlfriend" />
@@ -1096,11 +1110,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 21 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://i.ebayimg.com/images/g/46AAAeSwNT5owxc9/s-l1200.webp" alt="Ocean Lounge" />
     <div class="cart-info">
@@ -1111,7 +1120,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Paco-rabanne-olympea-2.jpg?v=1699805301" alt="Olympea Mujer" />
@@ -1123,7 +1132,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/omnia-coral-65ml-edt.jpg?v=1676301289" alt="Omnia Coral" />
@@ -1136,10 +1145,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 22 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/bvlgari-omnia-coral-100-ml-2-600x600.jpg?v=1736622529" alt="Omnia Crystalline" />
     <div class="cart-info">
@@ -1150,7 +1155,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumeriamonserrat.com.co/wp-content/uploads/2022/03/perfume-4-420x420.png" alt="Our Moment" />
@@ -1162,7 +1167,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1T3zBQOByB6fui3uCfyXzUBAzlOpkRnbskg&s" alt="Paris Hilton Mujer" />
@@ -1175,11 +1180,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 23 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.10580.jpg" alt="Passport Paris" />
     <div class="cart-info">
@@ -1190,7 +1190,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_703024-MLU71590584319_092023-O.webp" alt="Pink Pretty" />
@@ -1202,7 +1202,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/D_NQ_NP_2X_773452-MCO31083637942_062019-F.webp?v=1676302728" alt="Ralph Mujer" />
@@ -1215,11 +1215,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 24 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbjkt9U6jkjxHTpNXtBdAf7Sg0oGDUjudyyg&s" alt="Rock by Shakira" />
     <div class="cart-info">
@@ -1230,7 +1225,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgNjpjp29ijABydNqTbyxuDUQ9FecjRC0aag&s" alt="S by Shakira" />
@@ -1242,7 +1237,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://madeira.com.co/cdn/shop/products/8435415059060_1.jpg?v=1669217264" alt="Scandalous VS" />
@@ -1255,10 +1250,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 25 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_708406-MLM48195262882_112021-O.webp
     " alt="Selena Gomez" />
@@ -1270,7 +1261,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-sofia-eau-de-parfum-100ml-mujer-1458326_grande.jpg?v=1758670134" alt="Sofia Vergara" />
@@ -1282,7 +1273,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/Escada-Sorbetto-Rosso.jpg?v=1733527472" alt="Sorbetto Rosso" />
@@ -1295,11 +1286,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 26 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/Ari-Sweet-Like-Candy-By-Ariana-Grande.png?v=1707501355" alt="Sweet Like Candy" />
     <div class="cart-info">
@@ -1310,7 +1296,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBPmjU1gYiek0kK5xHLxwWZXpKBrRwwPO8TA&s" alt="Taj Sunset" />
@@ -1322,7 +1308,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/Thankunextariana.webp?v=1707501365" alt="Thank U Next" />
@@ -1335,11 +1321,6 @@
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 27 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2023/02/the-one-dama.jpg" alt="The One Mujer" />
     <div class="cart-info">
@@ -1350,7 +1331,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSysGoNR4H2Vd66LIYvhfZTzKVp9zrKKOYJpw&s" alt="The Scent Mujer" />
@@ -1362,7 +1343,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlhpIO8Us5H_LI_bq5aWA-77frZjl1s7ElIg&s" alt="Tommy Mujer" />
@@ -1374,12 +1355,6 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-
-</div>
-
-<!-- CONTENEDOR 28 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.23018.jpg" alt="Velvet Sugar" />
     <div class="cart-info">
@@ -1391,280 +1366,251 @@
     </div>
   </div>
 
-</div>
-
-    </aside>
-    <aside class="minicart">
-      <h2>Perfumes Femeninos Nicho</h2>
-<!-- CONTENEDOR 1 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT_1uZlUv9FKzmEK5sIP76afJeb4N6BpqWUw&s" alt="Al Haramain Corvus" />
-    <div class="cart-info">
-      <p><strong>AL HARAMAIN</strong></p>
-      <p>Corvus</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
-    </div>
   </div>
-  <br>
+</aside>
 
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsNlvLu9qxDWlUb35Qaeyj6seMxnF6kRNlFA&s" alt="Ari Ariana Grande" />
-    <div class="cart-info">
-      <p><strong>ARIANA GRANDE</strong></p>
-      <p>Ari</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+
+
+<!-- MINICART (VISUAL) -->
+<aside class="minicart">
+  <h2>Perfumes Femeninos Nicho</h2>
+
+  <div class="cart-container">
+
+  
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTT_1uZlUv9FKzmEK5sIP76afJeb4N6BpqWUw&s" alt="Al Haramain Corvus" />
+      <div class="cart-info">
+        <p><strong>AL HARAMAIN</strong></p>
+        <p>Corvus</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://static.wixstatic.com/media/7e4077_d577b23b73a2473992295df10b5b09f8~mv2.png/v1/fit/w_500,h_500,q_90/file.png" alt="Billie Eilish" />
-    <div class="cart-info">
-      <p><strong>EILISH</strong></p>
-      <p>Billie Eilish</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsNlvLu9qxDWlUb35Qaeyj6seMxnF6kRNlFA&s" alt="Ari Ariana Grande" />
+      <div class="cart-info">
+        <p><strong>ARIANA GRANDE</strong></p>
+        <p>Ari</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 2 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMOCSRkNHoxH8rSugFUhotqu4zRHZugnaw_w&s" alt="Cloud Ariana Grande" />
-    <div class="cart-info">
-      <p><strong>ARIANA GRANDE</strong></p>
-      <p>Cloud</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://static.wixstatic.com/media/7e4077_d577b23b73a2473992295df10b5b09f8~mv2.png/v1/fit/w_500,h_500,q_90/file.png" alt="Billie Eilish" />
+      <div class="cart-info">
+        <p><strong>EILISH</strong></p>
+        <p>Billie Eilish</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://media.falabella.com/falabellaCO/73141702_1/w=1500,h=1500,fit=cover" alt="Cloud Pink" />
-    <div class="cart-info">
-      <p><strong>ARIANA GRANDE</strong></p>
-      <p>Cloud Pink</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMOCSRkNHoxH8rSugFUhotqu4zRHZugnaw_w&s" alt="Cloud Ariana Grande" />
+      <div class="cart-info">
+        <p><strong>ARIANA GRANDE</strong></p>
+        <p>Cloud</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://media.falabella.com/falabellaCO/73141702_1/w=1500,h=1500,fit=cover" alt="Crazy In Love" />
-    <div class="cart-info">
-      <p><strong>MONTALE</strong></p>
-      <p>Crazy In Love</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://media.falabella.com/falabellaCO/73141702_1/w=1500,h=1500,fit=cover" alt="Cloud Pink" />
+      <div class="cart-info">
+        <p><strong>ARIANA GRANDE</strong></p>
+        <p>Cloud Pink</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 3 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://static.wixstatic.com/media/c630e1_9f3cd90cc1534f19a463cb2464af487c~mv2.png/v1/fill/w_520,h_520,al_c,lg_1,q_85,enc_avif,quality_auto/c630e1_9f3cd90cc1534f19a463cb2464af487c~mv2.png" alt="Devotion D&G" />
-    <div class="cart-info">
-      <p><strong>DOLCE & GABBANA</strong></p>
-      <p>Devotion</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://media.falabella.com/falabellaCO/73141702_1/w=1500,h=1500,fit=cover" alt="Crazy In Love" />
+      <div class="cart-info">
+        <p><strong>MONTALE</strong></p>
+        <p>Crazy In Love</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://lmd.com.co/cdn/shop/files/450-perfume-divine-jean-paul-gaultier-100ml.jpg?v=1713995424&width=1445" alt="Divine JPG" />
-    <div class="cart-info">
-      <p><strong>JEAN PAUL GAULTIER</strong></p>
-      <p>Divine</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://static.wixstatic.com/media/c630e1_9f3cd90cc1534f19a463cb2464af487c~mv2.png/v1/fill/w_520,h_520,al_c,lg_1,q_85,enc_avif,quality_auto/c630e1_9f3cd90cc1534f19a463cb2464af487c~mv2.png" alt="Devotion D&G" />
+      <div class="cart-info">
+        <p><strong>DOLCE & GABBANA</strong></p>
+        <p>Devotion</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://media.falabella.com/falabellaCO/72885486_2/w=1500,h=1500,fit=cover" alt="Gold Fresh Couture" />
-    <div class="cart-info">
-      <p><strong>MOSCHINO</strong></p>
-      <p>Gold Fresh Couture</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://lmd.com.co/cdn/shop/files/450-perfume-divine-jean-paul-gaultier-100ml.jpg?v=1713995424&width=1445" alt="Divine JPG" />
+      <div class="cart-info">
+        <p><strong>JEAN PAUL GAULTIER</strong></p>
+        <p>Divine</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 4 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://static.wixstatic.com/media/7e4077_a98a1690e2d64f1296c7a475ded73785~mv2.jpg/v1/fill/w_520,h_582,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7e4077_a98a1690e2d64f1296c7a475ded73785~mv2.jpg" alt="Haya Lattafa" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Haya</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://media.falabella.com/falabellaCO/72885486_2/w=1500,h=1500,fit=cover" alt="Gold Fresh Couture" />
+      <div class="cart-info">
+        <p><strong>MOSCHINO</strong></p>
+        <p>Gold Fresh Couture</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/products/Ilmin-il-roso.jpg?v=1699805999" alt="Il Rosso" />
-    <div class="cart-info">
-      <p><strong>ARMAF</strong></p>
-      <p>Il Rosso</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://static.wixstatic.com/media/7e4077_a98a1690e2d64f1296c7a475ded73785~mv2.jpg/v1/fill/w_520,h_582,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/7e4077_a98a1690e2d64f1296c7a475ded73785~mv2.jpg" alt="Haya Lattafa" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Haya</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://locionesbogota.com/cdn/shop/products/moschinorosa.jpg?v=1676302279" alt="Moschino Bubble Gum" />
-    <div class="cart-info">
-      <p><strong>MOSCHINO</strong></p>
-      <p>Bubble Gum</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://disfragancias.com/cdn/shop/products/Ilmin-il-roso.jpg?v=1699805999" alt="Il Rosso" />
+      <div class="cart-info">
+        <p><strong>ARMAF</strong></p>
+        <p>Il Rosso</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 5 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://locionesbogota.com/cdn/shop/products/MOSCHINO.jpg?v=1676302324&width=564" alt="Moschino Toy 2" />
-    <div class="cart-info">
-      <p><strong>MOSCHINO</strong></p>
-      <p>Toy 2</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://locionesbogota.com/cdn/shop/products/moschinorosa.jpg?v=1676302279" alt="Moschino Bubble Gum" />
+      <div class="cart-info">
+        <p><strong>MOSCHINO</strong></p>
+        <p>Bubble Gum</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/files/Rave-Now-Woman.jpg?v=1736976990" alt="Rave Now Mujer" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Rave Now</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://locionesbogota.com/cdn/shop/products/MOSCHINO.jpg?v=1676302324&width=564" alt="Moschino Toy 2" />
+      <div class="cart-info">
+        <p><strong>MOSCHINO</strong></p>
+        <p>Toy 2</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxfINFXzv4UgwpskVxyKpCB8qJpk9ZnCx04g&s" alt="Valentino Donna" />
-    <div class="cart-info">
-      <p><strong>VALENTINO</strong></p>
-      <p>Valentino Donna</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/files/Rave-Now-Woman.jpg?v=1736976990" alt="Rave Now Mujer" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Rave Now</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 6 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://http2.mlstatic.com/D_Q_NP_697842-MLM50427058827_062022-O.webp" alt="Velvet Gold Orientica" />
-    <div class="cart-info">
-      <p><strong>ORIENTICA</strong></p>
-      <p>Velvet Gold</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxfINFXzv4UgwpskVxyKpCB8qJpk9ZnCx04g&s" alt="Valentino Donna" />
+      <div class="cart-info">
+        <p><strong>VALENTINO</strong></p>
+        <p>Valentino Donna</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3sJcqJxRKg-mig6nXO5nd-JH5dElVmsHUw&s" alt="Yara Lattafa" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Yara</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://http2.mlstatic.com/D_Q_NP_697842-MLM50427058827_062022-O.webp" alt="Velvet Gold Orientica" />
+      <div class="cart-info">
+        <p><strong>ORIENTICA</strong></p>
+        <p>Velvet Gold</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/files/Lattafa-Yara-Candy.jpg?v=1727393152" alt="Yara Candy" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Yara Candy</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ3sJcqJxRKg-mig6nXO5nd-JH5dElVmsHUw&s" alt="Yara Lattafa" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Yara</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-
-</div>
-
-<!-- CONTENEDOR 7 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/files/Yara-moi-2.jpg?v=1705447091" alt="Yara Moi" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Yara Moi</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    
+  
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/files/Lattafa-Yara-Candy.jpg?v=1727393152" alt="Yara Candy" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Yara Candy</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
-  </div>
-  <br>
-
-  <div class="cart-item">
-    <img src="https://attoperfumes.com.co/cdn/shop/files/Lattafa-Yara-Tous.png?v=1697036194" alt="Yara Tous" />
-    <div class="cart-info">
-      <p><strong>LATTAFA</strong></p>
-      <p>Yara Tous</p>
-      <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+    <div class="cart-item">
+      <img src="https://disfragancias.com/cdn/shop/files/Yara-moi-2.jpg?v=1705447091" alt="Yara Moi" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Yara Moi</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
     </div>
+    
+  
+    <div class="cart-item">
+      <img src="https://attoperfumes.com.co/cdn/shop/files/Lattafa-Yara-Tous.png?v=1697036194" alt="Yara Tous" />
+      <div class="cart-info">
+        <p><strong>LATTAFA</strong></p>
+        <p>Yara Tous</p>
+        <p>Perfume de Mujer</p>
+        <p>Replica 30ml</p>
+        <p class="price">$ 19.990</p>
+      </div>
+    </div>
+    <!-- 👉 AQUÍ PEGAS TODOS LOS DEMÁS cart-item, UNO TRAS OTRO -->
+
   </div>
+</aside>
 
-</div>
 
-    </aside>
+
     <!-- FOOTER -->
     <footer>
       <div class="footer-columns">
@@ -1716,20 +1662,13 @@
 
       <div class="footer-bottom">
         <span>© 2026 ZHAICOLEX INSPIRATIONS</span>
-        <div class="payment-icons">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s" alt="Efectivo" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s" alt="Nequi" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s" alt="Bancolombia" />
-          
-        </div>
+        
       </div>
+      
     </footer>
-  
+   <!-- AGREGAR ESTE CÓDIGO AL FINAL DEL BODY EN EL CATÁLOGO -->
 <style>
   /* Estilos para el botón de agregar al carrito */
-  .cart-item {
-    position: relative;
-  }
   
   .add-to-cart-btn {
     width: 100%;
@@ -1775,6 +1714,7 @@
   .header-icons {
     position: relative;
   }
+  
   </style>
   
  <!-- REEMPLAZAR EL SCRIPT ANTERIOR EN EL CATÁLOGO CON ESTE -->

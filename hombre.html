@@ -6,24 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
-     
-  /* ============================= */
-/* AJUSTE DE CONTENEDORES PERFUME */
-/* ============================= */
-
-.cart-container {
+  
+ .cart-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en PC */
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;                            /* separación entre productos */
+  
   margin-bottom: 40px;
 }
+
+/* Tablets */
+@media (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
 
 /* TARJETA INDIVIDUAL */
 .cart-item {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  width: 100%;  
   border: 1px solid #e5e5e5;
-  padding: 12px;
+  padding: 10px;
   background: #fff;
   height: 100%;
 }
@@ -39,7 +57,7 @@
 
 /* TEXTO */
 .cart-info {
-  font-size: 14px;
+  font-size: 15px;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -47,6 +65,7 @@
 
 .cart-info p {
   margin: 0;
+  
   line-height: 1.4;
 }
 
@@ -55,19 +74,7 @@
   margin-top: 6px;
 }
 
-/* NEUTRALIZA <br> SIN ROMPER TU HTML */
-.cart-container br {
-  display: none;
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-  .cart-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ===== BUSCADOR DE PERFUMES ===== */
+      /* ===== BUSCADOR DE PERFUMES ===== */
 .search-box {
   width: 100%;
   max-width: 520px;
@@ -105,7 +112,6 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-
       * {
         box-sizing: border-box;
         margin: 0;
@@ -119,13 +125,90 @@
       }
 
       /* ===== HEADER ===== */
-      header {
-        border-bottom: 1px solid #e5e5e5;
-        padding: 16px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
+  
+header {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 15px;
+    font-size: 14px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+/* Línea animada */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 3px;
+  background: #0066ff;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0066ff;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Activo */
+nav ul li a.active {
+  color: #0066ff;
+}
+
+nav ul li a.active::after {
+  width: 100%;
+}
+
 
       .logo {
         font-size: 22px;
@@ -153,30 +236,13 @@
       /* ===== MINICART (visual) ===== */
       .minicart {
         padding: 40px;
-        max-width: 420px;
-        border-left: 1px solid #e5e5e5;
+        max-width: 100%;
+        border-left: none;
       }
 
       .minicart h2 {
         font-size: 18px;
         margin-bottom: 24px;
-      }
-
-      .cart-item {
-        display: flex;
-        gap: 16px;
-        margin-bottom: 24px;
-      }
-
-      .cart-item img {
-        width: 280px;
-        height: 300px;
-        object-fit: cover;
-        background: #f2f2f2;
-      }
-
-      .cart-info {
-        font-size: 15px;
       }
 
       .cart-info p {
@@ -189,85 +255,171 @@
       }
 
       /* ===== FOOTER ===== */
-      footer {
-        background: #f8f8f8;
-        padding: 40px;
-        margin-top: 60px;
-      }
+    /* ============================= */
+/* FOOTER */
+/* ============================= */
 
-      .footer-columns {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 32px;
-        margin-bottom: 40px;
-      }
-
-      .footer-columns h4 {
-        font-size: 14px;
-        margin-bottom: 16px;
-      }
-
-      .footer-columns ul {
-        list-style: none;
-        font-size: 13px;
-      }
-
-      .footer-columns ul li {
-        margin-bottom: 8px;
-      }
-
-      .footer-bottom {
-        border-top: 1px solid #ddd;
-        padding-top: 16px;
-        font-size: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .payment-icons img {
-        height: 22px;
-        margin-left: 8px;
-      }
-
-      .cart-container {
-  display: flex;
-  gap: 20px;              /* separación entre productos */
-  justify-content: flex-start;
+footer {
+  background: #111;
+  color: #fff;
+  padding: 40px 20px;
+  font-size: 14px;
 }
 
-.cart-item {
-  display: flex;
-  gap: 10px;
-  width: 300px;           /* ajusta si quieres */
-  border: 1px solid #e5e5e5;
-  padding: 10px;
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+ 
+  margin: 0 auto;
 }
+
+.footer-columns h4 {
+  margin-bottom: 10px;
+}
+
+.footer-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-columns li {
+  margin-bottom: 6px;
+}
+
+.footer-columns a {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.footer-columns a:hover {
+  color: #fff;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+/* PC */
+.payment-icons {
+  display: flex;
+  justify-content: flex-end; /* 👉 a la derecha */
+  align-items: center;
+}
+
+.payment-icons img {
+  height: 22px;
+  margin-left: 8px;
+  object-fit: contain;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .payment-icons img {
+    height: 20px;
+    margin-left: 6px;
+  }
+}
+
+/* Móvil */
+@media (max-width: 480px) {
+  .payment-icons {
+    justify-content: center; /* 👉 centrado en móvil */
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+
+}
+@media (max-width: 768px) {
+  nav ul {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .logo {
+    text-align: center;
+    width: 100%;
+  }
+}@media (max-width: 768px) {
+.footer-bottom {
+  display: flex;
+  justify-content: flex-start; /* izquierda */
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+}
+
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  .payment-icons {
+    justify-content: center;
+  }
+}
+
+
+}
+
 
     </style>
+
   </head>
  
   <body>
     <!-- HEADER -->
+    
     <header>
-      <div class="logo">ZHAICOLEZ INSPIRATIONS</div>
+      
+      
+      
+      <div class="logo">ZHAICOLEX INSPIRATIONS</div>
 
-      <nav>
+      <nav>   
         <ul>
-          <li><a href="unisex.html">Unisex</a></li>
-          <li><a href="hombre.html">Hombre</a></li>
-          <li><a href="mujer.html">Mujer</a></li>
-          <li><a href="index.html"> Inicio </a></li>
-          <li><a href="inicio_sesion.html"> Formulario de compra </a></li>
+            <li><a href="unisex.html" class=active">Unisex</a></li>
+          <li><a href="hombre.html" class=active">Hombre</a></li>
+          <li><a href="mujer.html" class=active">Mujer</a></li>
+          <li><a href="catalogo.html" class=active">Inicio</a></li>
+
+          <li><a href="inicio_sesion.html" class=active"> Formulario de compra </a></li>
+          <li><a href="https://wa.me/573151821269" class=active">WhatsApp</a></li>
+       
+        <li><a href="carrito.html"class=active">Carrito</a></li>
         </ul>
       </nav>
-<br>
-      <div class="header-icons">
         
-        <br />
-        <span><a href="https://wa.me/573151821269" target="_blank">WhatsApp</a></span>
-        <br />
-        <span><a href="carrito.html">Carrito</a></span>
+        
       </div>
     </header>
     <div class="search-box">
@@ -275,37 +427,36 @@
         type="text"
         id="searchInput"
         placeholder="Buscar perfume..."
-        onkeyup="buscarPerfume()"
-      />
+        onkeyup="buscarPerfume()"/>
     </div>
-    <script>
-      function buscarPerfume() {
-        const input = document.getElementById("searchInput");
-        const filtro = input.value.toLowerCase();
     
-        const items = document.querySelectorAll(".cart-item");
-    
-        items.forEach((item) => {
-          const nombre = item
-            .querySelector(".cart-info p:nth-child(2)")
-            .innerText.toLowerCase();
-    
-          if (nombre.includes(filtro)) {
-            item.style.display = "";
-          } else {
-            item.style.display = "none";
-          }
-        });
-      }
-    </script>
-    
+   <script>
+    function buscarPerfume() {
+      const input = document.getElementById("searchInput");
+      const filtro = input.value.toLowerCase();
+  
+      const items = document.querySelectorAll(".cart-item");
+  
+      items.forEach((item) => {
+        const nombre = item
+          .querySelector(".cart-info p:nth-child(2)")
+          .innerText.toLowerCase();
+  
+        if (nombre.includes(filtro)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+  </script>
 
-    <!-- MINICART (VISUAL) -->
-    <aside class="minicart">
-      <h2>Perfumes Masculinos</h2>
+   <!-- MINICART (VISUAL) -->
+<aside class="minicart">
+  <h2>Perfumes Masculinos</h2>
 
-     <!-- CONTENEDOR 1 -->
-<div class="cart-container">
+  <div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://lorens.com.co/wp-content/uploads/1-Million-de-Paco-Rabanne-para-hombre-200ml.jpg" alt="1 Million" />
@@ -342,10 +493,7 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 2 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://www.alcarrito.com/media/catalog/product/o/i/oip_88_.jpg?width=400&height=400&canvas=400,400&optimize=medium&bg-color=255,255,255&fit=bounds" alt="1 Million Lucky" />
@@ -382,10 +530,10 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 3 -->
-<div class="cart-container">
+
+
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5LaMuNG7EVbi0SbaIRTRmKLKxbqFIAD_XPg&s" alt="212" />
@@ -397,7 +545,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiFrBEvEsM90sUxswCXMbiArMSuQTrezX_nw&s" alt="212 Aqua" />
@@ -409,7 +557,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Perfume_212_Men_Heroes_de_150ml_Carolina_Herrera.jpg?v=1731604106&width=1445" alt="212 Heroes" />
@@ -422,10 +570,9 @@
     </div>
   </div>
 
-</div>
 
 <!-- CONTENEDOR 4 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRF6CW92ZemAsEE1g3H7JjCeXhv4ahkfc0HA&s" alt="212 Sexy" />
@@ -437,7 +584,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToFp8UdMbXNQ_oEBFclGGtVDBM6bInDTtpEg&s" alt="212 VIP" />
@@ -449,7 +596,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYaGGM0xZ6KEO1-QH9q7_9opFw-0NQBzQR1Q&s" alt="212 VIP Black" />
@@ -462,10 +609,9 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 5 -->
-<div class="cart-container">
+
+
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Carolina-herrera-212-vip-rose-red.jpg?v=1705013713" alt="212 VIP Red" />
@@ -477,7 +623,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-4YspgH73OK6KD8NYuwCZ4jyzzVT-eZah6g&s" alt="212 VIP Wild Party" />
@@ -489,7 +635,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2023/02/360-dama.jpg" alt="360°" />
@@ -502,10 +648,7 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 6 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://laperfumeria.com.co/wp-content/uploads/2022/02/enrique_adrenalina_night.jpg" alt="Adrenaline Night" />
@@ -517,7 +660,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu_8XH0CwAHYqjm_W6mdcLRk4EYbIXI6Ln0A&s" alt="Aqva pour Homme" />
@@ -529,7 +672,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/39486-large_default/perfume-para-hombre-acqua-di-gio-by-giorgio-armani-200-ml.webp" alt="Acqua di Giò" />
@@ -542,9 +685,8 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 7 -->
-<div class="cart-container">
+
+
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/48726-large_default/perfumes-para-hombres-a-men-de-thierry-mugler-100-ml.webp" />
@@ -556,7 +698,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Animale-for-men-600x600.jpg?v=1704737255" alt="Animale" />
@@ -568,7 +710,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/ArsenalBlue.jpg?v=1707501427" alt="Arsenal Blue" />
@@ -581,10 +723,7 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 8 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Perfume_Creed_Aventus_75_Ml.jpg?v=1733151759" alt="Aventus" />
@@ -596,7 +735,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Bvlgari_Blv.webp?v=1726082781&width=1445" alt="Bvlgari BLV" />
@@ -608,7 +747,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-ch-bad-boy-eau-de-toilette-100ml-hombre-4299344_300x300.jpg?v=1758672303" alt="Bad Boy" />
@@ -621,10 +760,8 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 9 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://es.diesel.com/dw/image/v2/BBLG_PRD/on/demandware.static/-/Sites-diesel-master-catalog/default/dw2b2ee7c9/images/large/PL0403_00PRO_01_E.jpg?q=80" alt="Bad Diesel" />
@@ -636,7 +773,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/BlackXS.jpg?v=1750873732" alt="Black XS" />
@@ -648,7 +785,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fragantino.com/cdn/shop/files/Disenosintitulo_5.png?v=1715802393" alt="Black XS Aphrodisiaque" />
@@ -661,10 +798,7 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 10 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5WTsoUuv8Bu7tzrnJ2X9rimszYizvRDPAbg&s" alt="Black XS L’Excès" />
@@ -676,7 +810,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKLh4m9H3QwssXbCaPX3-GUQH_cI14fdvng&s" alt="Bleu de Chanel" />
@@ -688,7 +822,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-blue-seduction-antonio-b-eau-de-toilette-100ml-hombre-8614993_grande.webp?v=1758672387" alt="Blue Seduction" />
@@ -701,10 +835,7 @@
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 11 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4UDBpN5J_Ba_kxRR6YH7z7MBFlgbqpKy8Pg&s" alt="Valentino Uomo Born in Roma" />
@@ -716,7 +847,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGhgqgm-Q_tnteS4TkRRhYLg8DlXx8svDadw&s" alt="Boss" />
@@ -728,7 +859,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://static.beautytocare.com/cdn-cgi/image/f=auto/media/catalog/product//h/u/hugo-boss-boss-bottled-united-eau-de-parfum-100ml.jpg" alt="Boss Bottled United" />
@@ -741,9 +872,6 @@
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 12 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/Bossinmotionnueva.jpg?v=1652558055" alt="Boss In Motion" />
@@ -755,7 +883,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/54550-large_default/perfume-para-hombre-boss-orange-de-hugo-boss-100-ml-edt.webp" alt="Boss Orange" />
@@ -767,7 +895,7 @@
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">    <img src="data:image/jpeg;base64,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" alt="Boss Unlim
 ited" />
@@ -780,10 +908,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 13 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/hugo-boss-the-scent-100ml-perfumes-280.webp?v=1713417554" alt="Boss The Scent" />
@@ -795,7 +920,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Bvlgari_Man.jpg?v=1726085329&width=416" alt="Bvlgari" />
@@ -807,7 +932,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Perfume_Bvlgari_Aqva_Atlantiqve.jpg?v=1726066855" alt="Bvlgari Aqva Atlantiqve" />
@@ -820,10 +945,6 @@ ited" />
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 14 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcSo2yXGNI0alsuAwXkVTYrihklk66s7YiJw&s" alt="Bvlgari Aqva Marine" />
@@ -835,7 +956,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/Bvlgari-Man-in-_Black-100-ml.jpg?v=1707339140" alt="Bvlgari Black" />
@@ -847,7 +968,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZiguZZn1l1vI_zMYzTz0S2ni2OzFodsjEXw&s" alt="CH" />
@@ -860,10 +981,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 15 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://www.praimars.com/cdn/shop/products/ch-africa-men.jpg?v=1675663428" alt="CH Africa" />
@@ -875,7 +993,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.31508.jpg" alt="CH Privé" />
@@ -887,7 +1005,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVaMDXvpY584Ee5Twns1CBslTdGHLcK1Qs3A&s" alt="CK IN2U" />
@@ -900,10 +1018,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 16 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://perfumaste.com/wp-content/uploads/2025/01/5060524510008.webp" alt="CR7" />
@@ -915,7 +1030,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cr7fragrances.store/cdn/shop/files/CristianoRonaldoFearless30ml_800x.jpg?v=1689753222" alt="CR7 Fearless" />
@@ -927,7 +1042,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-declaration-cartier-100ml-hombre-eau-de-toilette-8591565_580x.jpg?v=1758671979" alt="Déclaration Cartier" />
@@ -940,9 +1055,8 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 17 -->
-<div class="cart-container">
+
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ4Opa0q3-97H7AHbWO0noIay0NDENwXEHpw&s" alt="Diesel" />
@@ -954,7 +1068,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlvTH4K4YVT0r4WDFDgN2RfVe-0-Tul9jCJw&s" alt="Dolce & Gabbana" />
@@ -966,7 +1080,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://belcorpcolombia.vtexassets.com/arquivos/ids/1052221/200094217-FotoFondoBlanco.jpg?v=638973666170900000" alt="D’Orsay" />
@@ -979,10 +1093,6 @@ ited" />
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 18 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJz2mpnpvchUL_oOVfTVW3URT4IJ6gxm9ufg&s" alt="Ducati Sport" />
@@ -994,7 +1104,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Versace-dylan-blue-hombre-2.jpg?v=1699805091" alt="Versace Dylan Blue" />
@@ -1006,7 +1116,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/perfume-versace-eau-fraiche-100-ml-perfumes-982.webp?v=1714494762" alt="Eau Fraîche" />
@@ -1019,10 +1129,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 19 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/fragancia-masculina-montblanc-emblem-100ml.jpg?v=1751564521" alt="Emblem" />
@@ -1034,7 +1142,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Versace-eros-edp-hombre-2.jpg?v=1699805098" alt="Versace Eros" />
@@ -1046,7 +1154,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw4f72fe1d/original/90_R741011-R200MLS_RNUL_20_ErosFlameEDP200ml--Versace-online-store_0_1.jpg?sw=850&q=85&strip=true" alt="Versace Eros Flame" />
@@ -1059,10 +1167,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 20 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/33483-large_default/perfume-para-hombre-eternity-calvin-klein-200ml.webp" alt="Eternity" />
@@ -1074,7 +1180,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2022/11/Perfume-Faconnable-EDT.jpeg" alt="Façonnable" />
@@ -1086,7 +1192,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/56961-medium_default/perfume-para-hombre-farenheit-by-christian-dior-100ml.webp" alt="Fahrenheit" />
@@ -1099,10 +1205,6 @@ ited" />
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 21 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKaz58C8Ug5cku3VTUdLoV8vjrlLxyROmhDg&s" alt="Givenchy Pour Homme Blue Label" />
@@ -1114,7 +1216,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqv55zZgI_X6gOQTprjoUCqO7YkoQnCSBS3Q&s" alt="Gucci II" />
@@ -1126,7 +1228,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRO7Xouw3qSHhTGFclg3uDovR17kiAJ2CMkNg&s" alt="Happy" />
@@ -1139,10 +1241,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 22 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/hugobossunlimited2.jpg?v=1704992882" alt="Hugo Boss Bottled" />
@@ -1154,7 +1254,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThx51QQZTPEDMelyMEvUtrVfJHncXo-7b78g&s" alt="Boss Bottled Night" />
@@ -1166,7 +1266,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/hugo-boss-the-scent-100ml-perfumes-280.webp?v=1713417554" alt="Boss The Scent" />
@@ -1179,10 +1279,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 23 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Paco-Rabanne-Invictus.jpg?v=1699644488" alt="Invictus" />
@@ -1194,7 +1291,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNmG19aFiksGODegLPvS7ymjxHBlrQhwTWIQ&s" alt="Invictus Victory" />
@@ -1206,7 +1303,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/jeanpaullemale.jpg?v=1649719656" alt="Jean Paul Gaultier Le Male" />
@@ -1219,10 +1316,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 24 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Le-male-le-parfum-2.jpg?v=1705431201" alt="Le Male Le Parfum" />
@@ -1234,7 +1328,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2022/12/PERFUME-LACOSTE-BLANC-EAU-DE-PARFUM-100ML-HOMBRE.jpg" alt="Lacoste Blanc" />
@@ -1246,7 +1340,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://puntoscolombia.vtexassets.com/arquivos/ids/23767715/image-1ece2260a0094f75ade51849be46cd4f.jpg?v=638258003013030000" alt="Lacoste Essential" />
@@ -1259,9 +1353,7 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 25 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://tu360compras.bancolombia.com/646924-medium_default/perfume-montblanc-legend-hombre-edt-100ml-locion.jpg" alt="Montblanc Legend" />
@@ -1273,7 +1365,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUwXVmsPSOPWkKkvQ7d99UxyAyk9BMzIQKKg&s" alt="Legend Night" />
@@ -1285,7 +1377,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Versace-dylan-blue-hombre-2.jpg?v=1699805091" alt="Versace Dylan Blue" />
@@ -1298,10 +1390,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 26 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Versace-eros-edp-hombre-2.jpg?v=1699805098" alt="Versace Eros" />
@@ -1313,7 +1402,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw4f72fe1d/original/90_R741011-R200MLS_RNUL_20_ErosFlameEDP200ml--Versace-online-store_0_1.jpg?sw=850&q=85&strip=true" alt="Versace Eros Flame" />
@@ -1325,7 +1414,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/DolceGabbanaK.jpg?v=1649533931" alt="Dolce & Gabbana K" />
@@ -1338,10 +1427,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 27 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://mundoreloj.com.co/wp-content/uploads/2023/11/Perfume-DG-Light-Blue-Pour-homme-3423473020516.jpg" alt="Light Blue Pour Homme" />
@@ -1353,7 +1439,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdFQBLckpnrH9a7Oe0jYr2JlIR9bg_3D2A-Q&s" alt="Givenchy Pi" />
@@ -1365,7 +1451,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumaste.com/wp-content/uploads/2025/01/Perfume-Givenchy-Gentlemen-De-Givenchy-Para-Hombre-100-ml-Frasco.jpg" alt="Gentleman Givenchy" />
@@ -1378,9 +1464,7 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 28 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpR8QzJesg1zvujQFKeaYO50paNEOP4VEdjA&s" alt="Gucci II" />
@@ -1392,7 +1476,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.373.jpg" alt="Happy Clinique" />
@@ -1404,7 +1488,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_886629-MLA74781931399_022024-O.webp" alt="Hugo Boss" />
@@ -1417,10 +1501,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 29 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://madeira.com.co/cdn/shop/products/3616301623373_1.jpg?v=1640143659" alt="Hugo Energise" />
@@ -1432,7 +1514,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_626891-MLU73108385811_112023-O.webp" alt="Hugo Red" />
@@ -1444,7 +1526,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwud8YOsBZL5R2IrEHq-EWgU13RxH6kb4oVg&s" alt="Hugo Reversed" />
@@ -1457,10 +1539,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 30 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Insurrection.png?v=1699807132" alt="Insurrection" />
@@ -1472,7 +1552,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz9VkLZdoE5f7ROCJPgmvNVvE9MZqabvUVtQ&s" alt="Invictus" />
@@ -1484,7 +1564,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/Invictus-Onyx-paco-rabanne.jpg?v=1717781268" alt="Invictus Onyx" />
@@ -1497,9 +1577,7 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 31 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://perfumesbogota.com.co/cdn/shop/products/perfume-paco-rabanne-incvictus-victory-eau-de-parfum-100ml-hombre-2976571_580x.jpg?v=1758671364" alt="Invictus Victory" />
@@ -1511,7 +1589,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Y4iWosPxgBIjWXTHtW7iQWj-VCSIB4gkrg&s" alt="Invictus Victory Elixir" />
@@ -1523,7 +1601,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Miyake-hombre-2.jpg?v=1699805758" alt="Issey Miyake" />
@@ -1536,10 +1614,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 32 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/jeanpaullemale.jpg?v=1649719656" alt="Jean Paul Gaultier" />
@@ -1551,7 +1626,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/dolce-gabbana-k-by-edt-100-ml-perfumes-993.webp?v=1713418286" alt="K by Dolce & Gabbana" />
@@ -1563,7 +1638,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://perfumaste.com/wp-content/uploads/2025/01/Perfume-L.12.12-Pour-Lui-Magnetic-De-Lacoste-Para-Hombre-100-ml-Frasco-min.jpg" alt="Lacoste L.12.12 Magnetic" />
@@ -1576,10 +1651,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 33 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt3Zp_q8Vmx42Z4eFvrdeFp3Bwe02lWkl_NA&s" alt="Lacoste L.12.12 Noir" />
@@ -1591,7 +1664,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/lacoste-l-12-12-blanc-100-ml-perfumes-491.webp?v=1713417583" alt="Lacoste L.12.12 White" />
@@ -1603,7 +1676,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.787.jpg" alt="Lacoste Essential" />
@@ -1616,9 +1689,7 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 34 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/Perfume-Lacoste-Rouge-L.12.12-para-Hombre-de-Lacoste-EDT-100ML.jpg?v=1661205432" alt="Lacoste Red" />
@@ -1630,7 +1701,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/Lapidus.jpg?v=1649793309" alt="Lapidus" />
@@ -1642,7 +1713,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="data:image/jpeg;base64,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" alt="Montblanc Legend" />
@@ -1655,10 +1726,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 35 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="data:image/jpeg;base64,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" alt="Legend HD" />
@@ -1670,7 +1738,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="data:image/jpeg;base64,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" alt="Legend Night" />
@@ -1682,7 +1750,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/files/Light-Blue-100ml-Caballero_grande.jpg?v=1764881227" alt="Light Blue Pour Homme" />
@@ -1695,10 +1763,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 36 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://puntoscolombia.vtexassets.com/arquivos/ids/23766488/image-3133a7dbf0b4455d9de95f34465bfc15.jpg?v=638257978804000000" alt="Loewe 7" />
@@ -1710,7 +1776,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/perfume-prada-carbon-luna-rossa-100ml.jpg?v=1721311661&width=1445" alt="Luna Rossa Carbon" />
@@ -1722,7 +1788,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://http2.mlstatic.com/D_NQ_NP_846358-MLU73746430012_012024-O.webp" alt="Nautica Voyage" />
@@ -1735,9 +1801,6 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 37 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqZa8RYUNiwiH9zjGYwLltSGV0yXPMFs-i2Q&s" alt="OHM" />
@@ -1749,7 +1812,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcK1DpPDolZX-YoOr3onEz9oov8yylq7iP9g&s" alt="Paris Hilton for Men" />
@@ -1761,7 +1824,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/54692-large_default/perfume-para-hombre-phantom-de-paco-rabanne-150-ml-edt.webp" alt="Phantom" />
@@ -1774,10 +1837,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 38 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="data:image/jpeg;base64,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" alt="Pi Givenchy" />
@@ -1789,7 +1850,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/32126-large_default/perfume-para-hombre-play-intense-by-givenchy.webp" alt="Play Intense" />
@@ -1801,7 +1862,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/2027272_2.jpg?v=1661211045&width=1445" alt="Polo Red" />
@@ -1814,10 +1875,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 39 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://perfumeriamonserrat.com.co/wp-content/uploads/2022/03/polo-ultra-blue-ralph-lauren-125ml_1024x1024@2x.jpg" alt="Polo Ultra Blue" />
@@ -1829,7 +1888,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume-thumbs/375x500.20611.jpg" alt="Porsche Design" />
@@ -1841,7 +1900,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/46466-medium_default/perfume-para-hombre-xs-pure-de-paco-rabanne-100-ml-edt.webp" alt="Pure XS" />
@@ -1854,9 +1913,7 @@ ited" />
     </div>
   </div>
 
-</div>
-<!-- CONTENEDOR 40 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUiXN1WcOD0k11u1F-vicMzyqWrLRcky4ROg&s" alt="Pure XS Night" />
@@ -1868,7 +1925,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/dior-sauvage-parfum-100ml-100-ml-perfumes-641.webp?v=1713417126" alt="Sauvage" />
@@ -1880,7 +1937,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2022/12/PERFUME-SCANDAL-POUR-HOMME-100ML-HOMBRE-EAU-DE-TOILETTE.jpg" alt="Scandal Pour Homme" />
@@ -1893,10 +1950,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 41 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5qhmXWETScMkhzrG9gPpphaWXWQdPYM52lQ&s" alt="Shade of Lagoon" />
@@ -1908,7 +1962,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/CreedSilverMountainWater100ml.png?v=1649538359" alt="Silver Mountain Water" />
@@ -1920,7 +1974,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://static.wixstatic.com/media/85adb6_62fdf5ecaec446ba95df3d73686ff18d~mv2.jpg/v1/fill/w_520,h_578,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/85adb6_62fdf5ecaec446ba95df3d73686ff18d~mv2.jpg" alt="Solo Loewe" />
@@ -1933,10 +1987,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 42 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://www.yanbal.com/medias/20012790-01.jpg?context=bWFzdGVyfGltYWdlc3w0MTI4ODd8aW1hZ2UvanBlZ3xhRGN6TDJnek15OHhNVFkyTkRRM09EUXdORFl6T0M4eU1EQXhNamM1TUY4d01TNXFjR2N8MjNiNWZiY2M0YjRlMGQ3ZjcxZTY0NWEwZDYwYjE3YmJmNjcwZWQzN2U5ZWQzOWRjN2ViZTcyYzljM2ExM2RhNQ" alt="Solo Yanbal" />
@@ -1948,7 +2000,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://locionesbogota.com/cdn/shop/products/STAR.jpg?v=1676302188" alt="Starwalker" />
@@ -1960,7 +2012,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Victorinox_Swiss_army_sport.png?v=1735581885" alt="Swiss Army" />
@@ -1973,10 +2025,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 43 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://www.yanbal.com/medias/20012785-01.jpg?context=bWFzdGVyfGltYWdlc3wzOTEyODl8aW1hZ2UvanBlZ3xhR1V3TDJoaVlpOHhNVFkyTXpBeU1qVXlNak01T0M4eU1EQXhNamM0TlY4d01TNXFjR2N8Yzk5NGJiYTExNWFhZGZiYTNkNTU1NTRmYTg2ODk1OTBkMWMwNTYxMzVlZWVjMjk2NzdmNjMyN2E3MDg3ZGNhZQ" alt="Temptation" />
@@ -1988,7 +2038,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://exdtvcqvfop.exactdn.com/wp-content/uploads/Tommy-de-Tommy-Hilfiger-para-hombre-100ml.jpg?strip=all" alt="Tommy" />
@@ -2000,7 +2050,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQIjkcBEeu_gp5usV33kA-ZtWwmSfyeSQtEA&s" alt="Ultra Male" />
@@ -2013,10 +2063,6 @@ ited" />
     </div>
   </div>
 
-</div>
-
-<!-- CONTENEDOR 44 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Valentino-uomo-2.jpg?v=1699805972" alt="Valentino Uomo" />
@@ -2028,7 +2074,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://belcorpcolombia.vtexassets.com/arquivos/ids/1044984/200114933_fotofondoblanco.jpg?v=638923504931700000" alt="Urban" />
@@ -2040,7 +2086,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://belcorpcolombia.vtexassets.com/arquivos/ids/1046863/WINNER.jpg?v=638925972230830000" alt="Winner Sport" />
@@ -2053,10 +2099,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 45 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://belcorpcolombia.vtexassets.com/arquivos/ids/1046863/WINNER.jpg?v=638925972230830000" alt="Zlatan" />
@@ -2068,17 +2112,6 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-
-</div>
-
-
-    </aside>
-   
-    <aside class="minicart">
-      <h2>Masculinas Nicho</h2>
-      <!-- CONTENEDOR 1 -->
-<div class="cart-container">
-
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsL6tVqpS5Ek5D0QbftnjtFk3jU2tbYcNHNA&s" alt="1 Million Golden Oud" />
     <div class="cart-info">
@@ -2089,7 +2122,18 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
+
+</div>
+
+
+    </aside>
+   
+    <aside class="minicart">
+      <h2>Perfumes Masculinos Nicho</h2>
+    
+      <div class="cart-container">
+ 
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvxiO98a6k62impNQe0r_4K--bcmilMQlUtA&s" alt="9 PM" />
@@ -2101,7 +2145,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://fraganceroscolombia.com.co/wp-content/uploads/2024/07/Amber-oud-dubai-Night-haramain.jpeg" alt="Amber Dubai Night" />
@@ -2114,10 +2158,7 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 2 -->
-<div class="cart-container">
 
   <div class="cart-item">
     <img src="https://cdn.valmara.co/56311-large_default/perfume-para-hombre-asad-de-lattafa-100-ml-edp.webp" alt="Asad Lattafa" />
@@ -2129,7 +2170,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/ASADZANZIBAR3.jpg?v=1711559662" alt="Asad Zanzibar" />
@@ -2141,7 +2182,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/files/Bharara-king_3ffd4fe0-a46e-425d-85ed-ae37d3425895.png?v=1702162864" alt="Bharara King" />
@@ -2154,10 +2195,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 3 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.3259.jpg" alt="Chez Bond No 9" />
@@ -2169,7 +2208,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://attoperfumes.com.co/cdn/shop/products/ArmafClubNuitIntense.jpg?v=1707501403" alt="Club de Nuit Intense Man" />
@@ -2181,7 +2220,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://mwhite.com.co/cdn/shop/files/perfume-jean-paul-gaultier-le-male-elixir-parfum-125ml-perfumes-687.webp?v=1728605072" alt="Le Male Elixir" />
@@ -2194,10 +2233,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 4 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://granaroma.co/wp-content/uploads/2024/03/herod-parfums-de-marly-eau-de-parfum.jpg" alt="Herod Parfums de Marly" />
@@ -2209,7 +2246,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://lmd.com.co/cdn/shop/files/perfume-louis-vuitton-limmensite-edp.webp?v=1740874208" alt="L'Immensité Louis Vuitton" />
@@ -2221,7 +2258,7 @@ ited" />
       <p class="price">$ 19.990</p>
     </div>
   </div>
-  <br>
+  
 
   <div class="cart-item">
     <img src="https://disfragancias.com/cdn/shop/products/Mandarin-sky-2.jpg?v=1704411377" alt="Odyssey Mandarin Sky" />
@@ -2234,10 +2271,8 @@ ited" />
     </div>
   </div>
 
-</div>
 
-<!-- CONTENEDOR 5 -->
-<div class="cart-container">
+
 
   <div class="cart-item">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuEs7haksCkb__4di9tAWwy2uo2F3ts8ybmQ&s" alt="Toy Boy Moschino" />
