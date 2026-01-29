@@ -256,8 +256,7 @@ nav ul li a.active::after {
 
       /* ===== FOOTER ===== */
     /* ============================= */
-/* FOOTER */
-/* ============================= */
+
 
 footer {
   background: #111;
@@ -392,7 +391,25 @@ footer {
 }
 
 
-    </style>
+.btn-arriba {
+  position: fixed;
+  bottom: 110px;   /* ⬆ lo sube respecto al botón de WhatsApp */
+  right: 20px;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #25d366;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+  </style>
 
   </head>
  
@@ -410,12 +427,12 @@ footer {
             <li><a href="unisex.html" class=active">Unisex</a></li>
           <li><a href="hombre.html" class=active">Hombre</a></li>
           <li><a href="mujer.html" class=active">Mujer</a></li>
-          <li><a href="catalogo.html" class=active">Inicio</a></li>
+          <li><a href="index.html" class=active">Inicio</a></li>
 
           <li><a href="inicio_sesion.html" class=active"> Formulario de compra </a></li>
-          <li><a href="https://wa.me/573151821269" class=active">WhatsApp</a></li>
+        
        
-        <li><a href="carrito.html"class=active">Carrito</a></li>
+        
         </ul>
       </nav>
         
@@ -936,7 +953,7 @@ footer {
         </div>
       </div>
     </footer>
-   <!-- AGREGAR ESTE CÓDIGO AL FINAL DEL BODY EN EL CATÁLOGO -->
+  
 <style>
   /* Estilos para el botón de agregar al carrito */
   .cart-item {
@@ -987,9 +1004,72 @@ footer {
   .header-icons {
     position: relative;
   }
+  .whatsapp-centro {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-centro:hover {
+  background-color: #000;
+}
+.btn-arriba {
+        position: fixed;
+        bottom: 110px; /* ⬆ lo sube respecto al botón de WhatsApp */
+        right: 20px;
+
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #000;
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+      .btn-carrito {
+  position: fixed;
+  bottom: 170px; /* ⬆ más arriba que el botón ↑ */
+  right: 20px;
+
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  background-color: #000;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  line-height: 45px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.btn-carrito:hover {
+  background-color: #333;
+}
+
   </style>
   
- <!-- REEMPLAZAR EL SCRIPT ANTERIOR EN EL CATÁLOGO CON ESTE -->
+
 <script>
   // ============================= 
   // SISTEMA DE SESIÓN Y CARRITO
@@ -1232,5 +1312,13 @@ footer {
     setTimeout(addCartButtons, 100);
   };
   </script>
-  </body>
+<a href="https://wa.me/573001112233?text=Hola,%20estoy%20interesado%20en%20un%20producto"
+target="_blank"
+class="whatsapp-centro">
+WhatsApp
+</a>
+<button class="btn-arriba" onclick="irArriba()">↑</button>
+<a href="carrito.html" class="btn-carrito">🛒</a>
+</body>
+
 </html>
