@@ -1,679 +1,654 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carrito - Zhaicolez Inspirations</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Zhaicolex</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div>
+      <img
+        src="https://i.imgur.com/5QRXi5H.png"
+        alt="Logo de Inspirations"
+        style="width: 300px; height: auto; display: block; margin: 0 auto"
+      />
+    </div>
+    <h1>REGISTRO DE VENTA</h1>
+
+    <section>
+      <h2>Solo se permite una referencia por registro</h2>
+      <br /><br />
+
+      <br />
+      <form>
+        <fieldset>
+          <legend>INFORMACION DEL PEDIDO</legend>
+
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required
+            placeholder="Tu nombre"
+          />
+
+          <br /><br />
+
+          <h3>Busca el nombre del perfume entre las siguientes categorias:</h3>
+
+          <!-- COMBOBOX FEMENINAS -->
+          <section>
+            <fieldset>
+              <label for="femeninas">Referencias Femeninas:</label>
+              <br /><br />
+              <select id="femeninas" name="femeninas">
+                <option value="">Selecciona un perfume</option>
+                <option value="212">212</option>
+                <option value="212 Heroes">212 Heroes</option>
+                <option value="212 Sexy">212 Sexy</option>
+                <option value="212 VIP">212 VIP</option>
+                <option value="212 VIP Club Edition">
+                  212 VIP Club Edition
+                </option>
+                <option value="212 VIP Rose">212 VIP Rose</option>
+                <option value="212 VIP Rose Red">212 VIP Rose Red</option>
+                <option value="360°">360°</option>
+                <option value="360° Rose">360° Rose</option>
+                <option value="Agua de Sol">Agua de Sol</option>
+                <option value="Amber Romance">Amber Romance</option>
+                <option value="Amor Amor">Amor Amor</option>
+                <option value="Angel">Angel</option>
+                <option value="BFF">BFF</option>
+                <option value="Big Pony 2">Big Pony 2</option>
+                <option value="Bombshell">Bombshell</option>
+                <option value="Bon Bon">Bon Bon</option>
+                <option value="Born in Paradise">Born in Paradise</option>
+                <option value="Bright Crystal">Bright Crystal</option>
+                <option value="Burberry">Burberry</option>
+                <option value="C Cori Rose">C Cori Rose</option>
+                <option value="Can Can">Can Can</option>
+                <option value="Candied Fantasy">Candied Fantasy</option>
+                <option value="Candy Love">Candy Love</option>
+                <option value="Carolina Herrera">Carolina Herrera</option>
+                <option value="CH">CH</option>
+                <option value="CH Sublime">CH Sublime</option>
+                <option value="Chance Cahnel">Chance Cahnel</option>
+                <option value="CK IN 2">CK IN 2</option>
+                <option value="Cloud Blush">Cloud Blush</option>
+                <option value="Coco Mademoiselle">Coco Mademoiselle</option>
+                <option value="Coconut Passion">Coconut Passion</option>
+                <option value="Dazzle">Dazzle</option>
+                <option value="Escape (C.K)">Escape (C.K)</option>
+                <option value="Fame">Fame</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Fantasy Remix">Fantasy Remix</option>
+                <option value="Good Girl">Good Girl</option>
+                <option value="Good Girl Blush">Good Girl Blush</option>
+                <option value="Good Girl Legere">Good Girl Legere</option>
+                <option value="Good Girl Supreme">Good Girl Supreme</option>
+                <option value="Guess">Guess</option>
+                <option value="Gucci II">Gucci II</option>
+                <option value="Halloween">Halloween</option>
+                <option value="Heiress">Heiress</option>
+                <option value="Iseey Miyake">Iseey Miyake</option>
+                <option value="J’adore">J’adore</option>
+                <option value="Jean Paul Gaultier">Jean Paul Gaultier</option>
+                <option value="La Vida Es Bella">La Vida Es Bella</option>
+                <option value="Lady Millon">Lady Millon</option>
+                <option value="Light Blue">Light Blue</option>
+                <option value="Lolita Lempicka">Lolita Lempicka</option>
+                <option value="Love (S.V)">Love (S.V)</option>
+                <option value="Mad About You">Mad About You</option>
+                <option value="Meow!">Meow!</option>
+                <option value="Midnight Fantasy">Midnight Fantasy</option>
+                <option value="Million Gold">Million Gold</option>
+                <option value="Moon Sparkle">Moon Sparkle</option>
+                <option value="Moschino Funny">Moschino Funny</option>
+                <option value="Next Girl Friend’s">Next Girl Friend’s</option>
+                <option value="Ocean Lounge">Ocean Lounge</option>
+                <option value="Olympea">Olympea</option>
+                <option value="Omnia Coral">Omnia Coral</option>
+                <option value="Omnia Crystaline">Omnia Crystaline</option>
+                <option value="Our Moment">Our Moment</option>
+                <option value="Paris Hilton">Paris Hilton</option>
+                <option value="Passport Paris">Passport Paris</option>
+                <option value="Pink Pretty">Pink Pretty</option>
+                <option value="Ralph">Ralph</option>
+                <option value="Rock Shakira">Rock Shakira</option>
+                <option value="S by Shakira">S by Shakira</option>
+                <option value="Scandalous">Scandalous</option>
+                <option value="Selena Gomez">Selena Gomez</option>
+                <option value="Sofia Vergara">Sofia Vergara</option>
+                <option value="Sorbetto Rosso">Sorbetto Rosso</option>
+                <option value="Sweet Like Candy">Sweet Like Candy</option>
+                <option value="Taj Sunset">Taj Sunset</option>
+                <option value="Thank U’Next">Thank U’Next</option>
+                <option value="The One">The One</option>
+                <option value="The Scent (H.B)">The Scent (H.B)</option>
+                <option value="Tommy">Tommy</option>
+                <option value="Velvet Sugar">Velvet Sugar</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <!-- COMBOBOX FEMENINAS NICHO -->
+          <section>
+            <fieldset>
+              <label for="femeninasNicho">Referencias Femeninas Nicho:</label>
+              <br /><br />
+              <select id="femeninasNicho" name="femeninasNicho">
+                <option value="">Selecciona un perfume</option>
+                <option value="Alhi Corvus">Alhi Corvus</option>
+                <option value="Ari (A.G)">Ari (A.G)</option>
+                <option value="Billie Eilish">Billie Eilish</option>
+                <option value="Cloud">Cloud</option>
+                <option value="Cloud Pink">Cloud Pink</option>
+                <option value="Crazy In Love">Crazy In Love</option>
+                <option value="Devotion">Devotion</option>
+                <option value="Divine Jean P. Gaultier">
+                  Divine Jean P. Gaultier
+                </option>
+                <option value="Fresh Gold Moschino">Fresh Gold Moschino</option>
+                <option value="Haya Lataffa">Haya Lataffa</option>
+                <option value="Il Rosso">Il Rosso</option>
+                <option value="Moschino Bubble Gum">Moschino Bubble Gum</option>
+                <option value="Moschino Toy 2">Moschino Toy 2</option>
+                <option value="Rave Now">Rave Now</option>
+                <option value="Valentino Donna">Valentino Donna</option>
+                <option value="Velvet Gold Orientica">
+                  Velvet Gold Orientica
+                </option>
+                <option value="Yara">Yara</option>
+                <option value="Yara Candy">Yara Candy</option>
+                <option value="Yara Moi">Yara Moi</option>
+                <option value="Yara Tous">Yara Tous</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <!-- COMBOBOX UNISEX -->
+          <section>
+            <fieldset>
+              <label for="unisex">Referencias Unisex:</label>
+              <br /><br />
+              <select id="unisex" name="unisex">
+                <option value="">Selecciona un perfume</option>
+                <option value="Arruru">Arruru</option>
+                <option value="CK One">CK One</option>
+                <option value="Eau de Cartier">Eau de Cartier</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <!-- COMBOBOX UNISEX NICHO -->
+          <section>
+            <fieldset>
+              <label for="unisexNicho">Referencias Unisex Nicho:</label>
+              <br /><br />
+              <select id="unisexNicho" name="unisexNicho">
+                <option value="">Selecciona un perfume</option>
+                <option value="Ajwad">Lattafa Ajwad</option>
+                <option value="Alhi Karpos">Alhi Karpos</option>
+                <option value="Alhi Vega">Alhi Vega</option>
+                <option value="Amber Oud Gold Edition">
+                  Amber Oud Gold Edition
+                </option>
+                <option value="Andromeda T.T">Andromeda T.T</option>
+                <option value="Arabian's Tonka">Arabian's Tonka</option>
+                <option value="Baccarat Rouge 540">Baccarat Rouge 540</option>
+                <option value="Bond #9">Bond #9</option>
+                <option value="Bond Bleecker Street">
+                  Bond Bleecker Street
+                </option>
+                <option value="God of Fire">God of Fire</option>
+                <option value="Ilmin Femme">Ilmin Femme</option>
+                <option value="Ilmin Kakuno">Ilmin Kakuno</option>
+                <option value="Instant Crush">Instant Crush</option>
+                <option value="Intense Cafe">Intense Cafe</option>
+                <option value="Khamra">Khamra</option>
+                <option value="Kirke T.T">Kirke T.T</option>
+                <option value="Leyton by Marly">Leyton by Marly</option>
+                <option value="Megamare Orto Parisi">
+                  Megamare Orto Parisi
+                </option>
+                <option value="Orientica Oud Saffron">
+                  Orientica Oud Saffron
+                </option>
+                <option value="Orientica Rouge">Orientica Rouge</option>
+                <option value="Ombre Nomade (LV)">Ombre Nomade (LV)</option>
+                <option value="Oud for Amhetys">Oud for Amhetys</option>
+                <option value="Oud for Greatness">Oud for Greatness</option>
+                <option value="Oud for Sublime">Oud for Sublime</option>
+                <option value="Rehab Initio">Rehab Initio</option>
+                <option value="Santal 33">Santal 33</option>
+                <option value="Scarlet Poppy">Scarlet Poppy</option>
+                <option value="Starry Night">Starry Night</option>
+                <option value="Tobacco Vainilla">Tobacco Vainilla</option>
+                <option value="Toy 2 Pearl">Toy 2 Pearl</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <!-- COMBOBOX MASCULINAS -->
+          <section>
+            <fieldset>
+              <label for="masculinas">Referencias Masculinas:</label>
+              <br /><br />
+              <select id="masculinas" name="masculinas">
+                <option value="">Selecciona un perfume</option>
+                <option value="1 Millon">1 Millon</option>
+                <option value="1 Millon Elixir">1 Millon Elixir</option>
+                <option value="1 Millon Intense">1 Millon Intense</option>
+                <option value="1 Millon Lucky">1 Millon Lucky</option>
+                <option value="1 Millon Prive">1 Millon Prive</option>
+                <option value="1 Millon Royale">1 Millon Royale</option>
+                <option value="212">212</option>
+                <option value="212 Aqua">212 Aqua</option>
+                <option value="212 Heroes">212 Heroes</option>
+                <option value="212 Sexy">212 Sexy</option>
+                <option value="212 VIP">212 VIP</option>
+                <option value="212 VIP Black">212 VIP Black</option>
+                <option value="212 VIP Red">212 VIP Red</option>
+                <option value="212 VIP Wild Party">212 VIP Wild Party</option>
+                <option value="360°">360°</option>
+                <option value="Adrenaline Night">Adrenaline Night</option>
+                <option value="Aqua de Bvlgary">Aqua de Bvlgary</option>
+                <option value="Aqua de Gio">Aqua de Gio</option>
+                <option value="Angel">Angel</option>
+                <option value="Animale">Animale</option>
+                <option value="Arsenal Blue">Arsenal Blue</option>
+                <option value="Aventus">Aventus</option>
+                <option value="B.L.V">B.L.V</option>
+                <option value="Bad Boy">Bad Boy</option>
+                <option value="Bad Diesel">Bad Diesel</option>
+                <option value="Black XS">Black XS</option>
+                <option value="Black XS Aphrodisiaque">
+                  Black XS Aphrodisiaque
+                </option>
+                <option value="Black XS Lexce’s">Black XS Lexce’s</option>
+                <option value="Bleu Chanel">Bleu Chanel</option>
+                <option value="Blue Seduction">Blue Seduction</option>
+                <option value="Born in Roma Valentino">
+                  Born in Roma Valentino
+                </option>
+                <option value="Boss">Boss</option>
+                <option value="Boss Bottled United">Boss Bottled United</option>
+                <option value="Boss in Motion">Boss in Motion</option>
+                <option value="Boss Orange">Boss Orange</option>
+                <option value="Boss Unlimited">Boss Unlimited</option>
+                <option value="Boss The Scent">Boss The Scent</option>
+                <option value="Bvlgari">Bvlgari</option>
+                <option value="Bvlgari Atlantique">Bvlgari Atlantique</option>
+                <option value="Bvlgari Aquamarine">Bvlgari Aquamarine</option>
+                <option value="Bvlgari Black">Bvlgari Black</option>
+                <option value="CH">CH</option>
+                <option value="CH Africa">CH Africa</option>
+                <option value="CH Privé">CH Privé</option>
+                <option value="CK IN 2">CK IN 2</option>
+                <option value="CR 7">CR 7</option>
+                <option value="CR 7 Fearless">CR 7 Fearless</option>
+                <option value="Declaration de Cartier">
+                  Declaration de Cartier
+                </option>
+                <option value="Diesel">Diesel</option>
+                <option value="Dolce & Gabbana">Dolce & Gabbana</option>
+                <option value="Dorsay">Dorsay</option>
+                <option value="Ducati Sport">Ducati Sport</option>
+                <option value="Dylan Blue">Dylan Blue</option>
+                <option value="Eau Fraiche">Eau Fraiche</option>
+                <option value="Emblem">Emblem</option>
+                <option value="Eros">Eros</option>
+                <option value="Eros Flame">Eros Flame</option>
+                <option value="Eternity">Eternity</option>
+                <option value="Faconnable">Faconnable</option>
+                <option value="Fahrenheit">Fahrenheit</option>
+                <option value="Givenchy Blue">Givenchy Blue</option>
+                <option value="Gucci II">Gucci II</option>
+                <option value="Happy">Happy</option>
+                <option value="Hugo Boss">Hugo Boss</option>
+                <option value="Hugo Energise">Hugo Energise</option>
+                <option value="Hugo Red">Hugo Red</option>
+                <option value="Hugo Reversed">Hugo Reversed</option>
+                <option value="Insurrection">Insurrection</option>
+                <option value="Invictus">Invictus</option>
+                <option value="Invictus Onix">Invictus Onix</option>
+                <option value="Invictus Victory">Invictus Victory</option>
+                <option value="Invictus Victory Elixir">
+                  Invictus Victory Elixir
+                </option>
+                <option value="Issey Miyake">Issey Miyake</option>
+                <option value="Jean Paul Gaultier">Jean Paul Gaultier</option>
+                <option value="K by D&G">K by D&G</option>
+                <option value="L.12.12 Magnetic">L.12.12 Magnetic</option>
+                <option value="L.12.12 Noir">L.12.12 Noir</option>
+                <option value="L.12.12 White">L.12.12 White</option>
+                <option value="Lacoste Esencial">Lacoste Esencial</option>
+                <option value="Lacoste Red">Lacoste Red</option>
+                <option value="Lapidus">Lapidus</option>
+                <option value="Legacy">Legacy</option>
+                <option value="Legendary H.D">Legendary H.D</option>
+                <option value="Legend Night">Legend Night</option>
+                <option value="Light Blue">Light Blue</option>
+                <option value="Loewe 7">Loewe 7</option>
+                <option value="Luna Rosa Carbon">Luna Rosa Carbon</option>
+                <option value="Nautica Voyage">Nautica Voyage</option>
+                <option value="OHM">OHM</option>
+                <option value="Paris Hilton">Paris Hilton</option>
+                <option value="Phantom">Phantom</option>
+                <option value="Pi (Givenchi)">Pi (Givenchi)</option>
+                <option value="Play Intense">Play Intense</option>
+                <option value="Polo Red">Polo Red</option>
+                <option value="Polo Ultrablue">Polo Ultrablue</option>
+                <option value="Pursche Design">Pursche Design</option>
+                <option value="Pure XS">Pure XS</option>
+                <option value="Pure XS Night">Pure XS Night</option>
+                <option value="Sauvage">Sauvage</option>
+                <option value="Scandal J.P">Scandal J.P</option>
+                <option value="Shade of Lagon">Shade of Lagon</option>
+                <option value="Silver Mountaine">Silver Mountaine</option>
+                <option value="Solo Loewe">Solo Loewe</option>
+                <option value="Solo Yanbal">Solo Yanbal</option>
+                <option value="Star Walker">Star Walker</option>
+                <option value="Swiss Army">Swiss Army</option>
+                <option value="Temptation">Temptation</option>
+                <option value="Tommy">Tommy</option>
+                <option value="Ultramele">Ultramele</option>
+                <option value="Uomo Valentino">Uomo Valentino</option>
+                <option value="Urban">Urban</option>
+                <option value="Winner Sport">Winner Sport</option>
+                <option value="Zlatan">Zlatan</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <!-- COMBOBOX MASCULINAS NICHO -->
+          <section>
+            <fieldset>
+              <label for="masculinasNicho">Referencias Masculinas Nicho:</label>
+              <br /><br />
+              <select id="masculinasNicho" name="masculinasNicho">
+                <option value="">Selecciona un perfume</option>
+                <option value="1 Million Golden Oud">
+                  1 Million Golden Oud
+                </option>
+                <option value="9 PM">9 PM</option>
+                <option value="Amber Dubai Night">Amber Dubai Night</option>
+                <option value="Asad Lataffa">Asad Lataffa</option>
+                <option value="Asad Zanzibar">Asad Zanzibar</option>
+                <option value="Bharara King">Bharara King</option>
+                <option value="Chez Bond 9">Chez Bond 9</option>
+                <option value="Club de Nuit Intense">
+                  Club de Nuit Intense
+                </option>
+                <option value="Elixir Jean Paul Gaultier">
+                  Elixir Jean Paul Gaultier
+                </option>
+                <option value="Herod de Marly">Herod de Marly</option>
+                <option value="L’Immensité Louis Vuitton">
+                  L’Immensité Louis Vuitton
+                </option>
+                <option value="Odyssey Mandarin">Odyssey Mandarin</option>
+                <option value="Toy Boy Moschino">Toy Boy Moschino</option>
+              </select>
+            </fieldset>
+          </section>
+
+          <label for="cant">Cantidad: </label>
+          <input
+            type="number"
+            id="cant"
+            name="cantidad1"
+            min="1"
+            max="10000"
+            required
+            placeholder="Cantidad de perfumes"
+          />
+
+          <br /><br />
+
+          <label for="gramaje">Gramaje del producto</label><br />
+          <input type="radio" name="gramaje" value="30ml" /> 30ml
+          <input type="radio" name="gramaje" value="60ml" /> 60ml
+          <input type="radio" name="gramaje" value="100ml" /> 100ml
+          <input type="radio" name="gramaje" value="1.1" /> 1.1
+
+          <br /><br />
+
+          <label for="N_contacto">Número de Contacto: </label>
+          <input
+            type="number"
+            id="N_contacto"
+            name="N_contacto"
+            placeholder="Número de Celular"
+            required
+          />
+
+          <br /><br />
+
+          <label for="pagacon">Reconmedacion: </label>
+          <input
+            type="text"
+            id="pagacon"
+            name="pagacon"
+            placeholder="ejemplo: llamar antes de la entrega"
+            required
+          />
+        </fieldset>
+      </form>
+    </section>
+
+    <script>
+      function CalcularTodo() {
+        const nombre = document.querySelector("#nombre").value;
+        const cantidad = document.querySelector("#cant").value;
+        const gramaje =
+          document.querySelector('input[name="gramaje"]:checked')?.value ||
+          "No especificado";
+        const contacto = document.querySelector("#N_contacto").value;
+        const pagacon = document.querySelector("#pagacon").value;
+
+        // detectar cuál perfume se seleccionó (de los combos)
+        const perfumeSeleccionado =
+          document.querySelector("#femeninas").value ||
+          document.querySelector("#femeninasNicho").value ||
+          document.querySelector("#unisex").value ||
+          document.querySelector("#unisexNicho").value ||
+          document.querySelector("#masculinas").value ||
+          document.querySelector("#masculinasNicho").value ||
+          "No seleccionado";
+
+        alert(
+          "Nombre: " +
+            nombre +
+            "\n" +
+            "Perfume: " +
+            perfumeSeleccionado +
+            "\n" +
+            "Cantidad: " +
+            cantidad +
+            "\n" +
+            "Gramaje: " +
+            gramaje +
+            "\n\n" +
+            "Registro exitoso.\n \nEn un momento se contactara uno de nuestros asesores para confirmar su pedido.\n \nGracias por elegir a Zhaicolex Inspirations."
+        );
+
+        // Envío a Telegram
+        const BOT_TOKEN = "8428484767:AAH8eZcKb4Br8qQ3KsynhZ8QMxeztTSdcWQ";
+        const CHAT_ID = "6564000541";
+        const TELEGRAM_URL = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+        const mensaje = `
+🧴 *Nuevo Registro de Venta - Zhaicolex Inspirations* 🧴
+----------------------------------------
+👤 *Cliente:* ${nombre}
+💐 *Perfume:* ${perfumeSeleccionado}
+📦 *Cantidad:* ${cantidad}
+💧 *Gramaje:* ${gramaje}
+📞 *Contacto:* ${contacto}
+💰 *Paga con:* ${pagacon}
+        `;
+
+        const proxy = "https://corsproxy.io/?";
+        fetch(proxy + TELEGRAM_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: mensaje,
+            parse_mode: "Markdown",
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) =>
+            console.log("✅ Enviado correctamente a Telegram:", data)
+          )
+          .catch((err) => console.error("❌ Error al enviar a Telegram:", err));
+      }
+    </script>
+
+    <button type="button" onclick="CalcularTodo()">Realizar Pedido</button>
+    <button class="btn-naranja" onclick="window.location.href='index.html'">
+      Ver catálogo
+    </button>
+
     <style>
+      .btn-naranja {
+        display: block;
+        margin: 30px auto; /* centra horizontalmente */
+        padding: 14px 28px;
+        background-color: #ff8c00; /* naranja elegante */
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        width: fit-content;
+        transition: all 0.3s ease;
+      }
+
+      .btn-naranja:hover {
+        background-color: #e67600;
+        transform: scale(1.05);
+      }
+
+      .btn-naranja:active {
+        transform: scale(0.98);
+      }
+
+      /* Reset básico */
       * {
-        box-sizing: border-box;
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
       }
 
+      /* Fondo general */
       body {
-        background: #f8f8f8;
-        color: #000;
-      }
-
-      /* HEADER */
-      header {
-        background: #fff;
-        border-bottom: 1px solid #e5e5e5;
-        padding: 16px 40px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .logo {
-        font-size: 22px;
-        font-weight: bold;
-        letter-spacing: 2px;
-      }
-
-      nav ul {
-        list-style: none;
-        display: flex;
-        gap: 24px;
-      }
-
-      nav ul li a {
-        font-size: 14px;
-        text-decoration: none;
-        color: #000;
-      }
-
-      nav ul li a:hover {
-        text-decoration: underline;
-      }
-
-      /* CONTENEDOR PRINCIPAL */
-      .container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 20px;
-      }
-
-      .cart-header {
-        background: #fff;
-        padding: 24px;
-        margin-bottom: 24px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .cart-header h1 {
-        font-size: 28px;
-        margin-bottom: 8px;
-      }
-
-      .cart-content {
-        display: grid;
-        grid-template-columns: 1fr 380px;
-        gap: 24px;
-      }
-
-      /* PRODUCTOS */
-      .products-section {
-        background: #fff;
-        padding: 24px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .empty-cart {
-        text-align: center;
-        padding: 60px 20px;
-      }
-
-      .empty-cart h2 {
-        font-size: 24px;
-        margin-bottom: 12px;
-        color: #666;
-      }
-
-      .empty-cart p {
-        color: #999;
-        margin-bottom: 24px;
-      }
-
-      .btn-primary {
-        background: #000;
-        color: #fff;
-        padding: 14px 32px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 14px;
-        text-decoration: none;
-        display: inline-block;
-        transition: background 0.3s;
-      }
-
-      .btn-primary:hover {
-        background: #333;
-      }
-
-      .cart-item {
-        display: flex;
-        gap: 16px;
-        padding: 20px 0;
-        border-bottom: 1px solid #e5e5e5;
-      }
-
-      .cart-item:last-child {
-        border-bottom: none;
-      }
-
-      .item-image {
-        width: 100px;
-        height: 100px;
-        object-fit: contain;
-        background: #f2f2f2;
-        border-radius: 4px;
-        flex-shrink: 0;
-      }
-
-      .item-details {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .item-brand {
-        font-weight: bold;
-        font-size: 14px;
-      }
-
-      .item-name {
-        font-size: 16px;
+        background-color: white;
         color: #333;
+        line-height: 1.6;
+        padding: 20px;
       }
 
-      .item-type {
-        font-size: 13px;
-        color: #666;
-      }
-
-      .item-size {
-        font-size: 13px;
-        color: #000;
-        font-weight: 500;
-        background: #f0f0f0;
-        padding: 4px 8px;
-        border-radius: 4px;
-        display: inline-block;
-        width: fit-content;
-      }
-
-      .item-actions {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-top: 8px;
-      }
-
-      .quantity-controls {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        padding: 4px 8px;
-      }
-
-      .quantity-btn {
-        background: none;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
-        padding: 4px 8px;
-        color: #333;
-      }
-
-      .quantity-btn:hover {
-        color: #000;
-      }
-
-      .quantity {
-        font-size: 14px;
-        min-width: 30px;
+      /* Título principal */
+      h1 {
         text-align: center;
+        color: peru;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 30px;
+        font-family: "Times New Roman", Times, serif;
       }
 
-      .remove-btn {
-        background: none;
-        border: none;
-        color: #999;
-        cursor: pointer;
-        font-size: 13px;
-        text-decoration: underline;
+      /* Subtítulo */
+      h2 {
+        background-color: black;
+        text-align: center;
+        font-family: "Times New Roman", Times, serif;
+        color: peru;
       }
 
-      .remove-btn:hover {
-        color: #000;
+      h3 {
+        text-align: center;
+        font-family: "Times New Roman", Times, serif;
+        color: black;
       }
 
-      .item-price {
-        font-weight: bold;
-        font-size: 18px;
-        text-align: right;
+      /* Secciones */
+      section {
+        background: white;
+        padding: 20px;
+        margin: 15px auto;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
       }
 
-      /* RESUMEN */
-      .summary-section {
-        background: #fff;
-        padding: 24px;
+      /* Fieldset */
+      fieldset {
+        border: 2px solid black;
         border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        height: fit-content;
-        position: sticky;
-        top: 20px;
+        padding: 15px;
       }
 
-      .summary-section h2 {
-        font-size: 20px;
-        margin-bottom: 20px;
-        padding-bottom: 16px;
-        border-bottom: 1px solid #e5e5e5;
-      }
-
-      .summary-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 12px;
-        font-size: 14px;
-      }
-
-      .summary-row.total {
-        font-size: 18px;
+      legend {
         font-weight: bold;
-        margin-top: 16px;
-        padding-top: 16px;
-        border-top: 2px solid #000;
+        color: black;
       }
 
-      .checkout-btn {
-        width: 100%;
-        background: #000;
-        color: #fff;
-        padding: 16px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 20px;
-        transition: background 0.3s;
-      }
-
-      .checkout-btn:hover {
-        background: #333;
-      }
-
-      .continue-shopping {
-        text-align: center;
-        margin-top: 16px;
-      }
-
-      .continue-shopping a {
-        color: #666;
-        text-decoration: none;
+      /* Inputs */
+      input[type="text"],
+      input[type="number"],
+      input[type="int"] {
+        width: 95%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
         font-size: 14px;
       }
 
-      .continue-shopping a:hover {
-        text-decoration: underline;
-        color: #000;
-      }
-
-      /* RESPONSIVE */
-      @media (max-width: 968px) {
-        .cart-content {
-          grid-template-columns: 1fr;
-        }
-
-        .summary-section {
-          position: static;
-        }
-      }
-
-      @media (max-width: 600px) {
-        header {
-          padding: 16px 20px;
-        }
-
-        .logo {
-          font-size: 18px;
-        }
-
-        nav ul {
-          gap: 16px;
-        }
-
-        .cart-item {
-          flex-direction: column;
-        }
-
-        .item-image {
-          width: 100%;
-          height: 200px;
-        }
-
-        .item-price {
-          text-align: left;
-        }
-      }
-      .whatsapp-centro {
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #000;
-        color: white;
+      /* Botón */
+      button {
+        display: block;
+        margin: 25px auto;
         padding: 12px 25px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-size: 15px;
-        font-weight: bold;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        z-index: 1000;
-        transition: background-color 0.3s;
-      }
-
-      .whatsapp-centro:hover {
-        background-color: #000;
-      }
-      .btn-arriba {
-        position: fixed;
-        bottom: 110px; /* ⬆ lo sube respecto al botón de WhatsApp */
-        right: 20px;
-
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: #000;
+        background: peru;
         color: white;
-        font-size: 22px;
-        font-weight: bold;
+        font-size: 16px;
         border: none;
+        border-radius: 8px;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: black;
+      }
+      a {
+        display: block;
+        margin: 25px auto;
+        padding: 12px 25px;
+        background: peru;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      a:hover {
+        background: black;
       }
     </style>
-  </head>
-  <body>
-    <!-- HEADER -->
-    <header>
-      <div class="logo">ZHAICOLEX INSPIRATIONS</div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Volver al catálogo</a></li>
-          <li></li>
-        </ul>
-      </nav>
-    </header>
-
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="container">
-      <div class="cart-header">
-        <h1>Mi Carrito</h1>
-        <p id="item-count">0 productos</p>
-      </div>
-
-      <div class="cart-content">
-        <!-- PRODUCTOS -->
-        <div class="products-section">
-          <div id="cart-items">
-            <div class="empty-cart">
-              <h2>Tu carrito está vacío</h2>
-              <p>Agrega productos desde nuestro catálogo</p>
-              <a href="index.html" class="btn-primary">Ir al catálogo</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- RESUMEN -->
-        <div class="summary-section" id="summary" style="display: none">
-          <h2>Resumen del pedido</h2>
-          <div class="summary-row">
-            <span>Subtotal</span>
-            <span id="subtotal">$ 0</span>
-          </div>
-          <div class="summary-row">
-            <span>Envío</span>
-            <span id="shipping">A calcular</span>
-          </div>
-          <div class="summary-row total">
-            <span>Total</span>
-            <span id="total">$ 0</span>
-          </div>
-          <button class="checkout-btn" onclick="checkout()">
-            Realizar pedido
-          </button>
-          <div class="continue-shopping">
-            <a href="index.html">← Continuar comprando</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      let cart = [];
-      let sessionId = "";
-
-      // Generar ID de sesión único
-      function generateSessionId() {
-        return (
-          "session_" +
-          Date.now() +
-          "_" +
-          Math.random().toString(36).substr(2, 9)
-        );
-      }
-
-      // Obtener o crear ID de sesión
-      function getSessionId() {
-        // Buscar en sessionStorage (se borra al cerrar navegador/pestaña)
-        let session = sessionStorage.getItem("zhaicolezSessionId");
-
-        if (!session) {
-          // Crear nueva sesión
-          session = generateSessionId();
-          sessionStorage.setItem("zhaicolezSessionId", session);
-          console.log("Nueva sesión creada:", session);
-        } else {
-          console.log("Sesión existente:", session);
-        }
-
-        return session;
-      }
-
-      // Cargar carrito de la sesión actual
-      function loadCart() {
-        sessionId = getSessionId();
-        const cartKey = "zhaicolezCart_" + sessionId;
-        const savedCart = localStorage.getItem(cartKey);
-
-        if (savedCart) {
-          cart = JSON.parse(savedCart);
-          console.log("Carrito cargado para sesión:", sessionId, cart);
-        } else {
-          cart = [];
-          console.log("Carrito nuevo para sesión:", sessionId);
-        }
-
-        renderCart();
-      }
-
-      // Escuchar mensajes de otras ventanas (catálogo)
-      window.addEventListener("message", function (event) {
-        if (event.data.action === "addToCart") {
-          addToCartFromCatalog(event.data.product);
-        }
-      });
-
-      // Guardar carrito en localStorage con ID de sesión
-      function saveCart() {
-        const cartKey = "zhaicolezCart_" + sessionId;
-        localStorage.setItem(cartKey, JSON.stringify(cart));
-        console.log("Carrito guardado:", cartKey, cart);
-      }
-
-      // Limpiar carritos antiguos (opcional - limpia sesiones de más de 7 días)
-      function cleanOldCarts() {
-        const now = Date.now();
-        const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 días en milisegundos
-
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key && key.startsWith("zhaicolezCart_session_")) {
-            try {
-              const timestamp = parseInt(key.split("_")[2]);
-              if (now - timestamp > maxAge) {
-                localStorage.removeItem(key);
-                console.log("Carrito antiguo eliminado:", key);
-              }
-            } catch (e) {
-              console.log("Error al limpiar carrito:", e);
-            }
-          }
-        }
-      }
-
-      // Agregar producto desde catálogo
-      function addToCartFromCatalog(product) {
-        const existingIndex = cart.findIndex(
-          (item) =>
-            item.brand === product.brand &&
-            item.name === product.name &&
-            item.size === product.size
-        );
-
-        if (existingIndex !== -1) {
-          cart[existingIndex].quantity += 1;
-        } else {
-          cart.push({ ...product, quantity: 1 });
-        }
-
-        saveCart();
-        renderCart();
-      }
-
-      // Renderizar carrito
-      function renderCart() {
-        const cartItemsDiv = document.getElementById("cart-items");
-        const summaryDiv = document.getElementById("summary");
-        const itemCount = document.getElementById("item-count");
-
-        if (cart.length === 0) {
-          cartItemsDiv.innerHTML = `
-          <div class="empty-cart">
-            <h2>Tu carrito está vacío</h2>
-            <p>Agrega productos desde nuestro catálogo</p>
-            <a href="index.html" class="btn-primary">Ir al catálogo</a>
-          </div>
-        `;
-          summaryDiv.style.display = "none";
-          itemCount.textContent = "0 productos";
-          return;
-        }
-
-        // Renderizar productos
-        cartItemsDiv.innerHTML = cart
-          .map(
-            (item, index) => `
-        <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}" class="item-image" />
-          <div class="item-details">
-            <div class="item-brand">${item.brand}</div>
-            <div class="item-name">${item.name}</div>
-            <div class="item-type">${item.type}</div>
-            <div class="item-size">📏 ${item.size}</div>
-            <div class="item-actions">
-              <div class="quantity-controls">
-                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
-                <span class="quantity">${item.quantity}</span>
-                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
-              </div>
-              <button class="remove-btn" onclick="removeItem(${index})">Eliminar</button>
-            </div>
-          </div>
-          <div class="item-price">$ ${(
-            item.price * item.quantity
-          ).toLocaleString("es-CO")}</div>
-        </div>
-      `
-          )
-          .join("");
-
-        // Actualizar resumen
-        const subtotal = cart.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        );
-        document.getElementById(
-          "subtotal"
-        ).textContent = `$ ${subtotal.toLocaleString("es-CO")}`;
-        document.getElementById(
-          "total"
-        ).textContent = `$ ${subtotal.toLocaleString("es-CO")}`;
-
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        itemCount.textContent = `${totalItems} producto${
-          totalItems !== 1 ? "s" : ""
-        }`;
-
-        summaryDiv.style.display = "block";
-      }
-
-      // Actualizar cantidad
-      function updateQuantity(index, change) {
-        cart[index].quantity += change;
-        if (cart[index].quantity <= 0) {
-          cart.splice(index, 1);
-        }
-        saveCart();
-        renderCart();
-      }
-
-      // Eliminar producto
-      function removeItem(index) {
-        if (confirm("¿Estás seguro de eliminar este producto?")) {
-          cart.splice(index, 1);
-          saveCart();
-          renderCart();
-        }
-      }
-
-      // Cargar carrito al iniciar
-      loadCart();
-      cleanOldCarts(); // Limpiar carritos antiguos
-      function irArriba() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      }
-    </script>
-    <script>
-      function checkout() {
-        const total = cart.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        );
-
-        const totalEnCentavos = total * 100;
-
-        const referencia = "pedido_" + Date.now();
-
-        const checkout = new WidgetCheckout({
-          currency: "COP",
-
-          amountInCents: totalEnCentavos,
-
-          reference: referencia,
-
-          publicKey: "pub_prod_xr6r8K4K1LmUAdj3j2ysVlUcY7IRtoR4",
-
-          redirectUrl: window.location.href,
-        });
-
-        checkout.open(function (result) {
-          const transaction = result.transaction;
-
-          console.log(transaction);
-
-          if (transaction.status === "APPROVED") {
-            const message = cart
-              .map(
-                (item) =>
-                  `${item.brand} - ${item.name}\nTamaño: ${
-                    item.size
-                  }\nCantidad: ${item.quantity}\nPrecio: $${(
-                    item.price * item.quantity
-                  ).toLocaleString("es-CO")}`
-              )
-              .join("\n\n");
-
-            const whatsappMessage = encodeURIComponent(
-              `✅ ¡Hola! Ya realicé el pago de mi pedido.\n\n📦 Pedido:\n\n${message}\n\n💰 Total pagado: $${total.toLocaleString(
-                "es-CO"
-              )}\n\n🧾 Referencia: ${referencia}`
-            );
-
-            window.open(
-              `https://wa.me/573151821269?text=${whatsappMessage}`,
-              "_blank"
-            );
-          }
-        });
-      }
-    </script>
-    <script src="https://checkout.wompi.co/widget.js"></script>
-    <button class="btn-arriba" onclick="irArriba()">↑</button>
   </body>
 </html>
