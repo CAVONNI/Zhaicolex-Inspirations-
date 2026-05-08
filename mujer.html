@@ -74,6 +74,78 @@
   margin-top: 6px;
 }
 
+/* NUEVOS ESTILOS PARA OPCIONES DE PRECIO */
+.price-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.price-option:hover {
+  background: #f8f8f8;
+  border-color: #000;
+}
+
+.price-option input[type="radio"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.price-option label {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+}
+
+.price-option .size {
+  font-weight: 500;
+}
+
+.price-option .price {
+  font-weight: bold;
+  color: #000;
+}
+
+
+.price-options:has(input[type="radio"]:checked) {
+  border: 2px solid transparent;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Resaltar la opción seleccionada */
+.price-option:has(input[type="radio"]:checked) {
+  background: #e8f5e9;
+  border-color: #4caf50;
+  font-weight: 600;
+}
+
+.price-option input[type="radio"] {
+  accent-color: #4caf50;
+}
+
+/* Animación de sacudida para validación */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+  
       /* ===== BUSCADOR DE PERFUMES ===== */
 .search-box {
   width: 100%;
@@ -461,8 +533,36 @@ footer {
         <p><strong>CAROLINA HERRERA</strong></p>
         <p>212</p>
         <p>Perfume de Mujer</p>
-        <p>Réplica 30ml</p>
-        <p class="price">$ 19.990</p>
+        <div class="price-options">
+          <div class="price-option">
+            <input type="radio" name="size-1million" value="30ml|19990">
+            <label>
+              <span class="size">30ml</span>
+              <span class="price">$ 19.990</span>
+            </label>
+          </div>
+          <div class="price-option">
+            <input type="radio" name="size-1million" value="50ml|34990">
+            <label>
+              <span class="size">50ml</span>
+              <span class="price">$ 34.990</span>
+            </label>
+          </div>
+          <div class="price-option">
+            <input type="radio" name="size-1million" value="100ml|54990">
+            <label>
+              <span class="size">100ml</span>
+              <span class="price">$ 54.990</span>
+            </label>
+          </div>
+          <div class="price-option">
+            <input type="radio" name="size-1million" value="1.1|120000">
+            <label>
+              <span class="size">1.1 (Premium)</span>
+              <span class="price">$ 119.990</span>
+            </label>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -473,8 +573,37 @@ footer {
         <p><strong>CAROLINA HERRERA</strong></p>
         <p>212 Heroes</p>
         <p>Perfume de Mujer</p>
-        <p>Réplica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
 
@@ -484,8 +613,37 @@ footer {
         <p><strong>CAROLINA HERRERA</strong></p>
         <p>212 VIP Club Edition</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
 
@@ -495,10 +653,40 @@ footer {
         <p><strong>CAROLINA HERRERA</strong></p>
         <p>212 VIP Rosé Red</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
+
    
     <div class="cart-item">
       <img src="https://attoperfumes.com.co/cdn/shop/files/212-Sexy-Carolina-Herrera_caf873d7-8ea8-4412-9cc9-0e2f1e73909b.jpg?v=1707858939" alt="212 Sexy Mujer" />
@@ -506,18 +694,78 @@ footer {
         <p><strong>CAROLINA HERRERA</strong></p>
         <p>212 Sexy</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
+
+
     <div class="cart-item">
       <img src="https://attoperfumes.com.co/cdn/shop/products/360dama.jpg?v=1650661775" alt="360 Mujer" />
       <div class="cart-info">
         <p><strong>PERRY ELLIS</strong></p>
         <p>360° Perri Elis</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -526,8 +774,37 @@ footer {
         <p><strong>PERRY ELLIS</strong></p>
         <p>360° Rosé</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -536,8 +813,37 @@ footer {
         <p><strong>ESCADA</strong></p>
         <p>Agua del Sol</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
 
@@ -547,8 +853,37 @@ footer {
       <p><strong>VICTORIA’S SECRET</strong></p>
       <p>Amber Romance</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -558,8 +893,37 @@ footer {
       <p><strong>CACHAREL</strong></p>
       <p>Amor Amor</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div class="cart-item">
@@ -568,8 +932,37 @@ footer {
       <p><strong>BENETTON</strong></p>
       <p>BFF</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -580,8 +973,37 @@ footer {
       <p><strong>RALPH LAUREN</strong></p>
       <p>Big Pony 2</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -591,8 +1013,37 @@ footer {
       <p><strong>MUGLER</strong></p>
       <p>Angel</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div class="cart-item">
@@ -601,8 +1052,37 @@ footer {
       <p><strong>VICTORIA’S SECRET</strong></p>
       <p>Bombshell</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -613,8 +1093,37 @@ footer {
       <p><strong>VIKTOR &amp; ROLF</strong></p>
       <p>Bon Bon</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -625,8 +1134,37 @@ footer {
       <p><strong>ESCADA</strong></p>
       <p>Born in Paradise</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div class="cart-item">
@@ -635,8 +1173,37 @@ footer {
       <p><strong>VERSACE</strong></p>
       <p>Bright Crystal</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -646,8 +1213,37 @@ footer {
       <p><strong>BURBERRY</strong></p>
       <p>Burberry</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -658,8 +1254,37 @@ footer {
       <p><strong>YANBAL</strong></p>
       <p>C Cori Rosé</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -669,8 +1294,37 @@ footer {
       <p><strong>PARIS HILTON</strong></p>
       <p>Can Can</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -680,8 +1334,37 @@ footer {
       <p><strong>BRITNEY SPEARS</strong></p>
       <p>Candied Fantasy</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -692,8 +1375,37 @@ footer {
       <p><strong>ESCADA</strong></p>
       <p>Candy Love</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -703,8 +1415,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>Carolina Herrera</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
  
@@ -715,8 +1456,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>CH</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -727,8 +1497,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>CH Sublime</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -738,8 +1537,37 @@ footer {
       <p><strong>CHANEL</strong></p>
       <p>Chance</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -750,8 +1578,37 @@ footer {
       <p><strong>CALVIN KLEIN</strong></p>
       <p>CK IN2U</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -761,8 +1618,37 @@ footer {
       <p><strong>ARIANA GRANDE</strong></p>
       <p>Cloud Blush</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -772,8 +1658,37 @@ footer {
       <p><strong>CHANEL</strong></p>
       <p>Coco Mademoiselle</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -784,8 +1699,37 @@ footer {
       <p><strong>VICTORIA’S SECRET</strong></p>
       <p>Coconut Passion</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -796,8 +1740,37 @@ footer {
       <p><strong>PARIS HILTON</strong></p>
       <p>Dazzle</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -807,8 +1780,37 @@ footer {
       <p><strong>CALVIN KLEIN</strong></p>
       <p>Escape</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -819,8 +1821,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>Fame</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -831,8 +1862,37 @@ footer {
       <p><strong>BRITNEY SPEARS</strong></p>
       <p>Fantasy</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -842,8 +1902,37 @@ footer {
       <p><strong>BRITNEY SPEARS</strong></p>
       <p>Fantasy Remix</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -854,8 +1943,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>Good Girl</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
  
@@ -865,8 +1983,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>Good Girl Blush</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -876,8 +2023,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>Good Girl Légère</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -887,8 +2063,37 @@ footer {
       <p><strong>CAROLINA HERRERA</strong></p>
       <p>Good Girl Supreme</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -899,8 +2104,37 @@ footer {
       <p><strong>GUESS</strong></p>
       <p>Guess Girl</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div class="cart-item">
@@ -909,8 +2143,37 @@ footer {
       <p><strong>GUCCI</strong></p>
       <p>Gucci II</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -921,8 +2184,37 @@ footer {
       <p><strong>JESÚS DEL POZO</strong></p>
       <p>Halloween</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -933,8 +2225,37 @@ footer {
       <p><strong>PARIS HILTON</strong></p>
       <p>Heiress</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -944,8 +2265,37 @@ footer {
       <p><strong>ISSEY MIYAKE</strong></p>
       <p>Issey Miyake</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
  
@@ -955,8 +2305,37 @@ footer {
       <p><strong>DIOR</strong></p>
       <p>J’adore</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -967,8 +2346,37 @@ footer {
       <p><strong>JEAN PAUL GAULTIER</strong></p>
       <p>Jean Paul Gaultier</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -978,8 +2386,37 @@ footer {
       <p><strong>LANCÔME</strong></p>
       <p>La Vie Est Belle</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -990,8 +2427,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>Lady Million</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1002,8 +2468,37 @@ footer {
       <p><strong>DOLCE & GABBANA</strong></p>
       <p>Light Blue</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1013,8 +2508,37 @@ footer {
       <p><strong>LOLITA LEMPICKA</strong></p>
       <p>Lolita Lempicka</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1025,8 +2549,37 @@ footer {
       <p><strong>VICTORIA'S SECRET</strong></p>
       <p>Love</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1037,8 +2590,37 @@ footer {
       <p><strong>BATH & BODY WORKS</strong></p>
       <p>Mad About You</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1048,8 +2630,37 @@ footer {
       <p><strong>KATY PERRY</strong></p>
       <p>Meow!</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1060,8 +2671,37 @@ footer {
       <p><strong>BRITNEY SPEARS</strong></p>
       <p>Midnight Fantasy</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1072,8 +2712,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>Million Gold</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1083,8 +2752,37 @@ footer {
       <p><strong>ESCADA</strong></p>
       <p>Moon Sparkle</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1095,8 +2793,37 @@ footer {
       <p><strong>MOSCHINO</strong></p>
       <p>Moschino Funny!</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1107,8 +2834,37 @@ footer {
       <p><strong>JUSTIN BIEBER</strong></p>
       <p>Next Girlfriend</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1118,8 +2874,37 @@ footer {
       <p><strong>ESCADA</strong></p>
       <p>Ocean Lounge</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1130,8 +2915,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>Olympea</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1142,8 +2956,37 @@ footer {
       <p><strong>BVLGARI</strong></p>
       <p>Omnia Coral</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1153,8 +2996,37 @@ footer {
       <p><strong>BVLGARI</strong></p>
       <p>Omnia Crystalline</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1165,8 +3037,37 @@ footer {
       <p><strong>ONE DIRECTION</strong></p>
       <p>Our Moment</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1177,8 +3078,37 @@ footer {
       <p><strong>PARIS HILTON</strong></p>
       <p>Paris Hilton</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1188,8 +3118,37 @@ footer {
       <p><strong>PARIS HILTON</strong></p>
       <p>Passport Paris</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1200,8 +3159,37 @@ footer {
       <p><strong>PINK</strong></p>
       <p>Pink Pretty</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1212,8 +3200,37 @@ footer {
       <p><strong>RALPH LAUREN</strong></p>
       <p>Ralph</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1223,8 +3240,37 @@ footer {
       <p><strong>SHAKIRA</strong></p>
       <p>Rock by Shakira</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1235,8 +3281,37 @@ footer {
       <p><strong>SHAKIRA</strong></p>
       <p>S by Shakira</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1247,8 +3322,37 @@ footer {
       <p><strong>VICTORIA'S SECRET</strong></p>
       <p>Scandalous</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1259,8 +3363,37 @@ footer {
       <p><strong>SELENA GOMEZ</strong></p>
       <p>Selena Gomez</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1271,8 +3404,37 @@ footer {
       <p><strong>SOFIA VERGARA</strong></p>
       <p>Sofia Vergara</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1283,8 +3445,37 @@ footer {
       <p><strong>ESCENTRIC MOLECULES</strong></p>
       <p>Sorbetto Rosso</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1294,8 +3485,37 @@ footer {
       <p><strong>ARIANA GRANDE</strong></p>
       <p>Sweet Like Candy</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1306,8 +3526,37 @@ footer {
       <p><strong>ESCADA</strong></p>
       <p>Taj Sunset</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1318,8 +3567,37 @@ footer {
       <p><strong>ARIANA GRANDE</strong></p>
       <p>Thank U, Next</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1329,8 +3607,37 @@ footer {
       <p><strong>DOLCE & GABBANA</strong></p>
       <p>The One</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1341,8 +3648,37 @@ footer {
       <p><strong>HUGO BOSS</strong></p>
       <p>The Scent</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   
@@ -1353,8 +3689,37 @@ footer {
       <p><strong>TOMMY HILFIGER</strong></p>
       <p>Tommy</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
   <div class="cart-item">
@@ -1363,8 +3728,37 @@ footer {
       <p><strong>BATH & BODY WORKS</strong></p>
       <p>Velvet Sugar</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+       <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+     
     </div>
   </div>
 
@@ -1386,8 +3780,37 @@ footer {
         <p><strong>AL HARAMAIN</strong></p>
         <p>Corvus</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1398,8 +3821,37 @@ footer {
         <p><strong>ARIANA GRANDE</strong></p>
         <p>Ari</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1410,8 +3862,37 @@ footer {
         <p><strong>EILISH</strong></p>
         <p>Billie Eilish</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1420,8 +3901,37 @@ footer {
         <p><strong>ARIANA GRANDE</strong></p>
         <p>Cloud</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1432,8 +3942,37 @@ footer {
         <p><strong>ARIANA GRANDE</strong></p>
         <p>Cloud Pink</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1444,8 +3983,37 @@ footer {
         <p><strong>MONTALE</strong></p>
         <p>Crazy In Love</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1454,8 +4022,37 @@ footer {
         <p><strong>DOLCE & GABBANA</strong></p>
         <p>Devotion</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1466,8 +4063,37 @@ footer {
         <p><strong>JEAN PAUL GAULTIER</strong></p>
         <p>Divine</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1478,8 +4104,37 @@ footer {
         <p><strong>MOSCHINO</strong></p>
         <p>Gold Fresh Couture</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1488,8 +4143,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Haya</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1500,8 +4184,37 @@ footer {
         <p><strong>ARMAF</strong></p>
         <p>Il Rosso</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1512,8 +4225,37 @@ footer {
         <p><strong>MOSCHINO</strong></p>
         <p>Bubble Gum</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1522,8 +4264,37 @@ footer {
         <p><strong>MOSCHINO</strong></p>
         <p>Toy 2</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1534,8 +4305,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Rave Now</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1546,8 +4346,37 @@ footer {
         <p><strong>VALENTINO</strong></p>
         <p>Valentino Donna</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1556,8 +4385,37 @@ footer {
         <p><strong>ORIENTICA</strong></p>
         <p>Velvet Gold</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1568,8 +4426,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Yara</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1580,8 +4467,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Yara Candy</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <div class="cart-item">
@@ -1590,8 +4506,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Yara Moi</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     
@@ -1602,8 +4547,37 @@ footer {
         <p><strong>LATTAFA</strong></p>
         <p>Yara Tous</p>
         <p>Perfume de Mujer</p>
-        <p>Replica 30ml</p>
-        <p class="price">$ 19.990</p>
+         <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
+       
       </div>
     </div>
     <!-- 👉 AQUÍ PEGAS TODOS LOS DEMÁS cart-item, UNO TRAS OTRO -->
@@ -1827,13 +4801,11 @@ footer {
       // Verificar si ya tiene botón
       if (item.querySelector('.add-to-cart-btn')) return;
       
+   
       const cartInfo = item.querySelector('.cart-info');
       const brand = cartInfo.querySelector('p:nth-child(1) strong')?.textContent || 'Marca';
       const name = cartInfo.querySelector('p:nth-child(2)')?.textContent || 'Producto';
       const type = cartInfo.querySelector('p:nth-child(3)')?.textContent || 'Perfume';
-      const size = cartInfo.querySelector('p:nth-child(4)')?.textContent || '30ml';
-      const priceText = cartInfo.querySelector('.price')?.textContent || '$ 19.990';
-      const price = parseInt(priceText.replace(/\D/g, ''));
       const image = item.querySelector('img')?.src || '';
       
       // Crear botón
@@ -1841,7 +4813,21 @@ footer {
       button.className = 'add-to-cart-btn';
       button.textContent = '🛒 Agregar al carrito';
       button.onclick = function() {
-        addToCart(brand, name, type, size, price, image);
+        // Obtener la opción seleccionada
+        const selectedOption = item.querySelector('input[type="radio"]:checked');
+        if (selectedOption) {
+  const [size, priceStr] = selectedOption.value.split('|');
+  const price = parseInt(priceStr);
+  addToCart(brand, name, type, size, price, image);
+} else {
+  // Resaltar las opciones con animación
+  const priceOptions = item.querySelector('.price-options');
+  priceOptions.style.animation = 'shake 0.5s';
+  setTimeout(() => {
+    priceOptions.style.animation = '';
+  }, 500);
+  showNotification('⚠️ Por favor selecciona un tamaño primero');
+}
       };
       
       cartInfo.appendChild(button);
@@ -1859,7 +4845,7 @@ footer {
     }
   
     const existingIndex = cart.findIndex(item => 
-      item.brand === brand && item.name === name
+      item.brand === brand && item.name === name && item.size === size
     );
   
     if (existingIndex !== -1) {
@@ -1900,6 +4886,7 @@ footer {
       z-index: 10000;
       animation: slideIn 0.3s ease;
     `;
+    
     
     document.body.appendChild(notification);
     

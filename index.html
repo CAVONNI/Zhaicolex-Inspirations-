@@ -2,7 +2,7 @@
 <html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
-    <title>Catalogo_Zhaicolex<</title>
+    <title>Catalogo_Zhaicolex</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <style>
@@ -74,6 +74,77 @@
   margin-top: 6px;
 }
 
+/* NUEVOS ESTILOS PARA OPCIONES DE PRECIO */
+.price-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.price-option:hover {
+  background: #f8f8f8;
+  border-color: #000;
+}
+
+.price-option input[type="radio"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.price-option label {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 14px;
+}
+
+.price-option .size {
+  font-weight: 500;
+}
+
+.price-option .price {
+  font-weight: bold;
+  color: #000;
+}
+
+
+.price-options:has(input[type="radio"]:checked) {
+  border: 2px solid transparent;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Resaltar la opción seleccionada */
+.price-option:has(input[type="radio"]:checked) {
+  background: #e8f5e9;
+  border-color: #4caf50;
+  font-weight: 600;
+}
+
+.price-option input[type="radio"] {
+  accent-color: #4caf50;
+}
+
+/* Animación de sacudida para validación */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
       /* ===== BUSCADOR DE PERFUMES ===== */
 .search-box {
   width: 100%;
@@ -202,7 +273,7 @@ nav ul li a:hover::after {
 
 /* Activo */
 nav ul li a.active {
-  color: #0066ff;
+  color: #1c1c1d;
 }
 
 nav ul li a.active::after {
@@ -241,11 +312,6 @@ nav ul li a.active::after {
 
       .cart-info p {
         margin-bottom: 12px;
-      }
-
-      .price {
-        font-weight: bold;
-        margin-top: 8px;
       }
 
       /* ===== FOOTER ===== */
@@ -397,17 +463,13 @@ footer {
       
       <div class="logo">ZHAICOLEX INSPIRATIONS</div>
 
-      <nav>   
+    <nav>   
         <ul>
-            <li><a href="unisex.html" class=active">Unisex</a></li>
-          <li><a href="hombre.html" class=active">Hombre</a></li>
-          <li><a href="mujer.html" class=active">Mujer</a></li>
-          <li><a href="index.html" class=active">Inicio</a></li>
-
-          <li><a href="inicio_sesion.html" class=active"> Formulario de compra </a></li>
-        
-       
-        
+          <li><a href="unisex.html">Unisex</a></li>
+          <li><a href="hombre.html">Hombre</a></li>
+          <li><a href="mujer.html">Mujer</a></li>
+          <li><a href="index.html" class="active">Inicio</a></li>
+          <li><a href="inicio_sesion.html">Formulario de compra</a></li>
         </ul>
       </nav>
         
@@ -457,8 +519,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="30ml|19990">
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-1million" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -470,8 +561,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million Elixir</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-elixir" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-elixir" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-elixir" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-elixir" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -481,8 +601,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million Intense</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-intense" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-intense" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-intense" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-intense" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -492,8 +641,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million Lucky</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-lucky" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-lucky" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-lucky" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-lucky" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
  
@@ -512,8 +690,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million Privé</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-prive" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-prive" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-prive" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-prive" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -524,8 +731,37 @@ footer {
       <p><strong>PACO RABANNE</strong></p>
       <p>1 Million Royal</p>
       <p>Perfume de Hombre</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-royal" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-royal" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-royal" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-royal" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -533,11 +769,40 @@ footer {
   <div class="cart-item">
     <img src="https://fimgs.net/mdimg/perfume/o.7993.jpg" alt="Coconut Passion" />
     <div class="cart-info">
-      <p><strong>VICTORIA’S SECRET</strong></p>
+      <p><strong>VICTORIA'S SECRET</strong></p>
       <p>Coconut Passion</p>
       <p>Perfume de Mujer</p>
-      <p>Replica 30ml</p>
-      <p class="price">$ 19.990</p>
+      
+      <div class="price-options">
+        <div class="price-option">
+          <input type="radio" name="size-coconut" value="30ml|19990"> 
+          <label>
+            <span class="size">30ml</span>
+            <span class="price">$ 19.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-coconut" value="50ml|34990">
+          <label>
+            <span class="size">50ml</span>
+            <span class="price">$ 34.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-coconut" value="100ml|54990">
+          <label>
+            <span class="size">100ml</span>
+            <span class="price">$ 54.990</span>
+          </label>
+        </div>
+        <div class="price-option">
+          <input type="radio" name="size-coconut" value="1.1|120000">
+          <label>
+            <span class="size">1.1 (Premium)</span>
+            <span class="price">$ 119.990</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -548,8 +813,37 @@ footer {
     <p><strong>CHANEL</strong></p>
     <p>Coco Mademoiselle</p>
     <p>Perfume de Mujer</p>
-    <p>Replica 30ml</p>
-    <p class="price">$ 19.990</p>
+    
+    <div class="price-options">
+      <div class="price-option">
+        <input type="radio" name="size-coco" value="30ml|19990"> 
+        <label>
+          <span class="size">30ml</span>
+          <span class="price">$ 19.990</span>
+        </label>
+      </div>
+      <div class="price-option">
+        <input type="radio" name="size-coco" value="50ml|34990">
+        <label>
+          <span class="size">50ml</span>
+          <span class="price">$ 34.990</span>
+        </label>
+      </div>
+      <div class="price-option">
+        <input type="radio" name="size-coco" value="100ml|54990">
+        <label>
+          <span class="size">100ml</span>
+          <span class="price">$ 54.990</span>
+        </label>
+      </div>
+      <div class="price-option">
+        <input type="radio" name="size-coco" value="1.1|120000">
+        <label>
+          <span class="size">1.1 (Premium)</span>
+          <span class="price">$ 119.990</span>
+        </label>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -609,7 +903,12 @@ footer {
 
       <div class="footer-bottom">
         <span>© 2026 ZHAICOLEX INSPIRATIONS</span>
-        
+        <div class="payment-icons">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s" alt="Efectivo" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s" alt="Nequi" />
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s" alt="Bancolombia" />
+          
+        </div>
       </div>
     </footer>
   
@@ -766,7 +1065,7 @@ footer {
   function addCartButtons() {
     const cartItems = document.querySelectorAll('.cart-item');
     
-    cartItems.forEach(item => {
+    cartItems.forEach((item, itemIndex) => {
       // Verificar si ya tiene botón
       if (item.querySelector('.add-to-cart-btn')) return;
       
@@ -774,9 +1073,6 @@ footer {
       const brand = cartInfo.querySelector('p:nth-child(1) strong')?.textContent || 'Marca';
       const name = cartInfo.querySelector('p:nth-child(2)')?.textContent || 'Producto';
       const type = cartInfo.querySelector('p:nth-child(3)')?.textContent || 'Perfume';
-      const size = cartInfo.querySelector('p:nth-child(4)')?.textContent || '30ml';
-      const priceText = cartInfo.querySelector('.price')?.textContent || '$ 19.990';
-      const price = parseInt(priceText.replace(/\D/g, ''));
       const image = item.querySelector('img')?.src || '';
       
       // Crear botón
@@ -784,7 +1080,21 @@ footer {
       button.className = 'add-to-cart-btn';
       button.textContent = '🛒 Agregar al carrito';
       button.onclick = function() {
-        addToCart(brand, name, type, size, price, image);
+        // Obtener la opción seleccionada
+        const selectedOption = item.querySelector('input[type="radio"]:checked');
+        if (selectedOption) {
+  const [size, priceStr] = selectedOption.value.split('|');
+  const price = parseInt(priceStr);
+  addToCart(brand, name, type, size, price, image);
+} else {
+  // Resaltar las opciones con animación
+  const priceOptions = item.querySelector('.price-options');
+  priceOptions.style.animation = 'shake 0.5s';
+  setTimeout(() => {
+    priceOptions.style.animation = '';
+  }, 500);
+  showNotification('⚠️ Por favor selecciona un tamaño primero');
+}
       };
       
       cartInfo.appendChild(button);
@@ -802,7 +1112,7 @@ footer {
     }
   
     const existingIndex = cart.findIndex(item => 
-      item.brand === brand && item.name === name
+      item.brand === brand && item.name === name && item.size === size
     );
   
     if (existingIndex !== -1) {
