@@ -2209,7 +2209,7 @@
           <ul>
             <li><a href="#" id="verTerminos">Términos y Condiciones</a>
             </li>
-            <li>Privacidad</li>
+            <li><a href="#" id="verPrivacidad">Privacidad</a></li>
           </ul>
         </div>
 
@@ -2727,6 +2727,620 @@
 }
 
  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    
+      const link = document.getElementById("verTerminos");
+      if (!link) return;
+    
+      const modal = document.createElement("div");
+    
+      modal.id = "modalTerminos";
+    
+      modal.style.cssText = `
+        display:none;
+        position:fixed;
+        inset:0;
+        background:rgba(0,0,0,0.6);
+        z-index:9999;
+      `;
+    
+      modal.innerHTML = `
+    <div style="
+      background:#fff;
+      width:90%;
+      max-width:600px;
+      max-height:85vh;
+      overflow-y:auto;
+      margin:4% auto;
+      padding:30px;
+      border-radius:14px;
+      position:relative;
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.7;
+      color:#222;
+      box-shadow:0 10px 35px rgba(0,0,0,0.25);
+    ">
+  
+      <span id="cerrarTerminos" style="
+        position:absolute;
+        top:15px;
+        right:18px;
+        cursor:pointer;
+        font-size:28px;
+        color:#555;
+      ">&times;</span>
+  
+      <h2 style="
+        font-size:28px;
+        margin-bottom:8px;
+        color:#000;
+        letter-spacing:1px;
+      ">
+        TÉRMINOS Y CONDICIONES
+      </h2>
+  
+      <p style="
+        font-size:13px;
+        color:#777;
+        margin-bottom:28px;
+      ">
+        Última actualización: 6 de enero de 2026
+      </p>
+  
+      <p style="margin-bottom:22px;">
+        Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al acceder, navegar o realizar
+        una compra a través de nuestros canales digitales, redes sociales o medios de contacto,
+        aceptas cumplir con los presentes Términos y Condiciones.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">1. Información general</h3>
+  
+      <p style="margin-bottom:18px;">
+        Zhaicolex Inspirations es una perfumería dedicada a la comercialización de perfumes
+        árabes, nicho y de diseñador, en presentaciones originales y/o réplicas.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">2. Productos</h3>
+  
+      <p style="margin-bottom:12px;">
+        • Las imágenes de los productos son referenciales.
+      </p>
+  
+      <p style="margin-bottom:12px;">
+        • Los precios están expresados en pesos colombianos (COP) y pueden cambiar sin previo aviso.
+      </p>
+  
+      <p style="margin-bottom:12px;">
+        • La disponibilidad de los productos está sujeta a inventario.
+      </p>
+  
+      <p style="margin-bottom:18px;">
+        • La duración y fijación de los perfumes puede variar según el tipo de piel.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">3. Pedidos y pagos</h3>
+  
+      <p style="margin-bottom:12px;">
+        • Los pedidos se confirman únicamente una vez verificado el pago completo.
+      </p>
+  
+      <p style="margin-bottom:18px;">
+        • Zhaicolex Inspirations podrá rechazar pedidos por errores de precio,
+        falta de stock o sospecha de fraude.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">4. Envíos</h3>
+  
+      <p style="margin-bottom:12px;">
+        • Realizamos envíos a nivel nacional en Colombia.
+      </p>
+  
+      <p style="margin-bottom:18px;">
+        • Los tiempos de entrega son estimados y pueden variar por causas externas.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">5. Cambios y devoluciones</h3>
+  
+      <p style="margin-bottom:12px;">
+        • Por tratarse de productos cosméticos, no se aceptan devoluciones una vez abierto el producto.
+      </p>
+  
+      <p style="margin-bottom:18px;">
+        • Solo se aceptarán cambios por errores de envío o productos defectuosos,
+        reportados dentro de las primeras 24 horas.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">6. Garantía</h3>
+  
+      <p style="margin-bottom:12px;">
+        • La garantía cubre únicamente defectos de fábrica.
+      </p>
+  
+      <p style="margin-bottom:18px;">
+        • No cubre daños ocasionados por mal uso o almacenamiento inadecuado.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">7. Propiedad intelectual</h3>
+  
+      <p style="margin-bottom:18px;">
+        Todo el contenido de Zhaicolex Inspirations está protegido por derechos
+        de autor y propiedad intelectual.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">8. Protección de datos</h3>
+  
+      <p style="margin-bottom:18px;">
+        La información personal será tratada conforme a la Ley 1581 de 2012 de Colombia.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">9. Responsabilidad</h3>
+  
+      <p style="margin-bottom:18px;">
+        Zhaicolex Inspirations no se hace responsable por reacciones alérgicas
+        derivadas del uso de los productos.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">10. Modificaciones</h3>
+  
+      <p style="margin-bottom:18px;">
+        Nos reservamos el derecho de modificar estos términos y condiciones
+        en cualquier momento.
+      </p>
+  
+      <h3 style="margin-bottom:10px; margin-top:25px;">11. Contacto</h3>
+  
+      <p style="margin-bottom:28px;">
+        Para dudas o solicitudes puedes comunicarte mediante nuestros canales oficiales.
+      </p>
+  
+      <div style="
+        margin-top:35px;
+        padding-top:20px;
+        border-top:1px solid #e5e5e5;
+      ">
+        <p style="
+          font-size:14px;
+          color:#444;
+          margin-bottom:20px;
+        ">
+          Al realizar una compra confirmas que has leído y aceptado estos términos y condiciones.
+        </p>
+  
+        <button id="aceptarTerminos" style="
+          width:100%;
+          background:#000;
+          color:#fff;
+          border:none;
+          padding:14px;
+          border-radius:8px;
+          cursor:pointer;
+          font-size:15px;
+          font-weight:bold;
+          transition:0.3s;
+        ">
+          Aceptar y continuar
+        </button>
+      </div>
+  
+    </div>
+  `;
+      document.body.appendChild(modal);
+    
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.style.display = "block";
+      });
+    
+      modal.addEventListener("click", (e) => {
+    
+        if (
+          e.target.id === "cerrarTerminos" ||
+          e.target.id === "aceptarTerminos" ||
+          e.target === modal
+        ) {
+    
+          modal.style.display = "none";
+        }
+    
+      });
+    
+    });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+      
+        const linkPrivacidad = document.getElementById("verPrivacidad");
+      
+        if (!linkPrivacidad) return;
+      
+        const modalPrivacidad = document.createElement("div");
+      
+        modalPrivacidad.style.cssText = `
+          display:none;
+          position:fixed;
+          inset:0;
+          background:rgba(0,0,0,0.6);
+          z-index:9999;
+        `;
+      
+        modalPrivacidad.innerHTML = `
+          <div style="
+            background:#fff;
+            width:90%;
+            max-width:600px;
+            max-height:85vh;
+            overflow-y:auto;
+            margin:4% auto;
+            padding:30px;
+            border-radius:14px;
+            position:relative;
+            font-family:Arial, Helvetica, sans-serif;
+            line-height:1.7;
+            color:#222;
+            box-shadow:0 10px 35px rgba(0,0,0,0.25);
+          ">
+      
+            <span id="cerrarPrivacidad" style="
+              position:absolute;
+              top:15px;
+              right:18px;
+              cursor:pointer;
+              font-size:28px;
+              color:#555;
+            ">&times;</span>
+      
+            <h2 style="
+              font-size:28px;
+              margin-bottom:8px;
+              color:#000;
+              letter-spacing:1px;
+            ">
+              POLÍTICA DE PRIVACIDAD
+            </h2>
+      
+            <p style="
+              font-size:13px;
+              color:#777;
+              margin-bottom:28px;
+            ">
+              Última actualización: 6 de enero de 2026
+            </p>
+      
+            <p style="margin-bottom:22px;">
+              En <strong>Zhaicolex Inspirations</strong> respetamos y protegemos
+              la privacidad de nuestros clientes y visitantes.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              1. Información que recopilamos
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              Podemos recopilar información como nombre, número telefónico,
+              dirección, correo electrónico y datos relacionados con compras
+              realizadas en nuestra plataforma.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              2. Uso de la información
+            </h3>
+      
+            <p style="margin-bottom:12px;">
+              • Procesar pedidos y entregas.
+            </p>
+      
+            <p style="margin-bottom:12px;">
+              • Brindar soporte y atención al cliente.
+            </p>
+      
+            <p style="margin-bottom:12px;">
+              • Enviar información relacionada con compras o promociones.
+            </p>
+      
+            <p style="margin-bottom:18px;">
+              • Mejorar nuestros servicios y experiencia del usuario.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              3. Protección de datos
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              Implementamos medidas de seguridad para proteger la información
+              personal de accesos no autorizados, pérdida o alteración.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              4. Compartición de información
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              No vendemos ni compartimos información personal con terceros,
+              excepto cuando sea necesario para procesar pagos, envíos
+              o cumplir obligaciones legales.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              5. Cookies
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              Nuestro sitio puede utilizar cookies para mejorar la experiencia
+              de navegación y personalizar contenido.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              6. Derechos del usuario
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              Los usuarios pueden solicitar actualización, corrección o eliminación
+              de sus datos personales conforme a la legislación colombiana vigente.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              7. Modificaciones
+            </h3>
+      
+            <p style="margin-bottom:18px;">
+              Nos reservamos el derecho de modificar esta Política de Privacidad
+              en cualquier momento.
+            </p>
+      
+            <h3 style="margin-bottom:10px; margin-top:25px;">
+              8. Contacto
+            </h3>
+      
+            <p style="margin-bottom:28px;">
+              Para consultas relacionadas con privacidad y tratamiento de datos,
+              puedes comunicarte mediante nuestros canales oficiales.
+            </p>
+      
+            <div style="
+              margin-top:35px;
+              padding-top:20px;
+              border-top:1px solid #e5e5e5;
+            ">
+              <button id="aceptarPrivacidad" style="
+                width:100%;
+                background:#000;
+                color:#fff;
+                border:none;
+                padding:14px;
+                border-radius:8px;
+                cursor:pointer;
+                font-size:15px;
+                font-weight:bold;
+                transition:0.3s;
+              ">
+                Entendido
+              </button>
+            </div>
+      
+          </div>
+        `;
+      
+        document.body.appendChild(modalPrivacidad);
+      
+        linkPrivacidad.addEventListener("click", (e) => {
+          e.preventDefault();
+          modalPrivacidad.style.display = "block";
+        });
+      
+        modalPrivacidad.addEventListener("click", (e) => {
+      
+          if (
+            e.target.id === "cerrarPrivacidad" ||
+            e.target.id === "aceptarPrivacidad" ||
+            e.target === modalPrivacidad
+          ) {
+      
+            modalPrivacidad.style.display = "none";
+          }
+      
+        });
+      
+      });
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        
+          const linkSobre = document.getElementById("verSobreNosotros");
+          if (!linkSobre) return;
+        
+          const modalSobre = document.createElement("div");
+        
+          modalSobre.id = "modalSobre";
+        
+          modalSobre.style.cssText = `
+            display:none;
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.6);
+            z-index:9999;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+          `;
+        
+          modalSobre.innerHTML = `
+            <div style="
+              background:#fff;
+              width:100%;
+              max-width:650px;
+              max-height:85vh;
+              overflow-y:auto;
+              padding:35px;
+              border-radius:18px;
+              position:relative;
+              font-family:Arial, Helvetica, sans-serif;
+              box-shadow:0 10px 35px rgba(0,0,0,0.2);
+            ">
+        
+              <span id="cerrarSobre" style="
+                position:absolute;
+                top:15px;
+                right:20px;
+                cursor:pointer;
+                font-size:28px;
+                color:#555;
+              ">&times;</span>
+        
+              <div class="legal-texto">
+        
+                <h2 style="
+                  font-size:28px;
+                  margin-bottom:20px;
+                  color:#000;
+                  text-align:center;
+                ">
+                  Sobre Nosotros
+                </h2>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  <strong>ZHAICOLEX INSPIRATIONS</strong> es una marca enfocada
+                  en ofrecer perfumes inspirados en fragancias reconocidas a nivel mundial,
+                  brindando una experiencia elegante, moderna y accesible.
+                </p>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  Nuestro objetivo es que cada persona pueda disfrutar aromas de alta calidad,
+                  con excelente presentación y una atención cercana, confiable y transparente.
+                </p>
+        
+                <h3 style="
+                  margin-top:25px;
+                  margin-bottom:12px;
+                  font-size:20px;
+                  color:#000;
+                ">
+                  Nuestra visión
+                </h3>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  Buscamos convertirnos en una marca reconocida en Colombia por ofrecer
+                  perfumes con excelente relación calidad-precio, acompañados de una
+                  experiencia digital moderna y profesional.
+                </p>
+        
+                <h3 style="
+                  margin-top:25px;
+                  margin-bottom:12px;
+                  font-size:20px;
+                  color:#000;
+                ">
+                  Nuestra misión
+                </h3>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  Ofrecer fragancias inspiradas en perfumes icónicos, permitiendo que más
+                  personas puedan acceder a aromas exclusivos sin pagar precios excesivos.
+                </p>
+        
+                <h3 style="
+                  margin-top:25px;
+                  margin-bottom:12px;
+                  font-size:20px;
+                  color:#000;
+                ">
+                  ¿Qué ofrecemos?
+                </h3>
+        
+                <ul style="
+                  padding-left:20px;
+                  margin-bottom:20px;
+                  color:#444;
+                  line-height:1.8;
+                ">
+                  <li>Perfumes inspirados en marcas reconocidas.</li>
+                  <li>Presentaciones modernas y elegantes.</li>
+                  <li>Opciones de diferentes tamaños.</li>
+                  <li>Atención personalizada vía WhatsApp.</li>
+                  <li>Envíos nacionales en Colombia.</li>
+                </ul>
+        
+                <h3 style="
+                  margin-top:25px;
+                  margin-bottom:12px;
+                  font-size:20px;
+                  color:#000;
+                ">
+                  Compromiso con nuestros clientes
+                </h3>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  En ZHAICOLEX INSPIRATIONS trabajamos constantemente para brindar
+                  una experiencia segura, clara y profesional en cada compra.
+                </p>
+        
+                <p style="margin-bottom:18px; line-height:1.8; color:#444;">
+                  Valoramos la confianza de nuestros clientes y buscamos mejorar
+                  cada día nuestros productos, atención y servicio.
+                </p>
+        
+                <h3 style="
+                  margin-top:25px;
+                  margin-bottom:12px;
+                  font-size:20px;
+                  color:#000;
+                ">
+                  Contacto
+                </h3>
+        
+                <ul style="
+                  padding-left:20px;
+                  margin-bottom:25px;
+                  color:#444;
+                  line-height:1.8;
+                ">
+                  <li>WhatsApp: +57 315 182 1269</li>
+                  <li>Instagram: @zhaicolexinspirations</li>
+                  <li>Facebook: ZHAICOLEX INSPIRATIONS</li>
+                </ul>
+        
+                <button id="aceptarSobre" style="
+                  width:100%;
+                  background:#000;
+                  color:#fff;
+                  border:none;
+                  padding:14px;
+                  border-radius:10px;
+                  cursor:pointer;
+                  font-size:15px;
+                  font-weight:bold;
+                  transition:0.3s;
+                ">
+                  Entendido
+                </button>
+        
+              </div>
+            </div>
+          `;
+        
+          document.body.appendChild(modalSobre);
+        
+          // ABRIR
+          linkSobre.addEventListener("click", (e) => {
+            e.preventDefault();
+            modalSobre.style.display = "flex";
+          });
+        
+          // CERRAR
+          modalSobre.addEventListener("click", (e) => {
+        
+            if (
+              e.target.id === "cerrarSobre" ||
+              e.target.id === "aceptarSobre" ||
+              e.target === modalSobre
+            ) {
+              modalSobre.style.display = "none";
+            }
+        
+          });
+        
+        });
+        </script>
  <script src="https://checkout.wompi.co/widget.js"></script>
 <a href="https://wa.me/573001112233?text=Hola,%20estoy%20interesado%20en%20un%20producto"
 target="_blank"
