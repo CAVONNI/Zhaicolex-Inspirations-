@@ -417,7 +417,8 @@
             <span>Total</span>
             <span id="total">$ 0</span>
           </div>
-          <button class="checkout-btn" onclick="checkout()">
+          <!-- DESPUÉS -->
+          <button class="checkout-btn" onclick="mostrarTerminos()">
             Realizar pedido
           </button>
           <div class="continue-shopping">
@@ -682,5 +683,129 @@
 
     <script src="https://checkout.wompi.co/widget.js"></script>
     <button class="btn-arriba" onclick="irArriba()">↑</button>
+    <script>
+      function mostrarTerminos() {
+        // Crear modal si no existe
+        if (document.getElementById("modalTerminos")) {
+          document.getElementById("modalTerminos").style.display = "block";
+          return;
+        }
+
+        const modal = document.createElement("div");
+        modal.id = "modalTerminos";
+        modal.style.cssText = `
+          display:block;
+          position:fixed;
+          inset:0;
+          background:rgba(0,0,0,0.6);
+          z-index:9999;
+        `;
+
+        modal.innerHTML = `
+          <div style="
+            background:#fff;
+            width:90%;
+            max-width:600px;
+            max-height:85vh;
+            overflow-y:auto;
+            margin:4% auto;
+            padding:30px;
+            border-radius:14px;
+            position:relative;
+            font-family:Arial, Helvetica, sans-serif;
+            line-height:1.7;
+            color:#222;
+            box-shadow:0 10px 35px rgba(0,0,0,0.25);
+          ">
+            <span id="cerrarTerminos" style="
+              position:absolute; top:15px; right:18px;
+              cursor:pointer; font-size:28px; color:#555;
+            ">&times;</span>
+    
+            <h2 style="font-size:28px; margin-bottom:8px; color:#000; letter-spacing:1px;">
+              TÉRMINOS Y CONDICIONES
+            </h2>
+            <p style="font-size:13px; color:#777; margin-bottom:28px;">
+              Última actualización: 6 de enero de 2026
+            </p>
+            <p style="margin-bottom:22px;">
+              Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al acceder, navegar o realizar
+              una compra a través de nuestros canales digitales, redes sociales o medios de contacto,
+              aceptas cumplir con los presentes Términos y Condiciones.
+            </p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">1. Información general</h3>
+            <p style="margin-bottom:18px;">Zhaicolex Inspirations es una perfumería dedicada a la comercialización de perfumes árabes, nicho y de diseñador, en presentaciones originales y/o réplicas.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">2. Productos</h3>
+            <p style="margin-bottom:12px;">• Las imágenes de los productos son referenciales.</p>
+            <p style="margin-bottom:12px;">• Los precios están expresados en pesos colombianos (COP) y pueden cambiar sin previo aviso.</p>
+            <p style="margin-bottom:12px;">• La disponibilidad de los productos está sujeta a inventario.</p>
+            <p style="margin-bottom:18px;">• La duración y fijación de los perfumes puede variar según el tipo de piel.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">3. Pedidos y pagos</h3>
+            <p style="margin-bottom:12px;">• Los pedidos se confirman únicamente una vez verificado el pago completo.</p>
+            <p style="margin-bottom:18px;">• Zhaicolex Inspirations podrá rechazar pedidos por errores de precio, falta de stock o sospecha de fraude.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">4. Envíos</h3>
+            <p style="margin-bottom:12px;">• Realizamos envíos a nivel nacional en Colombia.</p>
+            <p style="margin-bottom:18px;">• Los tiempos de entrega son estimados y pueden variar por causas externas.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">5. Cambios y devoluciones</h3>
+            <p style="margin-bottom:12px;">• Por tratarse de productos cosméticos, no se aceptan devoluciones una vez abierto el producto.</p>
+            <p style="margin-bottom:18px;">• Solo se aceptarán cambios por errores de envío o productos defectuosos, reportados dentro de las primeras 24 horas.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">6. Garantía</h3>
+            <p style="margin-bottom:12px;">• La garantía cubre únicamente defectos de fábrica.</p>
+            <p style="margin-bottom:18px;">• No cubre daños ocasionados por mal uso o almacenamiento inadecuado.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">7. Propiedad intelectual</h3>
+            <p style="margin-bottom:18px;">Todo el contenido de Zhaicolex Inspirations está protegido por derechos de autor y propiedad intelectual.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">8. Protección de datos</h3>
+            <p style="margin-bottom:18px;">La información personal será tratada conforme a la Ley 1581 de 2012 de Colombia.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">9. Responsabilidad</h3>
+            <p style="margin-bottom:18px;">Zhaicolex Inspirations no se hace responsable por reacciones alérgicas derivadas del uso de los productos.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">10. Modificaciones</h3>
+            <p style="margin-bottom:18px;">Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento.</p>
+    
+            <h3 style="margin-bottom:10px; margin-top:25px;">11. Contacto</h3>
+            <p style="margin-bottom:28px;">Para dudas o solicitudes puedes comunicarte mediante nuestros canales oficiales.</p>
+    
+            <div style="margin-top:35px; padding-top:20px; border-top:1px solid #e5e5e5;">
+              <p style="font-size:14px; color:#444; margin-bottom:20px;">
+                Al realizar una compra confirmas que has leído y aceptado estos términos y condiciones.
+              </p>
+              <button id="aceptarTerminos" style="
+                width:100%; background:#000; color:#fff; border:none;
+                padding:14px; border-radius:8px; cursor:pointer;
+                font-size:15px; font-weight:bold;
+              ">
+                Aceptar y continuar
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Cerrar con la X o clic fuera
+        modal.addEventListener("click", (e) => {
+          if (e.target.id === "cerrarTerminos" || e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+
+        // Aceptar → lanzar el pago
+        document
+          .getElementById("aceptarTerminos")
+          .addEventListener("click", () => {
+            modal.style.display = "none";
+            checkout(); // ← aquí se llama al pago real
+          });
+      }
+    </script>
   </body>
 </html>
