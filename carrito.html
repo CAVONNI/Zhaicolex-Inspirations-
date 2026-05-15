@@ -627,31 +627,39 @@
       }
     </script>
     <script>
-      function checkout() {
+      async function checkout() {
         const total = cart.reduce(
           (sum, item) => sum + item.price * item.quantity,
           0
         );
 
         const totalEnCentavos = total * 100;
-
         const referencia = "pedido_" + Date.now();
+        const moneda = "COP";
+        const llaveIntegridad =
+          "prod_integrity_Ez3n5dFoQfZOZBsnXdfH1RYY9a05FAXA"; // ← la del dashboard Wompi
 
-        const checkout = new WidgetCheckout({
-          currency: "COP",
+        // Generar firma SHA-256 en el navegador
+        const cadena = `${referencia}${totalEnCentavos}${moneda}${llaveIntegridad}`;
+        const encoder = new TextEncoder();
+        const data = encoder.encode(cadena);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const signature = hashArray
+          .map((b) => b.toString(16).padStart(2, "0"))
+          .join("");
 
+        const checkoutWidget = new WidgetCheckout({
+          currency: moneda,
           amountInCents: totalEnCentavos,
-
           reference: referencia,
-
           publicKey: "pub_prod_xr6r8K4K1LmUAdj3j2ysVlUcY7IRtoR4",
-
           redirectUrl: window.location.href,
+          signature: signature, // ← aquí va la firma
         });
 
-        checkout.open(function (result) {
+        checkoutWidget.open(function (result) {
           const transaction = result.transaction;
-
           console.log(transaction);
 
           if (transaction.status === "APPROVED") {
