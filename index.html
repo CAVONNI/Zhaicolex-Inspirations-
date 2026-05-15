@@ -2,471 +2,403 @@
 <html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="styles.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Catalogo_Zhaicolex</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <style>
-  
- .cart-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas en PC */
-  width: 100%;
-  margin: 0 auto;
-  gap: 20px;                            /* separación entre productos */
-  
-  margin-bottom: 40px;
-}
-
-/* Tablets */
-@media (max-width: 768px) {
-  .cart-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Celulares */
-@media (max-width: 480px) {
-  .cart-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-
-
-/* TARJETA INDIVIDUAL */
-.cart-item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;  
-  border: 1px solid #e5e5e5;
-  padding: 10px;
-  background: #fff;
-  height: 100%;
-}
-
-/* IMAGEN CONTROLADA */
-.cart-item img {
-  width: 100%;
-  height: 220px;
-  object-fit: contain;
-  background: #f2f2f2;
-  margin-bottom: 12px;
-}
-
-/* TEXTO */
-.cart-info {
-  font-size: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.cart-info p {
-  margin: 0;
-  
-  line-height: 1.4;
-}
-
-.price {
-  font-weight: bold;
-  margin-top: 6px;
-}
-
-/* NUEVOS ESTILOS PARA OPCIONES DE PRECIO */
-.price-options {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.price-option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.price-option:hover {
-  background: #f8f8f8;
-  border-color: #000;
-}
-
-.price-option input[type="radio"] {
-  cursor: pointer;
-  width: 16px;
-  height: 16px;
-}
-
-.price-option label {
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 14px;
-}
-
-.price-option .size {
-  font-weight: 500;
-}
-
-.price-option .price {
-  font-weight: bold;
-  color: #000;
-}
-
-
-.price-options:has(input[type="radio"]:checked) {
-  border: 2px solid transparent;
-  padding: 8px;
-  border-radius: 6px;
-}
-
-/* Resaltar la opción seleccionada */
-.price-option:has(input[type="radio"]:checked) {
-  background: #e8f5e9;
-  border-color: #4caf50;
-  font-weight: 600;
-}
-
-.price-option input[type="radio"] {
-  accent-color: #4caf50;
-}
-
-/* Animación de sacudida para validación */
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-  20%, 40%, 60%, 80% { transform: translateX(5px); }
-}
-      /* ===== BUSCADOR DE PERFUMES ===== */
-.search-box {
-  width: 100%;
-  max-width: 520px;
-  margin: 25px auto 40px;
-  padding: 0 15px;
-}
-
-#searchInput {
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 16px;
-  font-weight: 400;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  background: #fff;
-  color: #333;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-/* Placeholder elegante */
-#searchInput::placeholder {
-  color: #aaa;
-  letter-spacing: 0.5px;
-}
-
-/* Hover */
-#searchInput:hover {
-  border-color: #bbb;
-}
-
-/* Focus */
-#searchInput:focus {
-  border-color: #000;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
+      .cart-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 100%;
+        margin: 0 auto;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+      @media (max-width: 768px) {
+        .cart-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 480px) {
+        .cart-container {
+          grid-template-columns: 1fr;
+        }
+      }
+      .cart-item {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        border: 1px solid #e5e5e5;
+        padding: 10px;
+        background: #fff;
+        height: 100%;
+      }
+      .cart-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        background: #f2f2f2;
+        margin-bottom: 12px;
+      }
+      .cart-info {
+        font-size: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .cart-info p {
+        margin: 0;
+        line-height: 1.4;
+      }
+      .price {
+        font-weight: bold;
+        margin-top: 6px;
+      }
+      .price-options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .price-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .price-option:hover {
+        background: #f8f8f8;
+        border-color: #000;
+      }
+      .price-option input[type="radio"] {
+        cursor: pointer;
+        width: 16px;
+        height: 16px;
+      }
+      .price-option label {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 14px;
+      }
+      .price-option .size {
+        font-weight: 500;
+      }
+      .price-option .price {
+        font-weight: bold;
+        color: #000;
+      }
+      .price-option:has(input[type="radio"]:checked) {
+        background: #e8f5e9;
+        border-color: #4caf50;
+        font-weight: 600;
+      }
+      .price-option input[type="radio"] {
+        accent-color: #4caf50;
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70%,
+        90% {
+          transform: translateX(-5px);
+        }
+        20%,
+        40%,
+        60%,
+        80% {
+          transform: translateX(5px);
+        }
+      }
+      .search-box {
+        width: 100%;
+        max-width: 520px;
+        margin: 25px auto 40px;
+        padding: 0 15px;
+      }
+      #searchInput {
+        width: 100%;
+        padding: 14px 18px;
+        font-size: 16px;
+        font-weight: 400;
+        border-radius: 30px;
+        border: 1px solid #ddd;
+        background: #fff;
+        color: #333;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      #searchInput::placeholder {
+        color: #aaa;
+        letter-spacing: 0.5px;
+      }
+      #searchInput:hover {
+        border-color: #bbb;
+      }
+      #searchInput:focus {
+        border-color: #000;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      }
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
       }
-
       body {
         background: #fff;
         color: #000;
       }
-
-      /* ===== HEADER ===== */
-  
-header {
-  border-bottom: 1px solid #e5e5e5;
-  padding: 16px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-links {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .nav-links {
-    gap: 15px;
-    font-size: 14px;
-  }
-}
-
-/* Móvil */
-@media (max-width: 480px) {
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-  
-}
-nav ul {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  position: relative;
-}
-
-nav ul li a {
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  color: #000;
-  padding: 6px 0;
-  transition: color 0.3s ease;
-}
-
-/* Línea animada */
-nav ul li a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 3px;
-  background: #0066ff;
-  transition: width 0.3s ease;
-}
-
-nav ul li a:hover {
-  color: #0066ff;
-}
-
-nav ul li a:hover::after {
-  width: 100%;
-}
-
-/* Activo */
-nav ul li a.active {
-  color: #1c1c1d;
-}
-
-nav ul li a.active::after {
-  width: 100%;
-}
-
-
+      header {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 16px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        padding: 0;
+        margin: 0;
+      }
+      nav ul li {
+        position: relative;
+      }
+      nav ul li a {
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        color: #000;
+        padding: 6px 0;
+        transition: color 0.3s ease;
+      }
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -6px;
+        width: 0%;
+        height: 3px;
+        background: #0066ff;
+        transition: width 0.3s ease;
+      }
+      nav ul li a:hover {
+        color: #0066ff;
+      }
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+      nav ul li a.active {
+        color: #1c1c1d;
+      }
+      nav ul li a.active::after {
+        width: 100%;
+      }
       .logo {
         font-size: 22px;
         font-weight: bold;
         letter-spacing: 2px;
       }
-
       nav ul li {
         font-size: 14px;
         cursor: pointer;
       }
-
       .header-icons {
         display: flex;
         gap: 16px;
         font-size: 14px;
       }
-
-      /* ===== MINICART (visual) ===== */
       .minicart {
         padding: 40px;
         max-width: 100%;
         border-left: none;
       }
-
       .minicart h2 {
         font-size: 18px;
         margin-bottom: 24px;
       }
-
       .cart-info p {
         margin-bottom: 12px;
       }
-
-      /* ===== FOOTER ===== */
-    /* ============================= */
-
-footer {
-  background: #111;
-  color: #fff;
-  padding: 40px 20px;
-  font-size: 14px;
-}
-
-.footer-columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
- 
-  margin: 0 auto;
-}
-
-.footer-columns h4 {
-  margin-bottom: 10px;
-}
-
-.footer-columns ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-columns li {
-  margin-bottom: 6px;
-}
-
-.footer-columns a {
-  color: #ccc;
-  text-decoration: none;
-}
-
-.footer-columns a:hover {
-  color: #fff;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .footer-columns {
-    grid-template-columns: repeat(2, 1fr);
-    text-align: center;
-  }
-}
-
-/* Móvil */
-@media (max-width: 480px) {
-  .footer-columns {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-}
-/* PC */
-.payment-icons {
-  display: flex;
-  justify-content: flex-end; /* 👉 a la derecha */
-  align-items: center;
-}
-
-.payment-icons img {
-  height: 22px;
-  margin-left: 8px;
-  object-fit: contain;
-}
-
-/* Tablet */
-@media (max-width: 768px) {
-  .payment-icons img {
-    height: 20px;
-    margin-left: 6px;
-  }
-}
-
-/* Móvil */
-@media (max-width: 480px) {
-  .payment-icons {
-    justify-content: center; /* 👉 centrado en móvil */
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-
-}
-@media (max-width: 768px) {
-  nav ul {
-    gap: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  @media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .logo {
-    text-align: center;
-    width: 100%;
-  }
-}@media (max-width: 768px) {
-.footer-bottom {
-  display: flex;
-  justify-content: flex-start; /* izquierda */
-  align-items: center;
-  gap: 20px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
-}
-
-
-  .footer-bottom p {
-    margin: 0;
-  }
-
-  .payment-icons {
-    justify-content: center;
-  }
-}
-
-
-}
-
-
+      footer {
+        background: #111;
+        color: #fff;
+        padding: 40px 20px;
+        font-size: 14px;
+      }
+      .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin: 0 auto;
+      }
+      .footer-columns h4 {
+        margin-bottom: 10px;
+      }
+      .footer-columns ul {
+        list-style: none;
+        padding: 0;
+      }
+      .footer-columns li {
+        margin-bottom: 6px;
+      }
+      .footer-columns a {
+        color: #ccc;
+        text-decoration: none;
+      }
+      .footer-columns a:hover {
+        color: #fff;
+      }
+      @media (max-width: 768px) {
+        .footer-columns {
+          grid-template-columns: repeat(2, 1fr);
+          text-align: center;
+        }
+      }
+      @media (max-width: 480px) {
+        .footer-columns {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+      }
+      .payment-icons {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+      .payment-icons img {
+        height: 22px;
+        margin-left: 8px;
+        object-fit: contain;
+      }
+      @media (max-width: 480px) {
+        header {
+          flex-direction: column;
+          gap: 14px;
+        }
+        nav ul {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+      @media (max-width: 768px) {
+        header {
+          flex-direction: column;
+          gap: 14px;
+        }
+        .logo {
+          text-align: center;
+          width: 100%;
+        }
+        nav ul {
+          gap: 18px;
+        }
+      }
+      .footer-bottom {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #ddd;
+      }
+      .add-to-cart-btn {
+        width: 100%;
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 12px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 12px;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+      }
+      .add-to-cart-btn:hover {
+        background: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .add-to-cart-btn:active {
+        transform: translateY(0);
+      }
+      .whatsapp-centro {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #000;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: background-color 0.3s;
+      }
+      .btn-arriba {
+        position: fixed;
+        bottom: 110px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #000;
+        color: white;
+        font-size: 22px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+      .btn-carrito {
+        position: fixed;
+        bottom: 170px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #000;
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        line-height: 45px;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+      }
+      .btn-carrito:hover {
+        background-color: #333;
+      }
     </style>
-
   </head>
- 
   <body>
-    <!-- HEADER -->
-    
     <header>
-      
-      
-      
       <div class="logo">ZHAICOLEX INSPIRATIONS</div>
-
-    <nav>   
+      <nav>
         <ul>
           <li><a href="unisex.html">Unisex</a></li>
           <li><a href="hombre.html">Hombre</a></li>
@@ -475,384 +407,445 @@ footer {
           <li><a href="inicio_sesion.html">Formulario de compra</a></li>
         </ul>
       </nav>
-        
-        
-      </div>
     </header>
+
     <div class="search-box">
       <input
         type="text"
         id="searchInput"
         placeholder="Buscar perfume..."
-        onkeyup="buscarPerfume()"/>
+        onkeyup="buscarPerfume()"
+      />
     </div>
-    
-   <script>
-    function buscarPerfume() {
-      const input = document.getElementById("searchInput");
-      const filtro = input.value.toLowerCase();
-  
-      const items = document.querySelectorAll(".cart-item");
-  
-      items.forEach((item) => {
-        const nombre = item
-          .querySelector(".cart-info p:nth-child(2)")
-          .innerText.toLowerCase();
-  
-        if (nombre.includes(filtro)) {
-          item.style.display = "";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    }
-  </script>
 
-    <!-- MINICART (VISUAL) -->
+    <script>
+      function buscarPerfume() {
+        const input = document.getElementById("searchInput");
+        const filtro = input.value.toLowerCase();
+        const items = document.querySelectorAll(".cart-item");
+        items.forEach((item) => {
+          const nombre = item
+            .querySelector(".cart-info p:nth-child(2)")
+            .innerText.toLowerCase();
+          item.style.display = nombre.includes(filtro) ? "" : "none";
+        });
+      }
+    </script>
+
+    <!-- SECCION 1 -->
     <aside class="minicart">
       <h2>Mas Destacadas</h2>
-
-
-       <!-- CONTENEDOR 1 -->
-<div class="cart-container">
-
-  <div class="cart-item">
-    <img src="https://lorens.com.co/wp-content/uploads/1-Million-de-Paco-Rabanne-para-hombre-200ml.jpg" alt="1 Million" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-1million" value="30ml|19990">
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
+      <div class="cart-container">
+        <!-- 1 Million -->
+        <div class="cart-item">
+          <img src="imagenes/1_million.jpg" alt="1 Million" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-1million"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-1million"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-1million"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-1million"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="price-option">
-          <input type="radio" name="size-1million" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
+
+        <!-- 1 Million Elixir -->
+        <div class="cart-item">
+          <img src="imagenes/1_million_elixir.jpg" alt="1 Million Elixir" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million Elixir</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-elixir"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-elixir"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-elixir"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-elixir"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="price-option">
-          <input type="radio" name="size-1million" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
+
+        <!-- 1 Million Intense -->
+        <div class="cart-item">
+          <img src="imagenes/1_million_intense.jpg" alt="1 Million Intense" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million Intense</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-intense"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-intense"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-intense"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-intense"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="price-option">
-          <input type="radio" name="size-1million" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
+
+        <!-- 1 Million Lucky -->
+        <div class="cart-item">
+          <img src="imagenes/1_million_lucky.jpg" alt="1 Million Lucky" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million Lucky</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-lucky"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-lucky"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-lucky"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-lucky"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  
-
-
-  <div class="cart-item">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqATF09pnX-TkSvazo9wCzR69o1wdPHk8g0A&s" alt="1 Million Elixir" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million Elixir</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-elixir" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-elixir" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-elixir" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-elixir" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="cart-item">
-    <img src="https://www.perfumerialasvillas.net/wp-content/uploads/2023/10/v01-63e4d37210a03-_nestor_parfum-amcc8aoexgd-oo6c8ph2h99.jpg" alt="1 Million Intense" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million Intense</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-intense" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-intense" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-intense" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-intense" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cart-item">
-    <img src="https://www.alcarrito.com/media/catalog/product/o/i/oip_88_.jpg?width=400&height=400&canvas=400,400&optimize=medium&bg-color=255,255,255&fit=bounds" alt="1 Million Lucky" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million Lucky</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-lucky" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-lucky" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-lucky" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-lucky" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-
-</div>
-
     </aside>
+
+    <!-- SECCION 2 -->
     <aside class="minicart">
       <h2>Las Mas Preferidas</h2>
-      <!-- CONTENEDOR 2 -->
-<div class="cart-container">
+      <div class="cart-container">
+        <!-- 1 Million Privé -->
+        <div class="cart-item">
+          <img src="imagenes/1_million_prive.webp" alt="1 Million Privé" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million Privé</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-prive"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-prive"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-prive"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-prive"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <div class="cart-item">
-    <img src="https://http2.mlstatic.com/D_NQ_NP_610698-MCO90079471847_082025-O.webp" alt="1 Million Privé" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million Privé</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-prive" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
+        <!-- 1 Million Royal -->
+        <div class="cart-item">
+          <img src="imagenes/1_million_royal.jpg" alt="1 Million Royal" />
+          <div class="cart-info">
+            <p><strong>PACO RABANNE</strong></p>
+            <p>1 Million Royal</p>
+            <p>Perfume de Hombre</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-royal"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-royal"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-royal"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-royal"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="price-option">
-          <input type="radio" name="size-prive" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
+
+        <!-- Coconut Passion -->
+        <div class="cart-item">
+          <img src="imagenes/coconut_passion.jpg" alt="Coconut Passion" />
+          <div class="cart-info">
+            <p><strong>VICTORIA'S SECRET</strong></p>
+            <p>Coconut Passion</p>
+            <p>Perfume de Mujer</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-coconut"
+                  value="30ml|19990"
+                /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-coconut"
+                  value="50ml|34990"
+                /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-coconut"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-coconut"
+                  value="1.1|120000"
+                /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="price-option">
-          <input type="radio" name="size-prive" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-prive" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
+
+        <!-- Coco Mademoiselle -->
+        <div class="cart-item">
+          <img src="imagenes/coco_mademoiselle.jpg" alt="Coco Mademoiselle" />
+          <div class="cart-info">
+            <p><strong>CHANEL</strong></p>
+            <p>Coco Mademoiselle</p>
+            <p>Perfume de Mujer</p>
+            <div class="price-options">
+              <div class="price-option">
+                <input type="radio" name="size-coco" value="30ml|19990" /><label
+                  ><span class="size">30ml</span
+                  ><span class="price">$ 19.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input type="radio" name="size-coco" value="50ml|34990" /><label
+                  ><span class="size">50ml</span
+                  ><span class="price">$ 34.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input
+                  type="radio"
+                  name="size-coco"
+                  value="100ml|54990"
+                /><label
+                  ><span class="size">100ml</span
+                  ><span class="price">$ 54.990</span></label
+                >
+              </div>
+              <div class="price-option">
+                <input type="radio" name="size-coco" value="1.1|120000" /><label
+                  ><span class="size">1.1 (Premium)</span
+                  ><span class="price">$ 119.990</span></label
+                >
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  
-
-  <div class="cart-item">
-    <img src="https://disfragancias.com/cdn/shop/products/One-million-royal.jpg?v=1699808190" alt="1 Million Royal" />
-    <div class="cart-info">
-      <p><strong>PACO RABANNE</strong></p>
-      <p>1 Million Royal</p>
-      <p>Perfume de Hombre</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-royal" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-royal" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-royal" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-royal" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-  <div class="cart-item">
-    <img src="https://fimgs.net/mdimg/perfume/o.7993.jpg" alt="Coconut Passion" />
-    <div class="cart-info">
-      <p><strong>VICTORIA'S SECRET</strong></p>
-      <p>Coconut Passion</p>
-      <p>Perfume de Mujer</p>
-      
-      <div class="price-options">
-        <div class="price-option">
-          <input type="radio" name="size-coconut" value="30ml|19990"> 
-          <label>
-            <span class="size">30ml</span>
-            <span class="price">$ 19.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-coconut" value="50ml|34990">
-          <label>
-            <span class="size">50ml</span>
-            <span class="price">$ 34.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-coconut" value="100ml|54990">
-          <label>
-            <span class="size">100ml</span>
-            <span class="price">$ 54.990</span>
-          </label>
-        </div>
-        <div class="price-option">
-          <input type="radio" name="size-coconut" value="1.1|120000">
-          <label>
-            <span class="size">1.1 (Premium)</span>
-            <span class="price">$ 119.990</span>
-          </label>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="cart-item">
-  <img src="https://media.falabella.com/falabellaCO/3443687_1/w=1500,h=1500,fit=cover" alt="Coco Mademoiselle" />
-  <div class="cart-info">
-    <p><strong>CHANEL</strong></p>
-    <p>Coco Mademoiselle</p>
-    <p>Perfume de Mujer</p>
-    
-    <div class="price-options">
-      <div class="price-option">
-        <input type="radio" name="size-coco" value="30ml|19990"> 
-        <label>
-          <span class="size">30ml</span>
-          <span class="price">$ 19.990</span>
-        </label>
-      </div>
-      <div class="price-option">
-        <input type="radio" name="size-coco" value="50ml|34990">
-        <label>
-          <span class="size">50ml</span>
-          <span class="price">$ 34.990</span>
-        </label>
-      </div>
-      <div class="price-option">
-        <input type="radio" name="size-coco" value="100ml|54990">
-        <label>
-          <span class="size">100ml</span>
-          <span class="price">$ 54.990</span>
-        </label>
-      </div>
-      <div class="price-option">
-        <input type="radio" name="size-coco" value="1.1|120000">
-        <label>
-          <span class="size">1.1 (Premium)</span>
-          <span class="price">$ 119.990</span>
-        </label>
-      </div>
-    </div>
-  </div>
-</div>
-
-</div>
-
-
     </aside>
 
     <!-- FOOTER -->
@@ -862,1056 +855,302 @@ footer {
           <h4>Atención al cliente</h4>
           <ul>
             <li><a href="tel:+573151821269">Contactanos</a></li>
-
             <li><a href="tel:+573151821269">Devoluciones</a></li>
           </ul>
         </div>
-
         <div>
           <h4>ZHAICOLEZ INSPIRATIONS</h4>
           <ul>
-
-            
-            <li><a href="#" id="verSobreNosotros">Sobre Nosotros</a>
+            <li><a href="#" id="verSobreNosotros">Sobre Nosotros</a></li>
+            <li>
+              <a href="https://wa.me/573151821269" target="_blank"
+                >Trabaja con nosotros</a
+              >
             </li>
-            <a href="https://wa.me/573151821269" target="_blank"
-            >Trabaja con nosotros</a
           </ul>
         </div>
-
         <div>
           <h4>Legal</h4>
           <ul>
-            <li><a href="#" id="verTerminos">Términos y Condiciones</a>
-            </li>
+            <li><a href="#" id="verTerminos">Términos y Condiciones</a></li>
             <li><a href="#" id="verPrivacidad">Privacidad</a></li>
           </ul>
         </div>
-
         <div>
           <h4>Síguenos</h4>
           <ul>
-            <li><a href="https://www.instagram.com/zhaicolexinspirations?igsh=MWN2NmU1YmVtbXdhMQ==" target="_blank">
-            Instagram
-            </a>
+            <li>
+              <a
+                href="https://www.instagram.com/zhaicolexinspirations?igsh=MWN2NmU1YmVtbXdhMQ=="
+                target="_blank"
+                >Instagram</a
+              >
             </li>
-            <li><a href="https://www.facebook.com/profile.php?id=61582595425156" target="_blank">
-              Facebook
-            </a>
+            <li>
+              <a
+                href="https://www.facebook.com/profile.php?id=61582595425156"
+                target="_blank"
+                >Facebook</a
+              >
             </li>
-            
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
         <span>© 2026 ZHAICOLEX INSPIRATIONS</span>
         <div class="payment-icons">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s" alt="Efectivo" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s" alt="Nequi" />
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s" alt="Bancolombia" />
-          
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwdUJEl_J-7YkAxCaVsGyx22skgB9YwEg_4Q&s"
+            alt="Efectivo"
+          />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfoxkT7ytG1g5aG2qYP1BSWeFFfZ_62l12Bw&s"
+            alt="Nequi"
+          />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm5AMCsz2cx9VJ3wb9oURtGgPLSk72keMkmg&s"
+            alt="Bancolombia"
+          />
         </div>
       </div>
     </footer>
-  
-<style>
-  /* Estilos para el botón de agregar al carrito */
-  
-  .add-to-cart-btn {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    border: none;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  .add-to-cart-btn:hover {
-    background: #333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-  
-  .add-to-cart-btn:active {
-    transform: translateY(0);
-  }
-  
-  /* Badge del carrito */
-  .cart-badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: #000;
-    color: #fff;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-  }
-  
-  .header-icons {
-    position: relative;
-  }
-  .whatsapp-centro {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #000;
-  color: white;
-  padding: 12px 25px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  transition: background-color 0.3s;
-}
 
-.whatsapp-centro:hover {
-  background-color: #000;
-}
-.btn-arriba {
-  position: fixed;
-  bottom: 110px;   /* ⬆ lo sube respecto al botón de WhatsApp */
-  right: 20px;
+    <script>
+      let sessionId = "";
+      function generateSessionId() {
+        return (
+          "session_" +
+          Date.now() +
+          "_" +
+          Math.random().toString(36).substr(2, 9)
+        );
+      }
+      function getSessionId() {
+        let session = sessionStorage.getItem("zhaicolezSessionId");
+        if (!session) {
+          session = generateSessionId();
+          sessionStorage.setItem("zhaicolezSessionId", session);
+        }
+        return session;
+      }
+      sessionId = getSessionId();
 
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background-color: #000;
-  color: white;
-  font-size: 22px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-}
-.btn-carrito {
-  position: fixed;
-  bottom: 170px; /* ⬆ más arriba que el botón ↑ */
-  right: 20px;
+      function addCartButtons() {
+        const cartItems = document.querySelectorAll(".cart-item");
+        cartItems.forEach((item) => {
+          if (item.querySelector(".add-to-cart-btn")) return;
+          const cartInfo = item.querySelector(".cart-info");
+          const brand =
+            cartInfo.querySelector("p:nth-child(1) strong")?.textContent ||
+            "Marca";
+          const name =
+            cartInfo.querySelector("p:nth-child(2)")?.textContent || "Producto";
+          const type =
+            cartInfo.querySelector("p:nth-child(3)")?.textContent || "Perfume";
+          const image = item.querySelector("img")?.src || "";
+          const button = document.createElement("button");
+          button.className = "add-to-cart-btn";
+          button.textContent = "🛒 Agregar al carrito";
+          button.onclick = function () {
+            const selectedOption = item.querySelector(
+              'input[type="radio"]:checked'
+            );
+            if (selectedOption) {
+              const [size, priceStr] = selectedOption.value.split("|");
+              addToCart(brand, name, type, size, parseInt(priceStr), image);
+            } else {
+              const priceOptions = item.querySelector(".price-options");
+              priceOptions.style.animation = "shake 0.5s";
+              setTimeout(() => {
+                priceOptions.style.animation = "";
+              }, 500);
+              showNotification("⚠️ Por favor selecciona un tamaño primero");
+            }
+          };
+          cartInfo.appendChild(button);
+        });
+      }
 
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+      function addToCart(brand, name, type, size, price, image) {
+        const cartKey = "zhaicolezCart_" + sessionId;
+        let cart = [];
+        const savedCart = localStorage.getItem(cartKey);
+        if (savedCart) cart = JSON.parse(savedCart);
+        const existingIndex = cart.findIndex(
+          (item) =>
+            item.brand === brand && item.name === name && item.size === size
+        );
+        if (existingIndex !== -1) {
+          cart[existingIndex].quantity += 1;
+        } else {
+          cart.push({ brand, name, type, size, price, image, quantity: 1 });
+        }
+        localStorage.setItem(cartKey, JSON.stringify(cart));
+        showNotification("¡Producto agregado al carrito!");
+        updateCartBadge();
+      }
 
-  background-color: #000;
-  color: white;
-  font-size: 20px;
-  text-align: center;
-  line-height: 45px;
+      function showNotification(message) {
+        const notification = document.createElement("div");
+        notification.textContent = message;
+        notification.style.cssText =
+          "position:fixed;top:20px;right:20px;background:#000;color:#fff;padding:16px 24px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:10000;";
+        document.body.appendChild(notification);
+        setTimeout(() => {
+          notification.remove();
+        }, 2000);
+      }
 
-  text-decoration: none;
-  cursor: pointer;
+      function updateCartBadge() {
+        const cartKey = "zhaicolezCart_" + sessionId;
+        const savedCart = localStorage.getItem(cartKey);
+        let badge = document.querySelector(".cart-badge");
+        if (savedCart) {
+          const cart = JSON.parse(savedCart);
+          const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+          if (totalItems > 0) {
+            if (!badge) {
+              badge = document.createElement("span");
+              badge.className = "cart-badge";
+            }
+            badge.textContent = totalItems;
+          }
+        }
+      }
 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-}
+      function irArriba() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-.btn-carrito:hover {
-  background-color: #333;
-}
+      document.addEventListener("DOMContentLoaded", function () {
+        addCartButtons();
+        updateCartBadge();
+      });
 
-  </style>
-  
-
-<script>
-  // ============================= 
-  // SISTEMA DE SESIÓN Y CARRITO
-  // ============================= 
-  
-  let sessionId = '';
-  
-  // Generar ID de sesión único
-  function generateSessionId() {
-    return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-  }
-  
-  // Obtener o crear ID de sesión
-  function getSessionId() {
-    // Buscar en sessionStorage (se borra al cerrar navegador/pestaña)
-    let session = sessionStorage.getItem('zhaicolezSessionId');
-    
-    if (!session) {
-      // Crear nueva sesión
-      session = generateSessionId();
-      sessionStorage.setItem('zhaicolezSessionId', session);
-      console.log('Nueva sesión creada:', session);
-    } else {
-      console.log('Sesión existente:', session);
-    }
-    
-    return session;
-  }
-  
-  // Inicializar sesión al cargar página
-  sessionId = getSessionId();
-  
-  // ============================= 
-  // FUNCIONES DEL CARRITO
-  // ============================= 
-  
-  // Función para agregar botones a todos los productos
-  function addCartButtons() {
-    const cartItems = document.querySelectorAll('.cart-item');
-    
-    cartItems.forEach((item, itemIndex) => {
-      // Verificar si ya tiene botón
-      if (item.querySelector('.add-to-cart-btn')) return;
-      
-      const cartInfo = item.querySelector('.cart-info');
-      const brand = cartInfo.querySelector('p:nth-child(1) strong')?.textContent || 'Marca';
-      const name = cartInfo.querySelector('p:nth-child(2)')?.textContent || 'Producto';
-      const type = cartInfo.querySelector('p:nth-child(3)')?.textContent || 'Perfume';
-      const image = item.querySelector('img')?.src || '';
-      
-      // Crear botón
-      const button = document.createElement('button');
-      button.className = 'add-to-cart-btn';
-      button.textContent = '🛒 Agregar al carrito';
-      button.onclick = function() {
-        // Obtener la opción seleccionada
-        const selectedOption = item.querySelector('input[type="radio"]:checked');
-        if (selectedOption) {
-  const [size, priceStr] = selectedOption.value.split('|');
-  const price = parseInt(priceStr);
-  addToCart(brand, name, type, size, price, image);
-} else {
-  // Resaltar las opciones con animación
-  const priceOptions = item.querySelector('.price-options');
-  priceOptions.style.animation = 'shake 0.5s';
-  setTimeout(() => {
-    priceOptions.style.animation = '';
-  }, 500);
-  showNotification('⚠️ Por favor selecciona un tamaño primero');
-}
+      const originalBuscar = window.buscarPerfume;
+      window.buscarPerfume = function () {
+        if (originalBuscar) originalBuscar();
+        setTimeout(addCartButtons, 100);
       };
-      
-      cartInfo.appendChild(button);
-    });
-  }
-  
-  // Función para agregar al carrito con sesión
-  function addToCart(brand, name, type, size, price, image) {
-    const cartKey = 'zhaicolezCart_' + sessionId;
-    let cart = [];
-    const savedCart = localStorage.getItem(cartKey);
-    
-    if (savedCart) {
-      cart = JSON.parse(savedCart);
-    }
-  
-    const existingIndex = cart.findIndex(item => 
-      item.brand === brand && item.name === name && item.size === size
-    );
-  
-    if (existingIndex !== -1) {
-      cart[existingIndex].quantity += 1;
-    } else {
-      cart.push({
-        brand,
-        name,
-        type,
-        size,
-        price,
-        image,
-        quantity: 1
-      });
-    }
-  
-    localStorage.setItem(cartKey, JSON.stringify(cart));
-    console.log('Producto agregado al carrito de sesión:', sessionId);
-    
-    // Mostrar notificación
-    showNotification('¡Producto agregado al carrito!');
-    updateCartBadge();
-  }
-  
-  // Mostrar notificación
-  function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: #000;
-      color: #fff;
-      padding: 16px 24px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 10000;
-      animation: slideIn 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      notification.style.animation = 'slideOut 0.3s ease';
-      setTimeout(() => notification.remove(), 300);
-    }, 2000);
-  }
-  
-  // Actualizar badge del carrito
-  function updateCartBadge() {
-    const cartKey = 'zhaicolezCart_' + sessionId;
-    const savedCart = localStorage.getItem(cartKey);
-    let badge = document.querySelector('.cart-badge');
-    
-    if (savedCart) {
-      const cart = JSON.parse(savedCart);
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      
-      if (totalItems > 0) {
-        if (!badge) {
-          badge = document.createElement('span');
-          badge.className = 'cart-badge';
-          const cartLink = document.querySelector('.header-icons span:last-child');
-          if (cartLink) {
-            cartLink.style.position = 'relative';
-            cartLink.appendChild(badge);
-          }
-        }
-        badge.textContent = totalItems;
-      } else if (badge) {
-        badge.remove();
-      }
-    }
-  }
-  
-  // Limpiar carritos antiguos (más de 7 días)
-  function cleanOldCarts() {
-    const now = Date.now();
-    const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 días
-    
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (key && key.startsWith('zhaicolezCart_session_')) {
-        try {
-          const timestamp = parseInt(key.split('_')[2]);
-          if (now - timestamp > maxAge) {
-            localStorage.removeItem(key);
-            console.log('Carrito antiguo eliminado:', key);
-          }
-        } catch (e) {
-          console.log('Error al limpiar:', e);
-        }
-      }
-    }
-  }
-  
-  // ============================= 
-  // ESTILOS Y ANIMACIONES
-  // ============================= 
-  
-  // Agregar animaciones CSS
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes slideIn {
-      from {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-    
-    @keyframes slideOut {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(400px);
-        opacity: 0;
-      }
-    }
-    
-    .cart-badge {
-      position: absolute;
-      top: -8px;
-      right: -8px;
-      background: #000;
-      color: #fff;
-      border-radius: 50%;
-      width: 24px;
-      height: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-    }
-  `;
-  document.head.appendChild(style);
-  
-  // ============================= 
-  // INICIALIZACIÓN
-  // ============================= 
-  
-  // Ejecutar al cargar la página
-  document.addEventListener('DOMContentLoaded', function() {
-    addCartButtons();
-    updateCartBadge();
-    cleanOldCarts();
-    
-    console.log('Sesión activa:', sessionId);
-    console.log('Para nueva sesión, cierra el navegador completamente');
-  });
-  
-  // También ejecutar después de que el buscador filtre productos
-  const originalBuscar = window.buscarPerfume;
-  window.buscarPerfume = function() {
-    if (originalBuscar) originalBuscar();
-    setTimeout(addCartButtons, 100);
-  };
-  function irArriba() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
-
- </script>
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-  
-    const link = document.getElementById("verTerminos");
-    if (!link) return;
-  
-    const modal = document.createElement("div");
-  
-    modal.id = "modalTerminos";
-  
-    modal.style.cssText = `
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.6);
-      z-index:9999;
-    `;
-  
-    modal.innerHTML = `
-  <div style="
-    background:#fff;
-    width:90%;
-    max-width:600px;
-    max-height:85vh;
-    overflow-y:auto;
-    margin:4% auto;
-    padding:30px;
-    border-radius:14px;
-    position:relative;
-    font-family:Arial, Helvetica, sans-serif;
-    line-height:1.7;
-    color:#222;
-    box-shadow:0 10px 35px rgba(0,0,0,0.25);
-  ">
-
-    <span id="cerrarTerminos" style="
-      position:absolute;
-      top:15px;
-      right:18px;
-      cursor:pointer;
-      font-size:28px;
-      color:#555;
-    ">&times;</span>
-
-    <h2 style="
-      font-size:28px;
-      margin-bottom:8px;
-      color:#000;
-      letter-spacing:1px;
-    ">
-      TÉRMINOS Y CONDICIONES
-    </h2>
-
-    <p style="
-      font-size:13px;
-      color:#777;
-      margin-bottom:28px;
-    ">
-      Última actualización: 6 de enero de 2026
-    </p>
-
-    <p style="margin-bottom:22px;">
-      Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al acceder, navegar o realizar
-      una compra a través de nuestros canales digitales, redes sociales o medios de contacto,
-      aceptas cumplir con los presentes Términos y Condiciones.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">1. Información general</h3>
-
-    <p style="margin-bottom:18px;">
-      Zhaicolex Inspirations es una perfumería dedicada a la comercialización de perfumes
-      árabes, nicho y de diseñador, en presentaciones originales y/o réplicas.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">2. Productos</h3>
-
-    <p style="margin-bottom:12px;">
-      • Las imágenes de los productos son referenciales.
-    </p>
-
-    <p style="margin-bottom:12px;">
-      • Los precios están expresados en pesos colombianos (COP) y pueden cambiar sin previo aviso.
-    </p>
-
-    <p style="margin-bottom:12px;">
-      • La disponibilidad de los productos está sujeta a inventario.
-    </p>
-
-    <p style="margin-bottom:18px;">
-      • La duración y fijación de los perfumes puede variar según el tipo de piel.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">3. Pedidos y pagos</h3>
-
-    <p style="margin-bottom:12px;">
-      • Los pedidos se confirman únicamente una vez verificado el pago completo.
-    </p>
-
-    <p style="margin-bottom:18px;">
-      • Zhaicolex Inspirations podrá rechazar pedidos por errores de precio,
-      falta de stock o sospecha de fraude.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">4. Envíos</h3>
-
-    <p style="margin-bottom:12px;">
-      • Realizamos envíos a nivel nacional en Colombia.
-    </p>
-
-    <p style="margin-bottom:18px;">
-      • Los tiempos de entrega son estimados y pueden variar por causas externas.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">5. Cambios y devoluciones</h3>
-
-    <p style="margin-bottom:12px;">
-      • Por tratarse de productos cosméticos, no se aceptan devoluciones una vez abierto el producto.
-    </p>
-
-    <p style="margin-bottom:18px;">
-      • Solo se aceptarán cambios por errores de envío o productos defectuosos,
-      reportados dentro de las primeras 24 horas.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">6. Garantía</h3>
-
-    <p style="margin-bottom:12px;">
-      • La garantía cubre únicamente defectos de fábrica.
-    </p>
-
-    <p style="margin-bottom:18px;">
-      • No cubre daños ocasionados por mal uso o almacenamiento inadecuado.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">7. Propiedad intelectual</h3>
-
-    <p style="margin-bottom:18px;">
-      Todo el contenido de Zhaicolex Inspirations está protegido por derechos
-      de autor y propiedad intelectual.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">8. Protección de datos</h3>
-
-    <p style="margin-bottom:18px;">
-      La información personal será tratada conforme a la Ley 1581 de 2012 de Colombia.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">9. Responsabilidad</h3>
-
-    <p style="margin-bottom:18px;">
-      Zhaicolex Inspirations no se hace responsable por reacciones alérgicas
-      derivadas del uso de los productos.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">10. Modificaciones</h3>
-
-    <p style="margin-bottom:18px;">
-      Nos reservamos el derecho de modificar estos términos y condiciones
-      en cualquier momento.
-    </p>
-
-    <h3 style="margin-bottom:10px; margin-top:25px;">11. Contacto</h3>
-
-    <p style="margin-bottom:28px;">
-      Para dudas o solicitudes puedes comunicarte mediante nuestros canales oficiales.
-    </p>
-
-    <div style="
-      margin-top:35px;
-      padding-top:20px;
-      border-top:1px solid #e5e5e5;
-    ">
-      <p style="
-        font-size:14px;
-        color:#444;
-        margin-bottom:20px;
-      ">
-        Al realizar una compra confirmas que has leído y aceptado estos términos y condiciones.
-      </p>
-
-      <button id="aceptarTerminos" style="
-        width:100%;
-        background:#000;
-        color:#fff;
-        border:none;
-        padding:14px;
-        border-radius:8px;
-        cursor:pointer;
-        font-size:15px;
-        font-weight:bold;
-        transition:0.3s;
-      ">
-        Aceptar y continuar
-      </button>
-    </div>
-
-  </div>
-`;
-    document.body.appendChild(modal);
-  
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      modal.style.display = "block";
-    });
-  
-    modal.addEventListener("click", (e) => {
-  
-      if (
-        e.target.id === "cerrarTerminos" ||
-        e.target.id === "aceptarTerminos" ||
-        e.target === modal
-      ) {
-  
-        modal.style.display = "none";
-      }
-  
-    });
-  
-  });
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-    
-      const linkPrivacidad = document.getElementById("verPrivacidad");
-    
-      if (!linkPrivacidad) return;
-    
-      const modalPrivacidad = document.createElement("div");
-    
-      modalPrivacidad.style.cssText = `
-        display:none;
-        position:fixed;
-        inset:0;
-        background:rgba(0,0,0,0.6);
-        z-index:9999;
-      `;
-    
-      modalPrivacidad.innerHTML = `
-        <div style="
-          background:#fff;
-          width:90%;
-          max-width:600px;
-          max-height:85vh;
-          overflow-y:auto;
-          margin:4% auto;
-          padding:30px;
-          border-radius:14px;
-          position:relative;
-          font-family:Arial, Helvetica, sans-serif;
-          line-height:1.7;
-          color:#222;
-          box-shadow:0 10px 35px rgba(0,0,0,0.25);
-        ">
-    
-          <span id="cerrarPrivacidad" style="
-            position:absolute;
-            top:15px;
-            right:18px;
-            cursor:pointer;
-            font-size:28px;
-            color:#555;
-          ">&times;</span>
-    
-          <h2 style="
-            font-size:28px;
-            margin-bottom:8px;
-            color:#000;
-            letter-spacing:1px;
-          ">
-            POLÍTICA DE PRIVACIDAD
-          </h2>
-    
-          <p style="
-            font-size:13px;
-            color:#777;
-            margin-bottom:28px;
-          ">
-            Última actualización: 6 de enero de 2026
-          </p>
-    
-          <p style="margin-bottom:22px;">
-            En <strong>Zhaicolex Inspirations</strong> respetamos y protegemos
-            la privacidad de nuestros clientes y visitantes.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            1. Información que recopilamos
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            Podemos recopilar información como nombre, número telefónico,
-            dirección, correo electrónico y datos relacionados con compras
-            realizadas en nuestra plataforma.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            2. Uso de la información
-          </h3>
-    
-          <p style="margin-bottom:12px;">
-            • Procesar pedidos y entregas.
-          </p>
-    
-          <p style="margin-bottom:12px;">
-            • Brindar soporte y atención al cliente.
-          </p>
-    
-          <p style="margin-bottom:12px;">
-            • Enviar información relacionada con compras o promociones.
-          </p>
-    
-          <p style="margin-bottom:18px;">
-            • Mejorar nuestros servicios y experiencia del usuario.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            3. Protección de datos
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            Implementamos medidas de seguridad para proteger la información
-            personal de accesos no autorizados, pérdida o alteración.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            4. Compartición de información
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            No vendemos ni compartimos información personal con terceros,
-            excepto cuando sea necesario para procesar pagos, envíos
-            o cumplir obligaciones legales.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            5. Cookies
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            Nuestro sitio puede utilizar cookies para mejorar la experiencia
-            de navegación y personalizar contenido.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            6. Derechos del usuario
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            Los usuarios pueden solicitar actualización, corrección o eliminación
-            de sus datos personales conforme a la legislación colombiana vigente.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            7. Modificaciones
-          </h3>
-    
-          <p style="margin-bottom:18px;">
-            Nos reservamos el derecho de modificar esta Política de Privacidad
-            en cualquier momento.
-          </p>
-    
-          <h3 style="margin-bottom:10px; margin-top:25px;">
-            8. Contacto
-          </h3>
-    
-          <p style="margin-bottom:28px;">
-            Para consultas relacionadas con privacidad y tratamiento de datos,
-            puedes comunicarte mediante nuestros canales oficiales.
-          </p>
-    
-          <div style="
-            margin-top:35px;
-            padding-top:20px;
-            border-top:1px solid #e5e5e5;
-          ">
-            <button id="aceptarPrivacidad" style="
-              width:100%;
-              background:#000;
-              color:#fff;
-              border:none;
-              padding:14px;
-              border-radius:8px;
-              cursor:pointer;
-              font-size:15px;
-              font-weight:bold;
-              transition:0.3s;
-            ">
-              Entendido
-            </button>
-          </div>
-    
-        </div>
-      `;
-    
-      document.body.appendChild(modalPrivacidad);
-    
-      linkPrivacidad.addEventListener("click", (e) => {
-        e.preventDefault();
-        modalPrivacidad.style.display = "block";
-      });
-    
-      modalPrivacidad.addEventListener("click", (e) => {
-    
-        if (
-          e.target.id === "cerrarPrivacidad" ||
-          e.target.id === "aceptarPrivacidad" ||
-          e.target === modalPrivacidad
-        ) {
-    
-          modalPrivacidad.style.display = "none";
-        }
-    
-      });
-    
-    });
     </script>
+
+    <!-- MODAL TERMINOS -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-      
+        const link = document.getElementById("verTerminos");
+        if (!link) return;
+        const modal = document.createElement("div");
+        modal.id = "modalTerminos";
+        modal.style.cssText =
+          "display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;";
+        modal.innerHTML = `<div style="background:#fff;width:90%;max-width:600px;max-height:85vh;overflow-y:auto;margin:4% auto;padding:30px;border-radius:14px;position:relative;font-family:Arial,sans-serif;line-height:1.7;color:#222;box-shadow:0 10px 35px rgba(0,0,0,0.25);">
+          <span id="cerrarTerminos" style="position:absolute;top:15px;right:18px;cursor:pointer;font-size:28px;color:#555;">&times;</span>
+          <h2 style="font-size:28px;margin-bottom:8px;">TÉRMINOS Y CONDICIONES</h2>
+          <p style="font-size:13px;color:#777;margin-bottom:28px;">Última actualización: 6 de enero de 2026</p>
+          <p style="margin-bottom:18px;">Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al acceder, navegar o realizar una compra aceptas estos Términos y Condiciones.</p>
+          <h3 style="margin:25px 0 10px;">1. Productos</h3><p style="margin-bottom:18px;">Las imágenes son referenciales. Los precios están en COP y pueden cambiar sin previo aviso.</p>
+          <h3 style="margin:25px 0 10px;">2. Pedidos y pagos</h3><p style="margin-bottom:18px;">Los pedidos se confirman una vez verificado el pago completo.</p>
+          <h3 style="margin:25px 0 10px;">3. Envíos</h3><p style="margin-bottom:18px;">Realizamos envíos a nivel nacional en Colombia.</p>
+          <h3 style="margin:25px 0 10px;">4. Devoluciones</h3><p style="margin-bottom:18px;">No se aceptan devoluciones de productos abiertos. Cambios solo por error de envío o defecto, reportado en 24 horas.</p>
+          <div style="margin-top:35px;padding-top:20px;border-top:1px solid #e5e5e5;">
+            <button id="aceptarTerminos" style="width:100%;background:#000;color:#fff;border:none;padding:14px;border-radius:8px;cursor:pointer;font-size:15px;font-weight:bold;">Aceptar y continuar</button>
+          </div></div>`;
+        document.body.appendChild(modal);
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          modal.style.display = "block";
+        });
+        modal.addEventListener("click", (e) => {
+          if (
+            e.target.id === "cerrarTerminos" ||
+            e.target.id === "aceptarTerminos" ||
+            e.target === modal
+          )
+            modal.style.display = "none";
+        });
+      });
+    </script>
+
+    <!-- MODAL PRIVACIDAD -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const linkPrivacidad = document.getElementById("verPrivacidad");
+        if (!linkPrivacidad) return;
+        const modalPrivacidad = document.createElement("div");
+        modalPrivacidad.style.cssText =
+          "display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;";
+        modalPrivacidad.innerHTML = `<div style="background:#fff;width:90%;max-width:600px;max-height:85vh;overflow-y:auto;margin:4% auto;padding:30px;border-radius:14px;position:relative;font-family:Arial,sans-serif;line-height:1.7;color:#222;box-shadow:0 10px 35px rgba(0,0,0,0.25);">
+          <span id="cerrarPrivacidad" style="position:absolute;top:15px;right:18px;cursor:pointer;font-size:28px;color:#555;">&times;</span>
+          <h2 style="font-size:28px;margin-bottom:8px;">POLÍTICA DE PRIVACIDAD</h2>
+          <p style="font-size:13px;color:#777;margin-bottom:28px;">Última actualización: 6 de enero de 2026</p>
+          <p style="margin-bottom:18px;">En <strong>Zhaicolex Inspirations</strong> respetamos y protegemos la privacidad de nuestros clientes.</p>
+          <h3 style="margin:25px 0 10px;">1. Información que recopilamos</h3><p style="margin-bottom:18px;">Nombre, teléfono, dirección, correo y datos de compras.</p>
+          <h3 style="margin:25px 0 10px;">2. Uso de la información</h3><p style="margin-bottom:18px;">Para procesar pedidos, brindar soporte y mejorar nuestros servicios.</p>
+          <h3 style="margin:25px 0 10px;">3. Compartición</h3><p style="margin-bottom:18px;">No vendemos datos personales a terceros.</p>
+          <div style="margin-top:35px;padding-top:20px;border-top:1px solid #e5e5e5;">
+            <button id="aceptarPrivacidad" style="width:100%;background:#000;color:#fff;border:none;padding:14px;border-radius:8px;cursor:pointer;font-size:15px;font-weight:bold;">Entendido</button>
+          </div></div>`;
+        document.body.appendChild(modalPrivacidad);
+        linkPrivacidad.addEventListener("click", (e) => {
+          e.preventDefault();
+          modalPrivacidad.style.display = "block";
+        });
+        modalPrivacidad.addEventListener("click", (e) => {
+          if (
+            e.target.id === "cerrarPrivacidad" ||
+            e.target.id === "aceptarPrivacidad" ||
+            e.target === modalPrivacidad
+          )
+            modalPrivacidad.style.display = "none";
+        });
+      });
+    </script>
+
+    <!-- MODAL SOBRE NOSOTROS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
         const linkSobre = document.getElementById("verSobreNosotros");
         if (!linkSobre) return;
-      
         const modalSobre = document.createElement("div");
-      
-        modalSobre.id = "modalSobre";
-      
-        modalSobre.style.cssText = `
-          display:none;
-          position:fixed;
-          inset:0;
-          background:rgba(0,0,0,0.6);
-          z-index:9999;
-          justify-content:center;
-          align-items:center;
-          padding:20px;
-        `;
-      
-        modalSobre.innerHTML = `
-          <div style="
-            background:#fff;
-            width:100%;
-            max-width:650px;
-            max-height:85vh;
-            overflow-y:auto;
-            padding:35px;
-            border-radius:18px;
-            position:relative;
-            font-family:Arial, Helvetica, sans-serif;
-            box-shadow:0 10px 35px rgba(0,0,0,0.2);
-          ">
-      
-            <span id="cerrarSobre" style="
-              position:absolute;
-              top:15px;
-              right:20px;
-              cursor:pointer;
-              font-size:28px;
-              color:#555;
-            ">&times;</span>
-      
-            <div class="legal-texto">
-      
-              <h2 style="
-                font-size:28px;
-                margin-bottom:20px;
-                color:#000;
-                text-align:center;
-              ">
-                Sobre Nosotros
-              </h2>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                <strong>ZHAICOLEX INSPIRATIONS</strong> es una marca enfocada
-                en ofrecer perfumes inspirados en fragancias reconocidas a nivel mundial,
-                brindando una experiencia elegante, moderna y accesible.
-              </p>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                Nuestro objetivo es que cada persona pueda disfrutar aromas de alta calidad,
-                con excelente presentación y una atención cercana, confiable y transparente.
-              </p>
-      
-              <h3 style="
-                margin-top:25px;
-                margin-bottom:12px;
-                font-size:20px;
-                color:#000;
-              ">
-                Nuestra visión
-              </h3>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                Buscamos convertirnos en una marca reconocida en Colombia por ofrecer
-                perfumes con excelente relación calidad-precio, acompañados de una
-                experiencia digital moderna y profesional.
-              </p>
-      
-              <h3 style="
-                margin-top:25px;
-                margin-bottom:12px;
-                font-size:20px;
-                color:#000;
-              ">
-                Nuestra misión
-              </h3>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                Ofrecer fragancias inspiradas en perfumes icónicos, permitiendo que más
-                personas puedan acceder a aromas exclusivos sin pagar precios excesivos.
-              </p>
-      
-              <h3 style="
-                margin-top:25px;
-                margin-bottom:12px;
-                font-size:20px;
-                color:#000;
-              ">
-                ¿Qué ofrecemos?
-              </h3>
-      
-              <ul style="
-                padding-left:20px;
-                margin-bottom:20px;
-                color:#444;
-                line-height:1.8;
-              ">
-                <li>Perfumes inspirados en marcas reconocidas.</li>
-                <li>Presentaciones modernas y elegantes.</li>
-                <li>Opciones de diferentes tamaños.</li>
-                <li>Atención personalizada vía WhatsApp.</li>
-                <li>Envíos nacionales en Colombia.</li>
-              </ul>
-      
-              <h3 style="
-                margin-top:25px;
-                margin-bottom:12px;
-                font-size:20px;
-                color:#000;
-              ">
-                Compromiso con nuestros clientes
-              </h3>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                En ZHAICOLEX INSPIRATIONS trabajamos constantemente para brindar
-                una experiencia segura, clara y profesional en cada compra.
-              </p>
-      
-              <p style="margin-bottom:18px; line-height:1.8; color:#444;">
-                Valoramos la confianza de nuestros clientes y buscamos mejorar
-                cada día nuestros productos, atención y servicio.
-              </p>
-      
-              <h3 style="
-                margin-top:25px;
-                margin-bottom:12px;
-                font-size:20px;
-                color:#000;
-              ">
-                Contacto
-              </h3>
-      
-              <ul style="
-                padding-left:20px;
-                margin-bottom:25px;
-                color:#444;
-                line-height:1.8;
-              ">
-                <li>WhatsApp: +57 315 182 1269</li>
-                <li>Instagram: @zhaicolexinspirations</li>
-                <li>Facebook: ZHAICOLEX INSPIRATIONS</li>
-              </ul>
-      
-              <button id="aceptarSobre" style="
-                width:100%;
-                background:#000;
-                color:#fff;
-                border:none;
-                padding:14px;
-                border-radius:10px;
-                cursor:pointer;
-                font-size:15px;
-                font-weight:bold;
-                transition:0.3s;
-              ">
-                Entendido
-              </button>
-      
-            </div>
-          </div>
-        `;
-      
+        modalSobre.style.cssText =
+          "display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9999;justify-content:center;align-items:center;padding:20px;";
+        modalSobre.innerHTML = `<div style="background:#fff;width:100%;max-width:650px;max-height:85vh;overflow-y:auto;padding:35px;border-radius:18px;position:relative;font-family:Arial,sans-serif;box-shadow:0 10px 35px rgba(0,0,0,0.2);">
+          <span id="cerrarSobre" style="position:absolute;top:15px;right:20px;cursor:pointer;font-size:28px;color:#555;">&times;</span>
+          <h2 style="font-size:28px;margin-bottom:20px;text-align:center;">Sobre Nosotros</h2>
+          <p style="margin-bottom:18px;line-height:1.8;color:#444;"><strong>ZHAICOLEX INSPIRATIONS</strong> es una marca enfocada en ofrecer perfumes inspirados en fragancias reconocidas a nivel mundial.</p>
+          <h3 style="margin:25px 0 12px;font-size:20px;">Nuestra misión</h3>
+          <p style="margin-bottom:18px;line-height:1.8;color:#444;">Ofrecer fragancias inspiradas en perfumes icónicos, permitiendo que más personas accedan a aromas exclusivos sin precios excesivos.</p>
+          <h3 style="margin:25px 0 12px;font-size:20px;">Contacto</h3>
+          <ul style="padding-left:20px;margin-bottom:25px;color:#444;line-height:1.8;">
+            <li>WhatsApp: +57 315 182 1269</li>
+            <li>Instagram: @zhaicolexinspirations</li>
+            <li>Facebook: ZHAICOLEX INSPIRATIONS</li>
+          </ul>
+          <button id="aceptarSobre" style="width:100%;background:#000;color:#fff;border:none;padding:14px;border-radius:10px;cursor:pointer;font-size:15px;font-weight:bold;">Entendido</button>
+        </div>`;
         document.body.appendChild(modalSobre);
-      
-        // ABRIR
         linkSobre.addEventListener("click", (e) => {
           e.preventDefault();
           modalSobre.style.display = "flex";
         });
-      
-        // CERRAR
         modalSobre.addEventListener("click", (e) => {
-      
           if (
             e.target.id === "cerrarSobre" ||
             e.target.id === "aceptarSobre" ||
             e.target === modalSobre
-          ) {
+          )
             modalSobre.style.display = "none";
-          }
-      
         });
-      
       });
-      </script>
-<a href="https://wa.me/573151821269?text=Hola,%20estoy%20interesado%20en%20un%20producto"
-target="_blank"
-class="whatsapp-centro">
-WhatsApp
-</a>
+    </script>
 
-<button class="btn-arriba" onclick="irArriba()">↑</button>
-<a href="carrito.html" class="btn-carrito">🛒</a>
-
-
-</body>
-
+    <a
+      href="https://wa.me/573151821269?text=Hola,%20estoy%20interesado%20en%20un%20producto"
+      target="_blank"
+      class="whatsapp-centro"
+      >WhatsApp</a
+    >
+    <button class="btn-arriba" onclick="irArriba()">↑</button>
+    <a href="carrito.html" class="btn-carrito">🛒</a>
+  </body>
 </html>
