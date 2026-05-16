@@ -133,13 +133,19 @@
         const usuario = document.getElementById("usuario1").value;
         const password = document.getElementById("contraseña1").value;
 
-        if (usuario === "Maycol" && password === "1234") {
+        if (usuario === "Maycol" && password === "2077") {
           alert("Inicio exitoso");
           window.location.href = "Form_compra.html";
         } else if (usuario === "Andrea" && password === "2203") {
           alert("Inicio exitoso");
           window.location.href = "Form_compra.html";
-        } else {
+        }else if (usuario === "Valeria" && password === "0402"){
+          alert("Inicio exitoso");
+          window.location.href = "Form_compra.html";
+        }
+
+        
+        else {
           alert("Usuario no autorizado");
         }
       }
