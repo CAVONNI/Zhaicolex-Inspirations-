@@ -10,6 +10,10 @@
     <title>Catalogo_Zhaicolex</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+.cart-item {
+  transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.2s ease;
+}
+
       .cart-container {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -416,20 +420,102 @@
         placeholder="Buscar perfume..."
         onkeyup="buscarPerfume()"
       />
+      <p id="search-info" style="text-align:center; font-size:13px; color:#666; margin-top:8px; min-height:18px; transition:opacity 0.3s;"></p>
     </div>
 
     <script>
-      function buscarPerfume() {
-        const input = document.getElementById("searchInput");
-        const filtro = input.value.toLowerCase();
-        const items = document.querySelectorAll(".cart-item");
-        items.forEach((item) => {
-          const nombre = item
-            .querySelector(".cart-info p:nth-child(2)")
-            .innerText.toLowerCase();
-          item.style.display = nombre.includes(filtro) ? "" : "none";
-        });
-      }
+     function buscarPerfume() {
+  const filtro = document.getElementById("searchInput").value.toLowerCase().trim();
+  const info = document.getElementById("search-info");
+
+  let resultBox = document.getElementById("resultado-busqueda");
+  if (!resultBox) {
+    resultBox = document.createElement("div");
+    resultBox.id = "resultado-busqueda";
+    resultBox.style.cssText = "display:none; padding:0 40px 20px;";
+    resultBox.innerHTML = `
+  <h2 style="font-size:18px;margin-bottom:24px;">Resultados de búsqueda</h2>
+  <div id="resultado-grid" class="cart-container"></div>`;
+    document.querySelector(".search-box").after(resultBox);
+  }
+
+  const grid = document.getElementById("resultado-grid");
+
+  // Restaurar todos los originales
+  document.querySelectorAll(".cart-item").forEach(card => {
+    card.style.display = "";
+    card.style.opacity = "1";
+    card.style.transform = "scale(1)";
+    card.style.boxShadow = "";
+  });
+
+  if (!filtro) {
+    resultBox.style.display = "none";
+    grid.innerHTML = "";
+    if (info) info.textContent = "";
+    return;
+  }
+
+  // Buscar solo en originales (excluir clones del grid)
+  const originales = document.querySelectorAll(".cart-item:not(#resultado-grid .cart-item)");
+  let visibles = 0;
+  grid.innerHTML = "";
+
+  originales.forEach(card => {
+    const nombreEl = card.querySelector(".cart-info p:nth-child(2)");
+    const marcaEl  = card.querySelector(".cart-info p:nth-child(1)");
+    if (!nombreEl) return;
+
+    const nombre = nombreEl.innerText.toLowerCase();
+    const marca  = marcaEl ? marcaEl.innerText.toLowerCase() : "";
+
+    if (nombre.includes(filtro) || marca.includes(filtro)) {
+      const clone = card.cloneNode(true);
+      clone.querySelectorAll(".add-to-cart-btn").forEach(b => b.remove());
+      clone.style.cssText = "display:flex; opacity:0; transform:scale(0.93); transition:opacity 0.25s ease, transform 0.25s ease; box-shadow:0 0 0 2px #378ADD;";
+
+      const cartInfo = clone.querySelector(".cart-info");
+      const brand = cartInfo.querySelector("p:nth-child(1) strong")?.textContent || "";
+      const name  = cartInfo.querySelector("p:nth-child(2)")?.textContent || "";
+      const type  = cartInfo.querySelector("p:nth-child(3)")?.textContent || "";
+      const image = clone.querySelector("img")?.src || "";
+
+      const btn = document.createElement("button");
+      btn.className = "add-to-cart-btn";
+      btn.textContent = "🛒 Agregar al carrito";
+      btn.onclick = function() {
+        const selected = clone.querySelector("input[type='radio']:checked");
+        if (selected) {
+          const [size, priceStr] = selected.value.split("|");
+          addToCart(brand, name, type, size, parseInt(priceStr), image);
+        } else {
+          const opts = clone.querySelector(".price-options");
+          opts.style.animation = "shake 0.5s";
+          setTimeout(() => opts.style.animation = "", 500);
+          showNotification("⚠️ Por favor selecciona un tamaño primero");
+        }
+      };
+      cartInfo.appendChild(btn);
+      grid.appendChild(clone);
+
+      setTimeout(() => {
+        clone.style.opacity = "1";
+        clone.style.transform = "scale(1)";
+      }, 40 * visibles);
+
+      visibles++;
+    }
+  });
+
+  if (visibles > 0) {
+    resultBox.style.display = "block";
+    if (info) info.textContent = visibles === 1 ? "1 perfume encontrado" : visibles + " perfumes encontrados";
+  } else {
+    resultBox.style.display = "block";
+    grid.innerHTML = `<p style="color:#999;font-size:14px;padding:20px 0;">No se encontraron perfumes con "${filtro}".</p>`;
+    if (info) info.textContent = "";
+  }
+}
     </script>
 
     <!-- SECCION 1 -->
@@ -1152,5 +1238,98 @@
     >
     <button class="btn-arriba" onclick="irArriba()">↑</button>
     <a href="carrito.html" class="btn-carrito">🛒</a>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+      import { getFirestore, collection, query, where, orderBy, onSnapshot }
+        from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+     
+      // ── CAMBIA ESTE VALOR SEGÚN LA PÁGINA ──
+      const CATEGORIA = "unisex";
+      // ───────────────────────────────────────
+     
+      const firebaseConfig = {
+        apiKey: "AIzaSyCHuCI7FW_KeHH08aDZE6YRj7crBXM9zxg",
+        authDomain: "zhaicolez-store.firebaseapp.com",
+        projectId: "zhaicolez-store",
+        storageBucket: "zhaicolez-store.firebasestorage.app",
+        messagingSenderId: "1064759466025",
+        appId: "1:1064759466025:web:91ff0ab427b3770a18a438"
+      };
+     
+      const app = initializeApp(firebaseConfig);
+      const db  = getFirestore(app);
+     
+      const TITULOS = {
+        "hombre":          "Perfumes para Hombre",
+        "mujer":           "Perfumes para Mujer",
+        "unisex":          "Perfumes Unisex",
+        "index-destacado": "Más Destacadas",
+        "index-preferido": "Las Más Preferidas"
+      };
+     
+      const q = query(
+        collection(db, "productos"),
+        where("categoria", "==", CATEGORIA),
+        orderBy("nombre")
+      );
+     
+      // Escucha en tiempo real: se actualiza solo cuando el admin cambia algo
+      onSnapshot(q, (snapshot) => {
+        const productos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+     
+        // Busca o crea la sección
+        let section = document.getElementById("seccion-firebase-" + CATEGORIA);
+        if (!section) {
+          section = document.createElement("aside");
+          section.id = "seccion-firebase-" + CATEGORIA;
+          section.className = "minicart";
+          // Inserta antes del footer; si no hay footer, lo agrega al final del body
+          const footer = document.querySelector("footer");
+          footer ? footer.before(section) : document.body.appendChild(section);
+        }
+     
+        if (productos.length === 0) {
+          section.remove();
+          return;
+        }
+     
+        const titulo = TITULOS[CATEGORIA] || "Productos";
+        const container = document.createElement("div");
+        container.className = "cart-container";
+     
+        productos.forEach((p, i) => {
+          const radioName = "fb-" + CATEGORIA + "-" + i;
+          const preciosHtml = (p.precios || []).map(pr => `
+            <div class="price-option">
+              <input type="radio" name="${radioName}" value="${pr.size}|${pr.price}" />
+              <label>
+                <span class="size">${pr.size}</span>
+                <span class="price">$ ${Number(pr.price).toLocaleString("es-CO")}</span>
+              </label>
+            </div>`).join("");
+     
+          const div = document.createElement("div");
+          div.className = "cart-item";
+          div.innerHTML = `
+            <img src="${p.imagen || ''}" alt="${p.nombre}"
+                 onerror="this.style.display='none'" />
+            <div class="cart-info">
+              <p><strong>${p.marca}</strong></p>
+              <p>${p.nombre}</p>
+              <p>${p.tipo}</p>
+              <div class="price-options">${preciosHtml}</div>
+            </div>`;
+          container.appendChild(div);
+        });
+     
+        section.innerHTML = `<h2>${titulo}</h2>`;
+        section.appendChild(container);
+     
+        // Re-ejecuta addCartButtons si existe en tu página
+        if (typeof addCartButtons === "function") {
+          setTimeout(addCartButtons, 100);
+        }
+      });
+    </script>
   </body>
 </html>

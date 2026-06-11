@@ -10,6 +10,10 @@
 
     <style>
   
+  .cart-item {
+  transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.2s ease;
+}
+
       .cart-container {
        display: grid;
        grid-template-columns: repeat(4, 1fr); /* 4 columnas en PC */
@@ -489,28 +493,104 @@
         type="text"
         id="searchInput"
         placeholder="Buscar perfume..."
-        onkeyup="buscarPerfume()"/>
+        onkeyup="buscarPerfume()"
+      />
+      <p id="search-info" style="text-align:center; font-size:13px; color:#666; margin-top:8px; min-height:18px; transition:opacity 0.3s;"></p>
     </div>
     
    <script>
-    function buscarPerfume() {
-      const input = document.getElementById("searchInput");
-      const filtro = input.value.toLowerCase();
-  
-      const items = document.querySelectorAll(".cart-item");
-  
-      items.forEach((item) => {
-        const nombre = item
-          .querySelector(".cart-info p:nth-child(2)")
-          .innerText.toLowerCase();
-  
-        if (nombre.includes(filtro)) {
-          item.style.display = "";
+   function buscarPerfume() {
+  const filtro = document.getElementById("searchInput").value.toLowerCase().trim();
+  const info = document.getElementById("search-info");
+
+  let resultBox = document.getElementById("resultado-busqueda");
+  if (!resultBox) {
+    resultBox = document.createElement("div");
+    resultBox.id = "resultado-busqueda";
+    resultBox.style.cssText = "display:none; padding:0 40px 20px;";
+    resultBox.innerHTML = `
+  <h2 style="font-size:18px;margin-bottom:24px;">Resultados de búsqueda</h2>
+  <div id="resultado-grid" class="cart-container"></div>`;
+    document.querySelector(".search-box").after(resultBox);
+  }
+
+  const grid = document.getElementById("resultado-grid");
+
+  // Restaurar todos los originales
+  document.querySelectorAll(".cart-item").forEach(card => {
+    card.style.display = "";
+    card.style.opacity = "1";
+    card.style.transform = "scale(1)";
+    card.style.boxShadow = "";
+  });
+
+  if (!filtro) {
+    resultBox.style.display = "none";
+    grid.innerHTML = "";
+    if (info) info.textContent = "";
+    return;
+  }
+
+  // Buscar solo en originales (excluir clones del grid)
+  const originales = document.querySelectorAll(".cart-item:not(#resultado-grid .cart-item)");
+  let visibles = 0;
+  grid.innerHTML = "";
+
+  originales.forEach(card => {
+    const nombreEl = card.querySelector(".cart-info p:nth-child(2)");
+    const marcaEl  = card.querySelector(".cart-info p:nth-child(1)");
+    if (!nombreEl) return;
+
+    const nombre = nombreEl.innerText.toLowerCase();
+    const marca  = marcaEl ? marcaEl.innerText.toLowerCase() : "";
+
+    if (nombre.includes(filtro) || marca.includes(filtro)) {
+      const clone = card.cloneNode(true);
+      clone.querySelectorAll(".add-to-cart-btn").forEach(b => b.remove());
+      clone.style.cssText = "display:flex; opacity:0; transform:scale(0.93); transition:opacity 0.25s ease, transform 0.25s ease; box-shadow:0 0 0 2px #378ADD;";
+
+      const cartInfo = clone.querySelector(".cart-info");
+      const brand = cartInfo.querySelector("p:nth-child(1) strong")?.textContent || "";
+      const name  = cartInfo.querySelector("p:nth-child(2)")?.textContent || "";
+      const type  = cartInfo.querySelector("p:nth-child(3)")?.textContent || "";
+      const image = clone.querySelector("img")?.src || "";
+
+      const btn = document.createElement("button");
+      btn.className = "add-to-cart-btn";
+      btn.textContent = "🛒 Agregar al carrito";
+      btn.onclick = function() {
+        const selected = clone.querySelector("input[type='radio']:checked");
+        if (selected) {
+          const [size, priceStr] = selected.value.split("|");
+          addToCart(brand, name, type, size, parseInt(priceStr), image);
         } else {
-          item.style.display = "none";
+          const opts = clone.querySelector(".price-options");
+          opts.style.animation = "shake 0.5s";
+          setTimeout(() => opts.style.animation = "", 500);
+          showNotification("⚠️ Por favor selecciona un tamaño primero");
         }
-      });
+      };
+      cartInfo.appendChild(btn);
+      grid.appendChild(clone);
+
+      setTimeout(() => {
+        clone.style.opacity = "1";
+        clone.style.transform = "scale(1)";
+      }, 40 * visibles);
+
+      visibles++;
     }
+  });
+
+  if (visibles > 0) {
+    resultBox.style.display = "block";
+    if (info) info.textContent = visibles === 1 ? "1 perfume encontrado" : visibles + " perfumes encontrados";
+  } else {
+    resultBox.style.display = "block";
+    grid.innerHTML = `<p style="color:#999;font-size:14px;padding:20px 0;">No se encontraron perfumes con "${filtro}".</p>`;
+    if (info) info.textContent = "";
+  }
+}
   </script>
 
 <aside class="minicart">
@@ -3349,6 +3429,7 @@ WhatsApp
 </a>
 <button class="btn-arriba" onclick="irArriba()">↑</button>
 <a href="carrito.html" class="btn-carrito">🛒</a>
+
 </body>
 
 </html>
