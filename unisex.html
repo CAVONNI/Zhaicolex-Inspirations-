@@ -3430,6 +3430,102 @@ WhatsApp
 <button class="btn-arriba" onclick="irArriba()">↑</button>
 <a href="carrito.html" class="btn-carrito">🛒</a>
 
+<script type="module">
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+  const SUPABASE_URL = "https://nnjoifohytfgamkduunn.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  const CATEGORIAS = ["index-destacado", "index-preferido"];
+
+  const TITULOS = {
+    "index-destacado": "Más Destacadas",
+    "index-preferido": "Las Más Preferidas",
+  };
+
+  async function cargarTodo() {
+    for (const cat of CATEGORIAS) {
+      const { data, error } = await supabase
+        .from("productos")
+        .select("*")
+        .eq("categoria", cat)
+        .order("nombre", { ascending: true });
+
+      if (error) {
+        console.error("Error al cargar productos:", error.message);
+        continue;
+      }
+      renderSeccion(cat, data || []);
+    }
+  }
+
+  function renderSeccion(cat, productos) {
+    let section = document.getElementById("seccion-" + cat);
+    if (!section) {
+      section = document.createElement("aside");
+      section.id = "seccion-" + cat;
+      section.className = "minicart";
+      const footer = document.querySelector("footer");
+      footer ? footer.before(section) : document.body.appendChild(section);
+    }
+
+    if (productos.length === 0) {
+      section.remove();
+      return;
+    }
+
+    const titulo = TITULOS[cat] || "Productos";
+    const container = document.createElement("div");
+    container.className = "cart-container";
+
+    productos.forEach((p, i) => {
+      const radioName = "sb-" + cat + "-" + i;
+      const preciosHtml = (p.precios || [])
+        .map(
+          (pr) => `
+        <div class="price-option">
+          <input type="radio" name="${radioName}" value="${pr.size}|${pr.price}" />
+          <label>
+            <span class="size">${pr.size}</span>
+            <span class="price">$ ${Number(pr.price).toLocaleString("es-CO")}</span>
+          </label>
+        </div>`
+        )
+        .join("");
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        <img src="${p.imagen || ""}" alt="${p.nombre}" onerror="this.style.display='none'" />
+        <div class="cart-info">
+          <p><strong>${p.marca}</strong></p>
+          <p>${p.nombre}</p>
+          <p>${p.tipo}</p>
+          <div class="price-options">${preciosHtml}</div>
+        </div>`;
+      container.appendChild(div);
+    });
+
+    section.innerHTML = `<h2>${titulo}</h2>`;
+    section.appendChild(container);
+
+    if (typeof addCartButtons === "function") {
+      setTimeout(addCartButtons, 100);
+    }
+  }
+
+  cargarTodo();
+
+  supabase
+    .channel("productos-index")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "productos" },
+      () => cargarTodo()
+    )
+    .subscribe();
+</script>
 </body>
 
 </html>

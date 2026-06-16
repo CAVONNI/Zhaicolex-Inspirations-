@@ -8,6 +8,15 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth-guard.js"></script>
+<script>
+  
+document.addEventListener("DOMContentLoaded", async () => {
+  await requireAdmin();
+});
+</script>
     <style>
       :root {
         --bg: #f5f5f5;
@@ -28,11 +37,7 @@
         --radius: 8px;
         --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
       }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         font-family: "Montserrat", Arial, sans-serif;
         background: var(--bg);
@@ -55,575 +60,272 @@
         width: 100%;
         max-width: 380px;
         text-align: center;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.4);
       }
-      .login-logo {
-        font-size: 13px;
-        letter-spacing: 4px;
-        font-weight: 700;
-        color: var(--gray-3);
-        margin-bottom: 6px;
-      }
-      .login-title {
-        font-size: 22px;
-        font-weight: 700;
-        margin-bottom: 32px;
-      }
+      .login-logo { font-size: 13px; letter-spacing: 4px; font-weight: 700; color: var(--gray-3); margin-bottom: 6px; }
+      .login-title { font-size: 22px; font-weight: 700; margin-bottom: 32px; }
       .login-box input {
-        width: 100%;
-        padding: 13px 16px;
-        border: 1px solid var(--gray-5);
-        border-radius: var(--radius);
-        font-size: 14px;
-        font-family: inherit;
-        margin-bottom: 14px;
-        outline: none;
-        transition: border-color 0.2s;
+        width: 100%; padding: 13px 16px; border: 1px solid var(--gray-5);
+        border-radius: var(--radius); font-size: 14px; font-family: inherit;
+        margin-bottom: 14px; outline: none; transition: border-color 0.2s;
       }
-      .login-box input:focus {
-        border-color: var(--black);
-      }
+      .login-box input:focus { border-color: var(--black); }
       .login-btn {
-        width: 100%;
-        background: var(--black);
-        color: var(--white);
-        border: none;
-        padding: 14px;
-        border-radius: var(--radius);
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: inherit;
-        letter-spacing: 1px;
-        transition: background 0.2s;
+        width: 100%; background: var(--black); color: var(--white); border: none;
+        padding: 14px; border-radius: var(--radius); font-size: 14px; font-weight: 700;
+        cursor: pointer; font-family: inherit; letter-spacing: 1px; transition: background 0.2s;
       }
-      .login-btn:hover {
-        background: var(--gray-2);
-      }
-      .login-error {
-        color: var(--danger);
-        font-size: 13px;
-        margin-top: 10px;
-        display: none;
-      }
+      .login-btn:hover { background: var(--gray-2); }
+      .login-error { color: var(--danger); font-size: 13px; margin-top: 10px; display: none; }
 
       /* APP */
-      #app {
-        display: none;
-        min-height: 100vh;
-      }
+      #app { display: block; min-height: 100vh; }
       .topbar {
-        background: var(--black);
-        color: var(--white);
-        padding: 0 32px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 60px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
+        background: var(--black); color: var(--white); padding: 0 32px;
+        display: flex; align-items: center; justify-content: space-between;
+        height: 60px; position: sticky; top: 0; z-index: 100;
       }
-      .topbar-logo {
-        font-size: 13px;
-        letter-spacing: 3px;
-        font-weight: 700;
-      }
-      .topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-      .topbar-right a {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 13px;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .topbar-right a:hover {
-        color: #fff;
-      }
+      .topbar-logo { font-size: 13px; letter-spacing: 3px; font-weight: 700; }
+      .topbar-right { display: flex; align-items: center; gap: 20px; }
+      .topbar-right a { color: rgba(255,255,255,0.7); font-size: 13px; text-decoration: none; transition: color 0.2s; }
+      .topbar-right a:hover { color: #fff; }
       .logout-btn {
-        background: none;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: #fff;
-        padding: 6px 14px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 12px;
-        font-family: inherit;
-        transition: all 0.2s;
+        background: none; border: 1px solid rgba(255,255,255,0.3); color: #fff;
+        padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px;
+        font-family: inherit; transition: all 0.2s;
       }
-      .logout-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-      }
+      .logout-btn:hover { background: rgba(255,255,255,0.1); }
 
-      .main {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: 32px 24px;
-      }
+      .main { max-width: 1300px; margin: 0 auto; padding: 32px 24px; }
 
       /* STATS */
-      .stats-row {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        margin-bottom: 32px;
-      }
+      .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
       .stat-card {
-        background: var(--white);
-        border-radius: var(--radius);
-        padding: 20px 24px;
-        box-shadow: var(--shadow);
-        border-left: 3px solid var(--black);
+        background: var(--white); border-radius: var(--radius); padding: 20px 24px;
+        box-shadow: var(--shadow); border-left: 3px solid var(--black);
       }
-      .stat-label {
-        font-size: 11px;
-        letter-spacing: 1.5px;
-        color: var(--gray-3);
-        text-transform: uppercase;
-        margin-bottom: 8px;
-      }
-      .stat-value {
-        font-size: 28px;
-        font-weight: 700;
-      }
+      .stat-label { font-size: 11px; letter-spacing: 1.5px; color: var(--gray-3); text-transform: uppercase; margin-bottom: 8px; }
+      .stat-value { font-size: 28px; font-weight: 700; }
 
       /* PANEL */
-      .panel-grid {
-        display: grid;
-        grid-template-columns: 380px 1fr;
-        gap: 24px;
-        align-items: start;
-      }
-      .card {
-        background: var(--white);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
+      .panel-grid { display: grid; grid-template-columns: 380px 1fr; gap: 24px; align-items: start; }
+      .card { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
       .card-header {
-        padding: 20px 24px;
-        border-bottom: 1px solid var(--gray-5);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        padding: 20px 24px; border-bottom: 1px solid var(--gray-5);
+        display: flex; align-items: center; justify-content: space-between;
       }
-      .card-title {
-        font-size: 15px;
-        font-weight: 700;
-        letter-spacing: 0.5px;
-      }
-      .card-body {
-        padding: 24px;
-      }
+      .card-title { font-size: 15px; font-weight: 700; letter-spacing: 0.5px; }
+      .card-body { padding: 24px; }
 
       /* FORM */
-      .form-group {
-        margin-bottom: 16px;
-      }
+      .form-group { margin-bottom: 16px; }
       .form-group label {
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        color: var(--gray-2);
-        margin-bottom: 6px;
-        text-transform: uppercase;
+        display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+        color: var(--gray-2); margin-bottom: 6px; text-transform: uppercase;
       }
-      .form-group input,
-      .form-group select {
-        width: 100%;
-        padding: 10px 13px;
-        border: 1px solid var(--gray-5);
-        border-radius: 6px;
-        font-size: 13px;
-        font-family: inherit;
-        color: var(--black);
-        outline: none;
-        transition: border-color 0.2s;
-        background: var(--white);
+      .form-group input, .form-group select {
+        width: 100%; padding: 10px 13px; border: 1px solid var(--gray-5);
+        border-radius: 6px; font-size: 13px; font-family: inherit; color: var(--black);
+        outline: none; transition: border-color 0.2s; background: var(--white);
       }
-      .form-group input:focus,
-      .form-group select:focus {
-        border-color: var(--black);
-      }
-      .form-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-      }
+      .form-group input:focus, .form-group select:focus { border-color: var(--black); }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-      .img-preview {
+      /* ── IMAGEN (nuevo bloque) ── */
+      .img-upload-area {
         width: 100%;
-        height: 140px;
+        height: 160px;
         background: var(--gray-6);
-        border-radius: 6px;
-        border: 1px dashed var(--gray-5);
+        border-radius: 8px;
+        border: 2px dashed var(--gray-5);
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
+        gap: 10px;
+        cursor: pointer;
+        transition: border-color 0.2s, background 0.2s;
         margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
       }
-      .img-preview img {
-        width: 100%;
-        height: 100%;
+      .img-upload-area:hover { border-color: var(--black); background: #f0f0f0; }
+      .img-upload-area.has-image { border-style: solid; border-color: var(--gray-5); cursor: default; }
+      .img-upload-area img {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
         object-fit: contain;
+        border-radius: 6px;
       }
-      .img-placeholder {
-        color: var(--gray-4);
-        font-size: 12px;
-        text-align: center;
-        padding: 16px;
+      .img-upload-area .upload-icon { font-size: 28px; }
+      .img-upload-area .upload-label {
+        font-size: 12px; color: var(--gray-3); font-weight: 500; text-align: center; padding: 0 12px;
       }
+      .img-upload-area .upload-label span { color: var(--accent); text-decoration: underline; cursor: pointer; }
+      #f-imagen-file { display: none; }
 
-      .precios-section {
-        margin-bottom: 16px;
+      .img-actions {
+        display: flex; gap: 8px; margin-bottom: 14px;
       }
+      .btn-img-upload {
+        flex: 1; background: var(--black); color: #fff; border: none;
+        padding: 9px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+        cursor: pointer; font-family: inherit; display: flex; align-items: center;
+        justify-content: center; gap: 6px; transition: background 0.2s;
+      }
+      .btn-img-upload:hover { background: var(--gray-2); }
+      .btn-img-upload:disabled { background: var(--gray-4); cursor: not-allowed; }
+      .btn-img-clear {
+        background: none; border: 1px solid var(--gray-5); color: var(--gray-3);
+        padding: 9px 12px; border-radius: 6px; font-size: 12px; font-weight: 600;
+        cursor: pointer; font-family: inherit; transition: all 0.2s;
+      }
+      .btn-img-clear:hover { border-color: var(--danger); color: var(--danger); }
+
+      .upload-progress {
+        display: none; background: var(--gray-6); border-radius: 6px;
+        padding: 10px 12px; margin-bottom: 10px; font-size: 12px; color: var(--gray-2);
+      }
+      .upload-progress.show { display: flex; align-items: center; gap: 8px; }
+      .progress-bar-wrap {
+        flex: 1; height: 4px; background: var(--gray-5); border-radius: 4px; overflow: hidden;
+      }
+      .progress-bar { height: 100%; background: var(--black); width: 0%; transition: width 0.3s; }
+
+      .img-url-toggle {
+        font-size: 11px; color: var(--gray-4); text-decoration: underline; cursor: pointer;
+        display: block; margin-bottom: 10px; text-align: right;
+      }
+      .img-url-toggle:hover { color: var(--gray-2); }
+      .img-url-input { display: none; }
+      /* ── fin bloque imagen ── */
+
+      .precios-section { margin-bottom: 16px; }
       .precios-section label {
-        display: block;
-        font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        color: var(--gray-2);
-        margin-bottom: 8px;
-        text-transform: uppercase;
+        display: block; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;
+        color: var(--gray-2); margin-bottom: 8px; text-transform: uppercase;
       }
       .precio-row {
-        display: grid;
-        grid-template-columns: 1fr 1fr 28px;
-        gap: 8px;
-        margin-bottom: 8px;
-        align-items: center;
+        display: grid; grid-template-columns: 1fr 1fr 28px;
+        gap: 8px; margin-bottom: 8px; align-items: center;
       }
-      .precio-row input {
-        margin-bottom: 0;
-      }
+      .precio-row input { margin-bottom: 0; }
       .btn-remove-precio {
-        background: none;
-        border: none;
-        color: var(--gray-4);
-        cursor: pointer;
-        font-size: 18px;
-        line-height: 1;
-        padding: 4px;
-        border-radius: 4px;
-        transition: color 0.2s;
+        background: none; border: none; color: var(--gray-4); cursor: pointer;
+        font-size: 18px; line-height: 1; padding: 4px; border-radius: 4px; transition: color 0.2s;
       }
-      .btn-remove-precio:hover {
-        color: var(--danger);
-      }
+      .btn-remove-precio:hover { color: var(--danger); }
       .btn-add-precio {
-        background: none;
-        border: 1px dashed var(--gray-4);
-        color: var(--gray-3);
-        padding: 8px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 12px;
-        width: 100%;
-        font-family: inherit;
-        transition: all 0.2s;
-        margin-bottom: 16px;
+        background: none; border: 1px dashed var(--gray-4); color: var(--gray-3);
+        padding: 8px; border-radius: 6px; cursor: pointer; font-size: 12px;
+        width: 100%; font-family: inherit; transition: all 0.2s; margin-bottom: 16px;
       }
-      .btn-add-precio:hover {
-        border-color: var(--black);
-        color: var(--black);
-      }
+      .btn-add-precio:hover { border-color: var(--black); color: var(--black); }
 
       .btn-submit {
-        width: 100%;
-        background: var(--black);
-        color: var(--white);
-        border: none;
-        padding: 13px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-weight: 700;
-        cursor: pointer;
-        font-family: inherit;
-        letter-spacing: 1px;
-        transition: background 0.2s;
+        width: 100%; background: var(--black); color: var(--white); border: none;
+        padding: 13px; border-radius: 6px; font-size: 13px; font-weight: 700;
+        cursor: pointer; font-family: inherit; letter-spacing: 1px; transition: background 0.2s;
       }
-      .btn-submit:hover {
-        background: var(--gray-2);
-      }
-      .btn-submit.editing {
-        background: var(--accent);
-      }
-      .btn-submit.editing:hover {
-        background: #1d4ed8;
-      }
-      .btn-submit:disabled {
-        background: var(--gray-4);
-        cursor: not-allowed;
-      }
+      .btn-submit:hover { background: var(--gray-2); }
+      .btn-submit.editing { background: var(--accent); }
+      .btn-submit.editing:hover { background: #1d4ed8; }
+      .btn-submit:disabled { background: var(--gray-4); cursor: not-allowed; }
       .btn-cancel {
-        width: 100%;
-        background: none;
-        color: var(--gray-3);
-        border: 1px solid var(--gray-5);
-        padding: 11px;
-        border-radius: 6px;
-        font-size: 13px;
-        font-weight: 600;
-        cursor: pointer;
-        font-family: inherit;
-        margin-top: 8px;
-        transition: all 0.2s;
+        width: 100%; background: none; color: var(--gray-3); border: 1px solid var(--gray-5);
+        padding: 11px; border-radius: 6px; font-size: 13px; font-weight: 600;
+        cursor: pointer; font-family: inherit; margin-top: 8px; transition: all 0.2s;
       }
-      .btn-cancel:hover {
-        border-color: var(--black);
-        color: var(--black);
-      }
+      .btn-cancel:hover { border-color: var(--black); color: var(--black); }
 
       /* TABLA */
       .toolbar {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        padding: 16px 24px;
-        border-bottom: 1px solid var(--gray-5);
-        flex-wrap: wrap;
+        display: flex; gap: 12px; align-items: center;
+        padding: 16px 24px; border-bottom: 1px solid var(--gray-5); flex-wrap: wrap;
       }
       .search-input {
-        flex: 1;
-        min-width: 200px;
-        padding: 9px 14px;
-        border: 1px solid var(--gray-5);
-        border-radius: 6px;
-        font-size: 13px;
-        font-family: inherit;
-        outline: none;
-        transition: border-color 0.2s;
+        flex: 1; min-width: 200px; padding: 9px 14px; border: 1px solid var(--gray-5);
+        border-radius: 6px; font-size: 13px; font-family: inherit; outline: none; transition: border-color 0.2s;
       }
-      .search-input:focus {
-        border-color: var(--black);
-      }
+      .search-input:focus { border-color: var(--black); }
       .filter-select {
-        padding: 9px 14px;
-        border: 1px solid var(--gray-5);
-        border-radius: 6px;
-        font-size: 13px;
-        font-family: inherit;
-        outline: none;
-        background: var(--white);
-        cursor: pointer;
+        padding: 9px 14px; border: 1px solid var(--gray-5); border-radius: 6px;
+        font-size: 13px; font-family: inherit; outline: none; background: var(--white); cursor: pointer;
       }
-
-      .products-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
+      .products-table { width: 100%; border-collapse: collapse; }
       .products-table th {
-        padding: 12px 16px;
-        text-align: left;
-        font-size: 11px;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        color: var(--gray-3);
-        border-bottom: 2px solid var(--gray-5);
-        font-weight: 600;
+        padding: 12px 16px; text-align: left; font-size: 11px; letter-spacing: 1px;
+        text-transform: uppercase; color: var(--gray-3); border-bottom: 2px solid var(--gray-5); font-weight: 600;
       }
       .products-table td {
-        padding: 14px 16px;
-        border-bottom: 1px solid var(--gray-6);
-        vertical-align: middle;
-        font-size: 13px;
+        padding: 14px 16px; border-bottom: 1px solid var(--gray-6);
+        vertical-align: middle; font-size: 13px;
       }
-      .products-table tr:hover td {
-        background: var(--gray-6);
-      }
+      .products-table tr:hover td { background: var(--gray-6); }
       .prod-thumb {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-        background: var(--gray-6);
-        border-radius: 6px;
-        border: 1px solid var(--gray-5);
+        width: 48px; height: 48px; object-fit: contain;
+        background: var(--gray-6); border-radius: 6px; border: 1px solid var(--gray-5);
       }
-      .prod-name {
-        font-weight: 600;
-        font-size: 13px;
-      }
-      .prod-brand {
-        font-size: 12px;
-        color: var(--gray-3);
-        margin-top: 2px;
-      }
+      .prod-name { font-weight: 600; font-size: 13px; }
+      .prod-brand { font-size: 12px; color: var(--gray-3); margin-top: 2px; }
 
-      .badge {
-        display: inline-block;
-        padding: 3px 10px;
-        border-radius: 20px;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-      .badge-hombre {
-        background: #dbeafe;
-        color: #1e40af;
-      }
-      .badge-mujer {
-        background: #fce7f3;
-        color: #9d174d;
-      }
-      .badge-unisex {
-        background: #f3e8ff;
-        color: #6b21a8;
-      }
-      .badge-destacado {
-        background: #fef3c7;
-        color: #92400e;
-      }
-      .badge-preferido {
-        background: #d1fae5;
-        color: #065f46;
-      }
+      .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+      .badge-hombre { background: #dbeafe; color: #1e40af; }
+      .badge-mujer { background: #fce7f3; color: #9d174d; }
+      .badge-unisex { background: #f3e8ff; color: #6b21a8; }
+      .badge-destacado { background: #fef3c7; color: #92400e; }
+      .badge-preferido { background: #d1fae5; color: #065f46; }
 
-      .action-btns {
-        display: flex;
-        gap: 6px;
+      .action-btns { display: flex; gap: 6px; }
+      .btn-edit, .btn-delete {
+        padding: 6px 12px; border-radius: 5px; font-size: 12px; font-weight: 600;
+        cursor: pointer; border: none; font-family: inherit; transition: all 0.2s;
       }
-      .btn-edit,
-      .btn-delete {
-        padding: 6px 12px;
-        border-radius: 5px;
-        font-size: 12px;
-        font-weight: 600;
-        cursor: pointer;
-        border: none;
-        font-family: inherit;
-        transition: all 0.2s;
-      }
-      .btn-edit {
-        background: var(--accent-light);
-        color: var(--accent);
-      }
-      .btn-edit:hover {
-        background: var(--accent);
-        color: #fff;
-      }
-      .btn-delete {
-        background: var(--danger-light);
-        color: var(--danger);
-      }
-      .btn-delete:hover {
-        background: var(--danger);
-        color: #fff;
-      }
+      .btn-edit { background: var(--accent-light); color: var(--accent); }
+      .btn-edit:hover { background: var(--accent); color: #fff; }
+      .btn-delete { background: var(--danger-light); color: var(--danger); }
+      .btn-delete:hover { background: var(--danger); color: #fff; }
 
-      .empty-state {
-        text-align: center;
-        padding: 60px 20px;
-        color: var(--gray-3);
-      }
-      .empty-state p {
-        font-size: 14px;
-        margin-top: 8px;
-      }
+      .empty-state { text-align: center; padding: 60px 20px; color: var(--gray-3); }
+      .empty-state p { font-size: 14px; margin-top: 8px; }
 
       /* LOADING */
       .loading-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 9998;
-        align-items: center;
-        justify-content: center;
+        display: none; position: fixed; inset: 0;
+        background: rgba(0,0,0,0.4); z-index: 9998;
+        align-items: center; justify-content: center;
       }
-      .loading-overlay.show {
-        display: flex;
-      }
-      .loading-box {
-        background: #fff;
-        padding: 28px 40px;
-        border-radius: 12px;
-        font-size: 14px;
-        font-weight: 600;
-      }
+      .loading-overlay.show { display: flex; }
+      .loading-box { background: #fff; padding: 28px 40px; border-radius: 12px; font-size: 14px; font-weight: 600; }
 
       /* TOAST */
       .toast {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        background: var(--black);
-        color: #fff;
-        padding: 14px 22px;
-        border-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-        z-index: 9999;
-        transform: translateY(80px);
-        opacity: 0;
-        transition: all 0.3s ease;
+        position: fixed; bottom: 24px; right: 24px; background: var(--black);
+        color: #fff; padding: 14px 22px; border-radius: 8px; font-size: 13px; font-weight: 600;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 9999;
+        transform: translateY(80px); opacity: 0; transition: all 0.3s ease;
       }
-      .toast.show {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      .toast.success {
-        border-left: 4px solid var(--success);
-      }
-      .toast.error {
-        border-left: 4px solid var(--danger);
-      }
+      .toast.show { transform: translateY(0); opacity: 1; }
+      .toast.success { border-left: 4px solid var(--success); }
+      .toast.error { border-left: 4px solid var(--danger); }
 
       /* RESPONSIVE */
       @media (max-width: 1024px) {
-        .panel-grid {
-          grid-template-columns: 1fr;
-        }
-        .stats-row {
-          grid-template-columns: repeat(2, 1fr);
-        }
+        .panel-grid { grid-template-columns: 1fr; }
+        .stats-row { grid-template-columns: repeat(2, 1fr); }
       }
       @media (max-width: 600px) {
-        .main {
-          padding: 16px 12px;
-        }
-        .stats-row {
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-        }
-        .topbar {
-          padding: 0 16px;
-        }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
+        .main { padding: 16px 12px; }
+        .stats-row { grid-template-columns: 1fr 1fr; gap: 10px; }
+        .topbar { padding: 0 16px; }
+        .form-row { grid-template-columns: 1fr; }
       }
     </style>
   </head>
   <body>
+
     <!-- LOGIN -->
-    <div id="login-screen">
-      <div class="login-box">
-        <div class="login-logo">ZHAICOLEZ INSPIRATIONS</div>
-        <div class="login-title">Panel Administrativo</div>
-        <input
-          type="text"
-          id="login-user"
-          placeholder="Usuario"
-          autocomplete="off"
-        />
-        <input
-          type="password"
-          id="login-pass"
-          placeholder="Contraseña"
-          onkeydown="if(event.key==='Enter') doLogin()"
-        />
-        <button class="login-btn" onclick="doLogin()">Ingresar</button>
-        <div class="login-error" id="login-error">
-          Usuario o contraseña incorrectos
-        </div>
-      </div>
-    </div>
+    
 
     <!-- APP -->
     <div id="app">
@@ -631,28 +333,16 @@
         <div class="topbar-logo">ZHAICOLEZ — ADMIN</div>
         <div class="topbar-right">
           <a href="index.html" target="_blank">Ver catálogo ↗</a>
-          <button class="logout-btn" onclick="doLogout()">Cerrar sesión</button>
+          <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
         </div>
       </div>
 
       <div class="main">
         <div class="stats-row">
-          <div class="stat-card">
-            <div class="stat-label">Total productos</div>
-            <div class="stat-value" id="stat-total">—</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Hombre</div>
-            <div class="stat-value" id="stat-hombre">—</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Mujer</div>
-            <div class="stat-value" id="stat-mujer">—</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Unisex</div>
-            <div class="stat-value" id="stat-unisex">—</div>
-          </div>
+          <div class="stat-card"><div class="stat-label">Total productos</div><div class="stat-value" id="stat-total">—</div></div>
+          <div class="stat-card"><div class="stat-label">Hombre</div><div class="stat-value" id="stat-hombre">—</div></div>
+          <div class="stat-card"><div class="stat-label">Mujer</div><div class="stat-value" id="stat-mujer">—</div></div>
+          <div class="stat-card"><div class="stat-label">Unisex</div><div class="stat-value" id="stat-unisex">—</div></div>
         </div>
 
         <div class="panel-grid">
@@ -662,36 +352,64 @@
               <div class="card-title" id="form-title">Agregar producto</div>
             </div>
             <div class="card-body">
-              <div class="img-preview" id="img-preview">
-                <div class="img-placeholder">
-                  La imagen aparecerá aquí<br />al pegar el link
-                </div>
-              </div>
+
+              <!-- BLOQUE IMAGEN CON CLOUDINARY -->
               <div class="form-group">
-                <label>Link de imagen</label>
-                <input
-                  type="url"
-                  id="f-imagen"
-                  placeholder="https://..."
-                  oninput="previewImg(this.value)"
-                />
+                <label>Imagen del producto</label>
+
+                <!-- Área de preview / drop -->
+                <div class="img-upload-area" id="img-upload-area" onclick="triggerFileInput()">
+                  <div class="upload-icon">📷</div>
+                  <div class="upload-label">
+                    <span>Selecciona una foto</span> desde tu celular o computador
+                  </div>
+                </div>
+
+                <!-- Input oculto -->
+                <input type="file" id="f-imagen-file" accept="image/*"
+                  onchange="handleFileSelected(this)" />
+
+                <!-- Barra de progreso -->
+                <div class="upload-progress" id="upload-progress">
+                  <span id="upload-progress-text">Subiendo...</span>
+                  <div class="progress-bar-wrap">
+                    <div class="progress-bar" id="progress-bar"></div>
+                  </div>
+                </div>
+
+                <!-- Botones -->
+                <div class="img-actions">
+                  <button class="btn-img-upload" id="btn-img-upload"
+                    onclick="triggerFileInput()">
+                    📁 Subir imagen
+                  </button>
+                  <button class="btn-img-clear" onclick="clearImage()" title="Quitar imagen">
+                    ✕ Quitar
+                  </button>
+                </div>
+
+                <!-- Opción alternativa: pegar URL -->
+                <span class="img-url-toggle" onclick="toggleUrlInput()">
+                  ¿Prefieres pegar una URL de imagen?
+                </span>
+                <div class="img-url-input" id="img-url-section">
+                  <input type="url" id="f-imagen-url" placeholder="https://..."
+                    oninput="handleUrlInput(this.value)" />
+                </div>
+
+                <!-- URL guardada (hidden) -->
+                <input type="hidden" id="f-imagen" value="" />
               </div>
+              <!-- FIN BLOQUE IMAGEN -->
+
               <div class="form-row">
                 <div class="form-group">
                   <label>Marca</label>
-                  <input
-                    type="text"
-                    id="f-marca"
-                    placeholder="Ej: PACO RABANNE"
-                  />
+                  <input type="text" id="f-marca" placeholder="Ej: PACO RABANNE" />
                 </div>
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input
-                    type="text"
-                    id="f-nombre"
-                    placeholder="Ej: 1 Million"
-                  />
+                  <input type="text" id="f-nombre" placeholder="Ej: 1 Million" />
                 </div>
               </div>
               <div class="form-row">
@@ -710,12 +428,8 @@
                     <option value="hombre">hombre.html</option>
                     <option value="mujer">mujer.html</option>
                     <option value="unisex">unisex.html</option>
-                    <option value="index-destacado">
-                      index.html — Más Destacadas
-                    </option>
-                    <option value="index-preferido">
-                      index.html — Las Más Preferidas
-                    </option>
+                    <option value="index-destacado">index.html — Más Destacadas</option>
+                    <option value="index-preferido">index.html — Las Más Preferidas</option>
                   </select>
                 </div>
               </div>
@@ -724,43 +438,20 @@
                 <label>Presentaciones y precios</label>
                 <div id="precios-container">
                   <div class="precio-row">
-                    <input
-                      type="text"
-                      placeholder="Tamaño (ej: 30ml)"
-                      class="p-size"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Precio (ej: 19990)"
-                      class="p-price"
-                    />
-                    <button
-                      class="btn-remove-precio"
-                      onclick="removePrecio(this)"
-                    >
-                      ×
-                    </button>
+                    <input type="text" placeholder="Tamaño (ej: 30ml)" class="p-size" />
+                    <input type="number" placeholder="Precio (ej: 19990)" class="p-price" />
+                    <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>
                   </div>
                 </div>
-                <button class="btn-add-precio" onclick="addPrecio()">
-                  + Agregar presentación
-                </button>
+                <button class="btn-add-precio" onclick="addPrecio()">+ Agregar presentación</button>
               </div>
 
               <input type="hidden" id="f-edit-id" value="" />
-              <button
-                class="btn-submit"
-                id="btn-submit"
-                onclick="guardarProducto()"
-              >
+              <button class="btn-submit" id="btn-submit" onclick="guardarProducto()">
                 Guardar producto
               </button>
-              <button
-                class="btn-cancel"
-                id="btn-cancel"
-                style="display: none"
-                onclick="cancelarEdicion()"
-              >
+              <button class="btn-cancel" id="btn-cancel" style="display:none"
+                onclick="cancelarEdicion()">
                 Cancelar edición
               </button>
             </div>
@@ -769,16 +460,9 @@
           <!-- TABLA -->
           <div class="card">
             <div class="toolbar">
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Buscar producto..."
-                oninput="filtrarTabla(this.value)"
-              />
-              <select
-                class="filter-select"
-                onchange="filtrarPorCategoria(this.value)"
-              >
+              <input type="text" class="search-input" placeholder="Buscar producto..."
+                oninput="filtrarTabla(this.value)" />
+              <select class="filter-select" onchange="filtrarPorCategoria(this.value)">
                 <option value="">Todas las categorías</option>
                 <option value="hombre">Hombre</option>
                 <option value="mujer">Mujer</option>
@@ -787,7 +471,7 @@
                 <option value="index-preferido">Preferidos</option>
               </select>
             </div>
-            <div style="overflow-x: auto">
+            <div style="overflow-x:auto">
               <table class="products-table">
                 <thead>
                   <tr>
@@ -801,8 +485,8 @@
                 </thead>
                 <tbody id="products-tbody"></tbody>
               </table>
-              <div class="empty-state" id="empty-state" style="display: none">
-                <div style="font-size: 36px">📦</div>
+              <div class="empty-state" id="empty-state" style="display:none">
+                <div style="font-size:36px">📦</div>
                 <p>No hay productos aún. ¡Agrega el primero!</p>
               </div>
             </div>
@@ -812,119 +496,226 @@
     </div>
 
     <div class="loading-overlay" id="loading-overlay">
-      <div class="loading-box">⏳ Guardando en Firestore...</div>
+      <div class="loading-box">⏳ Guardando producto...</div>
     </div>
     <div class="toast" id="toast"></div>
 
-    <!-- FIREBASE -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-      import {
-        getFirestore,
-        collection,
-        onSnapshot,
-        addDoc,
-        doc,
-        updateDoc,
-        deleteDoc,
-        orderBy,
-        query,
-      } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+    <!-- ══════════════════════════════════════════
+         CLOUDINARY CONFIG  ← cambia estos 2 valores
+         si algún día creas un nuevo preset
+    ════════════════════════════════════════════ -->
+    <script>
+      const CLOUDINARY_CLOUD  = "ds3crkmlw";          // ← tu cloud name
+      const CLOUDINARY_PRESET = "zhaicolez_uploads";  // ← el preset que creaste
 
-      const firebaseConfig = {
-        apiKey: "AIzaSyCHuCI7FW_KeHH08aDZE6YRj7crBXM9zxg",
-        authDomain: "zhaicolez-store.firebaseapp.com",
-        projectId: "zhaicolez-store",
-        storageBucket: "zhaicolez-store.firebasestorage.app",
-        messagingSenderId: "1064759466025",
-        appId: "1:1064759466025:web:91ff0ab427b3770a18a438",
+      // ── Estado de la imagen actual ──
+      let imagenActualUrl = "";   // URL final guardada en Supabase
+      let uploadInProgress = false;
+
+      // ── Abrir explorador de archivos ──
+      window.triggerFileInput = function() {
+        if (uploadInProgress) return;
+        document.getElementById("f-imagen-file").click();
       };
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
+      // ── Al elegir archivo: subir a Cloudinary ──
+      window.handleFileSelected = async function(input) {
+        const file = input.files[0];
+        if (!file) return;
 
-      // ── Auth ──
-      const ADMIN_USER = "MAYCOL";
-      const ADMIN_PASS = "ZHAICOLEX2026*";
+        // Validar tipo y tamaño (máx 8 MB)
+        if (!file.type.startsWith("image/")) {
+          showToast("Solo se permiten imágenes (JPG, PNG, WEBP…)", "error");
+          return;
+        }
+        if (file.size > 8 * 1024 * 1024) {
+          showToast("La imagen no puede pesar más de 8 MB", "error");
+          return;
+        }
 
-      window.doLogin = function () {
-        const u = document.getElementById("login-user").value.trim();
-        const p = document.getElementById("login-pass").value;
-        if (u === ADMIN_USER && p === ADMIN_PASS) {
-          sessionStorage.setItem("zhaicolez_admin", "1");
-          document.getElementById("login-screen").style.display = "none";
-          document.getElementById("app").style.display = "block";
-          initApp();
-        } else {
-          document.getElementById("login-error").style.display = "block";
+        uploadInProgress = true;
+        setUploadUI("uploading");
+
+        try {
+          const url = await uploadToCloudinary(file);
+          imagenActualUrl = url;
+          document.getElementById("f-imagen").value = url;
+          setUploadUI("done", url);
+          showToast("✅ Imagen subida correctamente", "success");
+        } catch (err) {
+          setUploadUI("idle");
+          showToast("❌ Error al subir imagen: " + err.message, "error");
+        } finally {
+          uploadInProgress = false;
+          input.value = ""; // reset para poder subir otra vez
         }
       };
 
-      window.doLogout = function () {
-        sessionStorage.removeItem("zhaicolez_admin");
-        location.reload();
+      // ── Subir a Cloudinary via XHR (para barra de progreso) ──
+      function uploadToCloudinary(file) {
+        return new Promise((resolve, reject) => {
+          const fd = new FormData();
+          fd.append("file", file);
+          fd.append("upload_preset", CLOUDINARY_PRESET);
+          fd.append("folder", "zhaicolez");
+
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST",
+            `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD}/image/upload`);
+
+          // Progreso real
+          xhr.upload.onprogress = (e) => {
+            if (e.lengthComputable) {
+              const pct = Math.round((e.loaded / e.total) * 100);
+              document.getElementById("progress-bar").style.width = pct + "%";
+              document.getElementById("upload-progress-text").textContent =
+                `Subiendo... ${pct}%`;
+            }
+          };
+
+          xhr.onload = () => {
+            if (xhr.status === 200) {
+              const data = JSON.parse(xhr.responseText);
+              resolve(data.secure_url);
+            } else {
+              try {
+                const err = JSON.parse(xhr.responseText);
+                reject(new Error(err.error?.message || "Error desconocido"));
+              } catch {
+                reject(new Error("Error al subir la imagen"));
+              }
+            }
+          };
+
+          xhr.onerror = () => reject(new Error("Error de conexión"));
+          xhr.send(fd);
+        });
+      }
+
+      // ── Gestionar estados del UI de imagen ──
+      function setUploadUI(state, imageUrl) {
+        const area        = document.getElementById("img-upload-area");
+        const progress    = document.getElementById("upload-progress");
+        const btnUpload   = document.getElementById("btn-img-upload");
+        const progressBar = document.getElementById("progress-bar");
+
+        if (state === "uploading") {
+          area.innerHTML = `<div style="color:var(--gray-3);font-size:13px;">Subiendo imagen…</div>`;
+          area.classList.add("has-image");
+          progress.classList.add("show");
+          progressBar.style.width = "0%";
+          btnUpload.disabled = true;
+          btnUpload.textContent = "⏳ Subiendo...";
+
+        } else if (state === "done" && imageUrl) {
+          area.innerHTML = `<img src="${imageUrl}" alt="preview" />`;
+          area.classList.add("has-image");
+          area.onclick = null; // no abrir file picker al hacer clic en la imagen
+          progress.classList.remove("show");
+          btnUpload.disabled = false;
+          btnUpload.textContent = "📁 Cambiar imagen";
+
+        } else { // idle / cleared
+          area.innerHTML = `
+            <div class="upload-icon">📷</div>
+            <div class="upload-label">
+              <span>Selecciona una foto</span> desde tu celular o computador
+            </div>`;
+          area.classList.remove("has-image");
+          area.onclick = () => triggerFileInput();
+          progress.classList.remove("show");
+          progressBar.style.width = "0%";
+          btnUpload.disabled = false;
+          btnUpload.textContent = "📁 Subir imagen";
+        }
+      }
+
+      // ── Quitar imagen ──
+      window.clearImage = function() {
+        imagenActualUrl = "";
+        document.getElementById("f-imagen").value = "";
+        document.getElementById("f-imagen-url").value = "";
+        setUploadUI("idle");
       };
 
-      // Estado local
+      // ── Opción alternativa: pegar URL directamente ──
+      window.toggleUrlInput = function() {
+        const sec = document.getElementById("img-url-section");
+        sec.style.display = sec.style.display === "block" ? "none" : "block";
+      };
+
+      window.handleUrlInput = function(url) {
+        imagenActualUrl = url.trim();
+        document.getElementById("f-imagen").value = imagenActualUrl;
+        const area = document.getElementById("img-upload-area");
+        if (imagenActualUrl.startsWith("http")) {
+          area.innerHTML = `<img src="${imagenActualUrl}"
+            onerror="this.parentElement.innerHTML='<div style=\'color:var(--gray-4);font-size:12px;\'>URL no válida</div>'"
+            alt="preview" />`;
+          area.classList.add("has-image");
+          area.onclick = null;
+        } else {
+          setUploadUI("idle");
+        }
+      };
+    </script>
+
+    <!-- SUPABASE -->
+    <script type="module">
+
+
+
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      const SUPABASE_URL = "https://nnjoifohytfgamkduunn.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
+      const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+
       let productos = [];
       let filtroActual = "";
       let categoriaActual = "";
-      let unsubscribe = null;
 
-      function initApp() {
-        const q = query(collection(db, "productos"), orderBy("nombre"));
-        unsubscribe = onSnapshot(
-          q,
-          (snapshot) => {
-            productos = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-            renderTabla();
-            actualizarStats();
-          },
-          (err) => {
-            showToast(
-              "Error al conectar con Firestore: " + err.message,
-              "error"
-            );
-          }
-        );
+      async function initApp() {
+        await cargarProductos();
+        supabase.channel("productos-admin")
+          .on("postgres_changes",
+            { event: "*", schema: "public", table: "productos" },
+            () => cargarProductos())
+          .subscribe();
       }
 
-      // ── Imagen preview ──
-      window.previewImg = function (url) {
-        const preview = document.getElementById("img-preview");
-        if (url && url.startsWith("http")) {
-          preview.innerHTML = `<img src="${url}" onerror="this.parentElement.innerHTML='<div class=\\'img-placeholder\\'>URL no válida</div>'" />`;
-        } else {
-          preview.innerHTML = `<div class="img-placeholder">La imagen aparecerá aquí<br/>al pegar el link</div>`;
-        }
-      };
+      async function cargarProductos() {
+        const { data, error } = await supabase
+          .from("productos").select("*").order("nombre", { ascending: true });
+        if (error) { showToast("Error al cargar: " + error.message, "error"); return; }
+        productos = data || [];
+        renderTabla();
+        actualizarStats();
+      }
 
       // ── Precios ──
-      window.addPrecio = function () {
+      window.addPrecio = function() {
         const container = document.getElementById("precios-container");
         const row = document.createElement("div");
         row.className = "precio-row";
         row.innerHTML = `
-      <input type="text" placeholder="Tamaño (ej: 50ml)" class="p-size" />
-      <input type="number" placeholder="Precio (ej: 34990)" class="p-price" />
-      <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>`;
+          <input type="text" placeholder="Tamaño (ej: 50ml)" class="p-size" />
+          <input type="number" placeholder="Precio (ej: 34990)" class="p-price" />
+          <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>`;
         container.appendChild(row);
       };
 
-      window.removePrecio = function (btn) {
+      window.removePrecio = function(btn) {
         const rows = document.querySelectorAll(".precio-row");
-        if (rows.length <= 1) {
-          showToast("Debe haber al menos una presentación", "error");
-          return;
-        }
+        if (rows.length <= 1) { showToast("Debe haber al menos una presentación", "error"); return; }
         btn.closest(".precio-row").remove();
       };
 
       function getPreciosDelForm() {
-        const rows = document.querySelectorAll(".precio-row");
         const precios = [];
-        rows.forEach((row) => {
-          const size = row.querySelector(".p-size").value.trim();
+        document.querySelectorAll(".precio-row").forEach(row => {
+          const size  = row.querySelector(".p-size").value.trim();
           const price = parseInt(row.querySelector(".p-price").value);
           if (size && price > 0) precios.push({ size, price });
         });
@@ -934,38 +725,32 @@
       function setPreciosEnForm(precios) {
         const container = document.getElementById("precios-container");
         container.innerHTML = "";
-        precios.forEach((p) => {
+        const lista = (precios || []).length > 0
+          ? precios
+          : [{ size: "", price: "" }];
+        lista.forEach(p => {
           const row = document.createElement("div");
           row.className = "precio-row";
           row.innerHTML = `
-        <input type="text" class="p-size" value="${p.size}" />
-        <input type="number" class="p-price" value="${p.price}" />
-        <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>`;
+            <input type="text" class="p-size" value="${p.size || ''}" placeholder="Tamaño (ej: 30ml)" />
+            <input type="number" class="p-price" value="${p.price || ''}" placeholder="Precio (ej: 19990)" />
+            <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>`;
           container.appendChild(row);
         });
       }
 
-      // ── GUARDAR (Agregar o Editar) ──
-      window.guardarProducto = async function () {
-        const id = document.getElementById("f-edit-id").value;
-        const imagen = document.getElementById("f-imagen").value.trim();
-        const marca = document.getElementById("f-marca").value.trim();
-        const nombre = document.getElementById("f-nombre").value.trim();
-        const tipo = document.getElementById("f-tipo").value;
+      // ── GUARDAR ──
+      window.guardarProducto = async function() {
+        const id       = document.getElementById("f-edit-id").value;
+        const imagen   = document.getElementById("f-imagen").value.trim();
+        const marca    = document.getElementById("f-marca").value.trim();
+        const nombre   = document.getElementById("f-nombre").value.trim();
+        const tipo     = document.getElementById("f-tipo").value;
         const categoria = document.getElementById("f-categoria").value;
-        const precios = getPreciosDelForm();
+        const precios  = getPreciosDelForm();
 
-        if (!marca || !nombre) {
-          showToast("Marca y nombre son obligatorios", "error");
-          return;
-        }
-        if (precios.length === 0) {
-          showToast(
-            "Agrega al menos una presentación con tamaño y precio",
-            "error"
-          );
-          return;
-        }
+        if (!marca || !nombre) { showToast("Marca y nombre son obligatorios", "error"); return; }
+        if (precios.length === 0) { showToast("Agrega al menos una presentación con tamaño y precio", "error"); return; }
 
         const btn = document.getElementById("btn-submit");
         btn.disabled = true;
@@ -974,17 +759,17 @@
         const data = { imagen, marca, nombre, tipo, categoria, precios };
 
         try {
+          let error;
           if (id) {
-            await updateDoc(doc(db, "productos", id), data);
-            showToast("✅ Producto actualizado en Firestore", "success");
+            ({ error } = await supabase.from("productos").update(data).eq("id", id));
+            if (!error) showToast("✅ Producto actualizado", "success");
           } else {
-            await addDoc(collection(db, "productos"), data);
-            showToast(
-              "✅ Producto agregado — el catálogo ya se actualizó",
-              "success"
-            );
+            ({ error } = await supabase.from("productos").insert(data));
+            if (!error) showToast("✅ Producto agregado — catálogo actualizado", "success");
           }
+          if (error) throw error;
           limpiarForm();
+          await cargarProductos();
         } catch (err) {
           showToast("❌ Error: " + err.message, "error");
         } finally {
@@ -994,163 +779,140 @@
       };
 
       // ── EDITAR ──
-      window.editarProducto = function (id) {
-        const p = productos.find((x) => x.id === id);
+      window.editarProducto = function(id) {
+        const p = productos.find(x => String(x.id) === String(id));
         if (!p) return;
-        document.getElementById("f-imagen").value = p.imagen || "";
-        document.getElementById("f-marca").value = p.marca;
-        document.getElementById("f-nombre").value = p.nombre;
-        document.getElementById("f-tipo").value = p.tipo;
-        document.getElementById("f-categoria").value = p.categoria;
-        document.getElementById("f-edit-id").value = p.id;
+        document.getElementById("f-marca").value     = p.marca || "";
+        document.getElementById("f-nombre").value    = p.nombre || "";
+        document.getElementById("f-tipo").value      = p.tipo || "Perfume de Hombre";
+        document.getElementById("f-categoria").value = p.categoria || "hombre";
+        document.getElementById("f-edit-id").value   = p.id;
         setPreciosEnForm(p.precios || []);
-        previewImg(p.imagen);
-        document.getElementById("form-title").textContent =
-          "Editando: " + p.nombre;
-        document.getElementById("btn-submit").textContent = "Guardar cambios";
+
+        // Restaurar imagen en el UI
+        const imageUrl = p.imagen || "";
+        document.getElementById("f-imagen").value = imageUrl;
+        window.imagenActualUrl = imageUrl;
+        if (imageUrl) {
+          setUploadUI("done", imageUrl);
+        } else {
+          setUploadUI("idle");
+        }
+
+        document.getElementById("form-title").textContent   = "Editando: " + p.nombre;
+        document.getElementById("btn-submit").textContent   = "Guardar cambios";
         document.getElementById("btn-submit").classList.add("editing");
         document.getElementById("btn-cancel").style.display = "block";
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
 
       // ── ELIMINAR ──
-      window.eliminarProducto = async function (id) {
-        const p = productos.find((x) => x.id === id);
-        if (
-          !confirm(
-            `¿Eliminar "${p?.nombre}"? Esta acción no se puede deshacer.`
-          )
-        )
-          return;
+      window.eliminarProducto = async function(id) {
+        const p = productos.find(x => String(x.id) === String(id));
+        if (!confirm(`¿Eliminar "${p?.nombre}"? Esta acción no se puede deshacer.`)) return;
         try {
-          await deleteDoc(doc(db, "productos", id));
+          const { error } = await supabase.from("productos").delete().eq("id", id);
+          if (error) throw error;
           showToast("Producto eliminado del catálogo", "success");
+          await cargarProductos();
         } catch (err) {
           showToast("Error al eliminar: " + err.message, "error");
         }
       };
 
-      window.cancelarEdicion = function () {
-        limpiarForm();
-      };
+      window.cancelarEdicion = function() { limpiarForm(); };
 
       function limpiarForm() {
-        document.getElementById("f-imagen").value = "";
-        document.getElementById("f-marca").value = "";
-        document.getElementById("f-nombre").value = "";
-        document.getElementById("f-tipo").value = "Perfume de Hombre";
+        document.getElementById("f-marca").value     = "";
+        document.getElementById("f-nombre").value    = "";
+        document.getElementById("f-tipo").value      = "Perfume de Hombre";
         document.getElementById("f-categoria").value = "hombre";
-        document.getElementById("f-edit-id").value = "";
-        document.getElementById("precios-container").innerHTML = `
-      <div class="precio-row">
-        <input type="text" placeholder="Tamaño (ej: 30ml)" class="p-size" />
-        <input type="number" placeholder="Precio (ej: 19990)" class="p-price" />
-        <button class="btn-remove-precio" onclick="removePrecio(this)">×</button>
-      </div>`;
-        previewImg("");
-        document.getElementById("form-title").textContent = "Agregar producto";
-        document.getElementById("btn-submit").textContent = "Guardar producto";
+        document.getElementById("f-edit-id").value   = "";
+        document.getElementById("f-imagen").value    = "";
+        document.getElementById("f-imagen-url").value = "";
+        window.imagenActualUrl = "";
+        setPreciosEnForm([]);
+        setUploadUI("idle");
+        document.getElementById("form-title").textContent         = "Agregar producto";
+        document.getElementById("btn-submit").textContent         = "Guardar producto";
         document.getElementById("btn-submit").classList.remove("editing");
-        document.getElementById("btn-submit").disabled = false;
-        document.getElementById("btn-cancel").style.display = "none";
+        document.getElementById("btn-submit").disabled            = false;
+        document.getElementById("btn-cancel").style.display       = "none";
+        document.getElementById("img-url-section").style.display  = "none";
       }
 
       // ── TABLA ──
       const CAT_LABELS = {
-        hombre: ["Hombre", "badge-hombre"],
-        mujer: ["Mujer", "badge-mujer"],
-        unisex: ["Unisex", "badge-unisex"],
-        "index-destacado": ["Destacados", "badge-destacado"],
-        "index-preferido": ["Preferidos", "badge-preferido"],
+        hombre:           ["Hombre",     "badge-hombre"],
+        mujer:            ["Mujer",      "badge-mujer"],
+        unisex:           ["Unisex",     "badge-unisex"],
+        "index-destacado":["Destacados", "badge-destacado"],
+        "index-preferido":["Preferidos", "badge-preferido"],
       };
 
       function renderTabla() {
-        const tbody = document.getElementById("products-tbody");
+        const tbody      = document.getElementById("products-tbody");
         const emptyState = document.getElementById("empty-state");
-
-        const lista = productos.filter((p) => {
-          const matchSearch =
-            !filtroActual ||
-            p.nombre.toLowerCase().includes(filtroActual.toLowerCase()) ||
-            p.marca.toLowerCase().includes(filtroActual.toLowerCase());
+        const lista = productos.filter(p => {
+          const matchSearch = !filtroActual ||
+            (p.nombre || "").toLowerCase().includes(filtroActual.toLowerCase()) ||
+            (p.marca  || "").toLowerCase().includes(filtroActual.toLowerCase());
           const matchCat = !categoriaActual || p.categoria === categoriaActual;
           return matchSearch && matchCat;
         });
 
-        if (lista.length === 0) {
-          tbody.innerHTML = "";
-          emptyState.style.display = "block";
-          return;
-        }
+        if (lista.length === 0) { tbody.innerHTML = ""; emptyState.style.display = "block"; return; }
         emptyState.style.display = "none";
 
-        tbody.innerHTML = lista
-          .map((p) => {
-            const [catLabel, catClass] = CAT_LABELS[p.categoria] || [
-              p.categoria,
-              "",
-            ];
-            const preciosText = (p.precios || []).map((x) => x.size).join(", ");
-            const imgHtml = p.imagen
-              ? `<img src="${p.imagen}" class="prod-thumb" onerror="this.style.display='none'" />`
-              : `<div style="width:48px;height:48px;background:var(--gray-6);border-radius:6px;border:1px solid var(--gray-5);"></div>`;
-            return `
-        <tr>
-          <td>${imgHtml}</td>
-          <td><div class="prod-name">${p.nombre}</div><div class="prod-brand">${p.marca}</div></td>
-          <td style="font-size:12px;color:var(--gray-3)">${p.tipo}</td>
-          <td><span class="badge ${catClass}">${catLabel}</span></td>
-          <td style="font-size:12px;color:var(--gray-3)">${preciosText}</td>
-          <td>
-            <div class="action-btns">
-              <button class="btn-edit" onclick="editarProducto('${p.id}')">Editar</button>
-              <button class="btn-delete" onclick="eliminarProducto('${p.id}')">Eliminar</button>
-            </div>
-          </td>
-        </tr>`;
-          })
-          .join("");
+        tbody.innerHTML = lista.map(p => {
+          const [catLabel, catClass] = CAT_LABELS[p.categoria] || [p.categoria, ""];
+          const preciosText = (p.precios || []).map(x => x.size).join(", ");
+          const imgHtml = p.imagen
+            ? `<img src="${p.imagen}" class="prod-thumb" onerror="this.style.display='none'" />`
+            : `<div style="width:48px;height:48px;background:var(--gray-6);border-radius:6px;border:1px solid var(--gray-5);"></div>`;
+          return `
+            <tr>
+              <td>${imgHtml}</td>
+              <td><div class="prod-name">${p.nombre}</div><div class="prod-brand">${p.marca}</div></td>
+              <td style="font-size:12px;color:var(--gray-3)">${p.tipo || ""}</td>
+              <td><span class="badge ${catClass}">${catLabel}</span></td>
+              <td style="font-size:12px;color:var(--gray-3)">${preciosText}</td>
+              <td>
+                <div class="action-btns">
+                  <button class="btn-edit" onclick="editarProducto('${p.id}')">Editar</button>
+                  <button class="btn-delete" onclick="eliminarProducto('${p.id}')">Eliminar</button>
+                </div>
+              </td>
+            </tr>`;
+        }).join("");
       }
 
-      window.filtrarTabla = function (val) {
-        filtroActual = val;
-        renderTabla();
-      };
-      window.filtrarPorCategoria = function (val) {
-        categoriaActual = val;
-        renderTabla();
-      };
+      window.filtrarTabla        = v => { filtroActual    = v; renderTabla(); };
+      window.filtrarPorCategoria = v => { categoriaActual = v; renderTabla(); };
 
       function actualizarStats() {
-        document.getElementById("stat-total").textContent = productos.length;
-        document.getElementById("stat-hombre").textContent = productos.filter(
-          (p) => p.categoria === "hombre"
-        ).length;
-        document.getElementById("stat-mujer").textContent = productos.filter(
-          (p) => p.categoria === "mujer"
-        ).length;
-        document.getElementById("stat-unisex").textContent = productos.filter(
-          (p) => p.categoria === "unisex"
-        ).length;
+        document.getElementById("stat-total").textContent   = productos.length;
+        document.getElementById("stat-hombre").textContent  = productos.filter(p => p.categoria === "hombre").length;
+        document.getElementById("stat-mujer").textContent   = productos.filter(p => p.categoria === "mujer").length;
+        document.getElementById("stat-unisex").textContent  = productos.filter(p => p.categoria === "unisex").length;
       }
 
-      // ── TOAST ──
       function showToast(msg, type = "success") {
         const toast = document.getElementById("toast");
         toast.textContent = msg;
         toast.className = `toast ${type} show`;
-        setTimeout(() => {
-          toast.className = "toast";
-        }, 3500);
+        setTimeout(() => { toast.className = "toast"; }, 3500);
       }
       window.showToast = showToast;
 
-      // Verificar sesión al cargar
-      if (sessionStorage.getItem("zhaicolez_admin") === "1") {
-        document.getElementById("login-screen").style.display = "none";
-        document.getElementById("app").style.display = "block";
-        initApp();
-      }
+      initApp();
+
+      window.cerrarSesion = async function() {
+  await window.clienteSupabase.auth.signOut();
+  window.location.href = "inicio_sesion.html";
+};
     </script>
+   
+  
   </body>
 </html>

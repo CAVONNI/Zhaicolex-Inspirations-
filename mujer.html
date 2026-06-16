@@ -5726,80 +5726,74 @@ footer {
 <button class="btn-arriba" onclick="irArriba()">↑</button>
 <a href="carrito.html" class="btn-carrito">🛒</a>
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
-  import { getFirestore, collection, query, where, orderBy, onSnapshot }
-    from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
- 
+  import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+  const SUPABASE_URL = "https://nnjoifohytfgamkduunn.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
+  const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
   // ── CAMBIA ESTE VALOR SEGÚN LA PÁGINA ──
-  const CATEGORIA = "mujer";
+  const CATEGORIA = "mujer"; // "hombre" en hombre.html, "unisex" en unisex.html
   // ───────────────────────────────────────
- 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCHuCI7FW_KeHH08aDZE6YRj7crBXM9zxg",
-    authDomain: "zhaicolez-store.firebaseapp.com",
-    projectId: "zhaicolez-store",
-    storageBucket: "zhaicolez-store.firebasestorage.app",
-    messagingSenderId: "1064759466025",
-    appId: "1:1064759466025:web:91ff0ab427b3770a18a438"
-  };
- 
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
- 
+
   const TITULOS = {
-    "hombre":          "Perfumes para Hombre",
-    "mujer":           "Perfumes para Mujer",
-    "unisex":          "Perfumes Unisex",
-    "index-destacado": "Más Destacadas",
-    "index-preferido": "Las Más Preferidas"
+    hombre: "Perfumes para Hombre",
+    mujer: "Perfumes para Mujer",
+    unisex: "Perfumes Unisex",
   };
- 
-  const q = query(
-    collection(db, "productos"),
-    where("categoria", "==", CATEGORIA),
-    orderBy("nombre")
-  );
- 
-  // Escucha en tiempo real: se actualiza solo cuando el admin cambia algo
-  onSnapshot(q, (snapshot) => {
-    const productos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
- 
-    // Busca o crea la sección
-    let section = document.getElementById("seccion-firebase-" + CATEGORIA);
+
+  async function cargarYRenderizar() {
+    const { data, error } = await supabase
+      .from("productos")
+      .select("*")
+      .eq("categoria", CATEGORIA)
+      .order("nombre", { ascending: true });
+
+    if (error) {
+      console.error("Error al cargar productos:", error.message);
+      return;
+    }
+    renderSeccion(data || []);
+  }
+
+  function renderSeccion(productos) {
+    let section = document.getElementById("seccion-" + CATEGORIA);
     if (!section) {
       section = document.createElement("aside");
-      section.id = "seccion-firebase-" + CATEGORIA;
+      section.id = "seccion-" + CATEGORIA;
       section.className = "minicart";
-      // Inserta antes del footer; si no hay footer, lo agrega al final del body
       const footer = document.querySelector("footer");
       footer ? footer.before(section) : document.body.appendChild(section);
     }
- 
+
     if (productos.length === 0) {
       section.remove();
       return;
     }
- 
+
     const titulo = TITULOS[CATEGORIA] || "Productos";
     const container = document.createElement("div");
     container.className = "cart-container";
- 
+
     productos.forEach((p, i) => {
-      const radioName = "fb-" + CATEGORIA + "-" + i;
-      const preciosHtml = (p.precios || []).map(pr => `
+      const radioName = "sb-" + CATEGORIA + "-" + i;
+      const preciosHtml = (p.precios || [])
+        .map(
+          (pr) => `
         <div class="price-option">
           <input type="radio" name="${radioName}" value="${pr.size}|${pr.price}" />
           <label>
             <span class="size">${pr.size}</span>
             <span class="price">$ ${Number(pr.price).toLocaleString("es-CO")}</span>
           </label>
-        </div>`).join("");
- 
+        </div>`
+        )
+        .join("");
+
       const div = document.createElement("div");
       div.className = "cart-item";
       div.innerHTML = `
-        <img src="${p.imagen || ''}" alt="${p.nombre}"
-             onerror="this.style.display='none'" />
+        <img src="${p.imagen || ""}" alt="${p.nombre}" onerror="this.style.display='none'" />
         <div class="cart-info">
           <p><strong>${p.marca}</strong></p>
           <p>${p.nombre}</p>
@@ -5808,16 +5802,29 @@ footer {
         </div>`;
       container.appendChild(div);
     });
- 
+
     section.innerHTML = `<h2>${titulo}</h2>`;
     section.appendChild(container);
- 
-    // Re-ejecuta addCartButtons si existe en tu página
+
     if (typeof addCartButtons === "function") {
       setTimeout(addCartButtons, 100);
     }
-  });
+  }
+
+  // Carga inicial
+  cargarYRenderizar();
+
+  // Tiempo real: cuando el admin agrega/edita/elimina, se actualiza solo
+  supabase
+    .channel("productos-" + CATEGORIA)
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "productos" },
+      () => cargarYRenderizar()
+    )
+    .subscribe();
 </script>
+
 </body>
 
   </html>

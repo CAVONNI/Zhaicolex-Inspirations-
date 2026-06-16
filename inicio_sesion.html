@@ -129,26 +129,29 @@
     </div>
 
     <script>
-      function cadenadefunciones() {
-        const usuario = document.getElementById("usuario1").value;
+      async function cadenadefunciones() {
+        const email = document.getElementById("usuario1").value;
+
         const password = document.getElementById("contraseña1").value;
 
-        if (usuario === "Maycol" && password === "2077") {
-          alert("Inicio exitoso");
-          window.location.href = "Form_compra.html";
-        } else if (usuario === "Andrea" && password === "2203") {
-          alert("Inicio exitoso");
-          window.location.href = "Form_compra.html";
-        }else if (usuario === "Valeria" && password === "0402"){
-          alert("Inicio exitoso");
-          window.location.href = "Form_compra.html";
-        }
+        const { data, error } =
+          await window.clienteSupabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+          });
 
-        
-        else {
+        if (error) {
           alert("Usuario no autorizado");
+        } else {
+          alert("Inicio exitoso");
+
+          window.location.href = "Form_compra.html";
         }
       }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
   </body>
 </html>

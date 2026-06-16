@@ -583,11 +583,33 @@
         Realizar pedido
       </button>
 
-      <a class="btn-catalogo" href="index.html">Ver catálogo</a>
-      <a class="btn-catalogo" href="admin.html">Panel administrativo</a>
+      <a class="btn-catalogo" href="index.html">
+        Ver catálogo
+        </a>
+        
+        <button
+        class="btn-catalogo"
+        onclick="abrirPanelAdmin()">
+        Panel administrativo
+        </button>
+        
+        <button
+        class="btn-catalogo"
+        onclick="cerrarSesion()">
+        Cerrar sesión
+        </button>
     </div>
 
-    <script>
+ 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="auth-guard.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  await requireSesion();
+});
+</script>
+<script>
       const perfumes = [
         { nombre: "212", cat: "femenino" },
         { nombre: "212 Heroes", cat: "femenino" },
@@ -1022,6 +1044,39 @@
       }
 
       renderGrid();
+      async function cerrarSesion() {
+
+await clienteSupabase.auth.signOut();
+
+window.location.href =
+  "inicio_sesion.html";
+
+}
+
+async function abrirPanelAdmin() {
+
+const {
+  data: { session }
+} =
+await clienteSupabase.auth.getSession();
+
+if (!session) {
+
+  alert("Debes iniciar sesión");
+
+  window.location.href =
+    "inicio_sesion.html";
+
+  return;
+
+}
+
+window.location.href =
+  "admin.html";
+
+}
     </script>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>  
+</body>
 </html>
