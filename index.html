@@ -1429,8 +1429,10 @@
       <div class="oferta-content">
         <span class="oferta-eyebrow">Oferta especial</span>
         <h2 class="oferta-title">10% DE<br />DESCUENTO</h2>
-        <p class="oferta-sub">En tu primera compra</p>
-        <a href="inicio_sesion.html" class="btn-gold">Comprar Ahora &rarr;</a>
+        <p class="oferta-sub">
+          En tu primera compra en cualquiera de nuestros productos
+        </p>
+        <a href="hombre.html" class="btn-gold">Comprar Ahora &rarr;</a>
       </div>
     </section>
 
@@ -1554,28 +1556,9 @@
           const type =
             cartInfo.querySelector("p:nth-child(3)")?.textContent || "Perfume";
           const image = item.querySelector("img")?.src || "";
-          const button = document.createElement("button");
-          button.className = "add-to-cart-btn";
-          button.textContent = "Deja tu Huella";
-          button.onclick = function () {
-            const selectedOption = item.querySelector(
-              'input[type="radio"]:checked'
-            );
-            if (selectedOption) {
-              const [size, priceStr] = selectedOption.value.split("|");
-              addToCart(brand, name, type, size, parseInt(priceStr), image);
-            } else {
-              const priceOptions = item.querySelector(".price-options");
-              priceOptions.style.animation = "shake 0.5s";
-              setTimeout(() => {
-                priceOptions.style.animation = "";
-              }, 500);
-              showNotification("Por favor selecciona un tamaño primero");
-            }
-          };
-          cartInfo.appendChild(button);
-        });
-      }
+
+
+
 
       function addToCart(brand, name, type, size, price, image) {
         const cartKey = "zhaicolezCart_" + sessionId;
@@ -1813,7 +1796,7 @@
           header.className = "section-header";
           header.innerHTML = `
           <span class="section-eyebrow">¡Nuevas Referencias!</span>
-          <h2 class="section-title">${TITULOS[CATEGORIA] || "Productos"}</h2>
+          <h2 class="section-title">YO ME CAMBIO A ZHAICOLEX</h2>
           <div class="section-rule"></div>`;
 
           const prodSection = document.createElement("div");
