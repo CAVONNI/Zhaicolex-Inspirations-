@@ -187,6 +187,7 @@
         display: grid;
         grid-template-rows: 52px 1fr;
         height: 100vh;
+        height: 100dvh;
         padding-top: 44px;
         opacity: 0;
         transition: opacity 0.6s;
@@ -281,7 +282,8 @@
         display: grid;
         grid-template-columns: 248px 1fr 268px;
         grid-template-areas: "left center right";
-        height: calc(100vh - 96px);
+        height: 100%;
+        min-height: 0;
         overflow: hidden;
       }
 
@@ -571,6 +573,7 @@
         flex-direction: column;
         background: var(--bg);
         overflow: hidden;
+        min-height: 0;
       }
 
       .messages {
@@ -1136,7 +1139,7 @@
       const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
       // La API key de OpenRouter YA NO vive aquí. Ahora vive como secreto
-      // dentro de la Edge Function "alison-chat" en Supabase. El frontend
+      // dentro de la Edge Function "bright-action" en Supabase. El frontend
       // solo llama a nuestra propia función, que reenvía la petición a
       // OpenRouter de forma segura desde el servidor.
       const ALISON_CHAT_ENDPOINT = SUPABASE_URL + "/functions/v1/alison-chat";
