@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alison AI — Tu asesora personal de fragancias</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0c0e13;
+        --surface: #13161e;
+        --card: #1b1f2a;
+        --card2: #212535;
+        --gold: #c9a43e;
+        --gold-dim: rgba(201, 164, 62, 0.15);
+        --gold-line: rgba(201, 164, 62, 0.28);
+        --text: #edeae3;
+        --muted: #6b7280;
+        --soft: #9ca3af;
+        --r: 12px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        overflow: hidden;
+      }
+
+      /* ── BACK BAR (vuelve a la tienda) ── */
+      .store-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        background: #0a0a0a;
+        border-bottom: 1px solid rgba(201, 164, 62, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        height: 44px;
+      }
+      .store-bar a.back-link {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #ccc;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+      }
+      .store-bar a.back-link:hover {
+        color: var(--gold);
+      }
+      .store-bar .store-logo {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+        letter-spacing: 0.1em;
+      }
+      .store-bar .store-logo span {
+        font-size: 7px;
+        letter-spacing: 0.3em;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-left: 4px;
+      }
+
+      /* ══════════════════════════════════════
+   INTRO OVERLAY
+══════════════════════════════════════ */
+      .intro-overlay {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        z-index: 200;
+        padding: 32px;
+        transition: opacity 0.8s ease;
+      }
+      .intro-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .intro-gem {
+        width: 72px;
+        height: 72px;
+        border-radius: 18px;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 40px;
+        font-weight: 300;
+        color: #1a1200;
+        animation: breathe 3s ease infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.04);
+        }
+      }
+      .intro-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(32px, 8vw, 46px);
+        font-weight: 300;
+        color: var(--text);
+        text-align: center;
+        letter-spacing: 1px;
+      }
+      .intro-sub {
+        font-size: 13px;
+        color: var(--muted);
+        text-align: center;
+        letter-spacing: 0.4px;
+      }
+      .intro-badge {
+        background: var(--gold-dim);
+        border: 1px solid var(--gold-line);
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 11px;
+        color: var(--gold);
+        letter-spacing: 0.08em;
+        text-align: center;
+        max-width: 320px;
+      }
+      .intro-btn {
+        margin-top: 8px;
+        padding: 14px 36px;
+        background: var(--gold);
+        border: none;
+        border-radius: 10px;
+        color: #1a1200;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        transition: opacity 0.2s, transform 0.15s;
+      }
+      .intro-btn:hover {
+        opacity: 0.88;
+      }
+      .intro-btn:active {
+        transform: scale(0.96);
+      }
+      .intro-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      /* ══════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════ */
+      .app {
+        display: grid;
+        grid-template-rows: 52px 1fr;
+        height: 100vh;
+        padding-top: 44px;
+        opacity: 0;
+        transition: opacity 0.6s;
+      }
+
+      /* ── TOPBAR ── */
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px;
+        background: var(--surface);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        z-index: 10;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand-gem {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--gold);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 17px;
+        font-weight: 500;
+        color: #1a1200;
+      }
+      .brand-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-weight: 400;
+        color: var(--text);
+        letter-spacing: 0.5px;
+      }
+      .brand-tagline {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 11px;
+        color: var(--soft);
+      }
+      .status-count {
+        font-size: 10px;
+        color: var(--gold);
+        background: var(--gold-dim);
+        padding: 2px 8px;
+        border-radius: 20px;
+        border: 1px solid var(--gold-line);
+      }
+      .pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #34d399;
+        animation: pulseAnim 2.2s ease infinite;
+      }
+      @keyframes pulseAnim {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
+        }
+      }
+
+      /* mobile: hide tagline */
+      @media (max-width: 500px) {
+        .brand-tagline {
+          display: none;
+        }
+        .status span:not(.status-count) {
+          display: none;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   BODY — DESKTOP 3 COLS
+══════════════════════════════════════ */
+      .body {
+        display: grid;
+        grid-template-columns: 248px 1fr 268px;
+        grid-template-areas: "left center right";
+        height: calc(100vh - 96px);
+        overflow: hidden;
+      }
+
+      /* ── PANELS ── */
+      .panel-left {
+        grid-area: left;
+        background: var(--surface);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        padding: 20px 18px;
+        gap: 22px;
+        overflow-y: auto;
+      }
+      .panel-left::-webkit-scrollbar {
+        width: 3px;
+      }
+      .panel-left::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 2px;
+      }
+
+      .panel-right {
+        grid-area: right;
+        background: var(--surface);
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .panel-right::-webkit-scrollbar {
+        width: 3px;
+      }
+      .panel-right::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 2px;
+      }
+
+      /* ══════════════════════════════════════
+   TABLET — 2 COLS (chat + perfil abajo)
+══════════════════════════════════════ */
+      @media (max-width: 900px) {
+        .body {
+          grid-template-columns: 1fr;
+          grid-template-rows: 1fr auto;
+          grid-template-areas:
+            "center"
+            "bottom-tabs";
+        }
+        .panel-left {
+          display: none;
+        }
+        .panel-right {
+          display: none;
+        }
+        .bottom-tabs {
+          display: flex;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   MOBILE BOTTOM TABS
+══════════════════════════════════════ */
+      .bottom-tabs {
+        display: none;
+        grid-area: bottom-tabs;
+        background: var(--surface);
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        z-index: 20;
+      }
+      .tab-btn {
+        flex: 1;
+        padding: 10px 4px 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3px;
+        color: var(--muted);
+        font-size: 10px;
+        letter-spacing: 0.5px;
+        transition: color 0.2s;
+      }
+      .tab-btn.active {
+        color: var(--gold);
+      }
+      .tab-btn svg {
+        width: 18px;
+        height: 18px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      /* Mobile drawer panels */
+      .mobile-drawer {
+        display: none;
+        position: fixed;
+        inset: 96px 0 48px 0;
+        background: var(--surface);
+        z-index: 30;
+        overflow-y: auto;
+        padding: 20px 18px;
+        animation: slideUp 0.25s ease;
+      }
+      .mobile-drawer.open {
+        display: block;
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(16px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ══════════════════════════════════════
+   SECTION LABEL
+══════════════════════════════════════ */
+      .section-label {
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 500;
+      }
+
+      /* ══════════════════════════════════════
+   PROFILE BADGE
+══════════════════════════════════════ */
+      .profile-badge {
+        background: var(--gold-dim);
+        border: 1px solid var(--gold-line);
+        border-radius: var(--r);
+        padding: 16px 14px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+      }
+      .profile-badge.visible {
+        opacity: 1;
+      }
+      .badge-archetype {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: var(--gold);
+        line-height: 1.3;
+        margin-bottom: 8px;
+      }
+      .badge-desc {
+        font-size: 11px;
+        color: var(--soft);
+        line-height: 1.65;
+        font-style: italic;
+      }
+
+      /* ══════════════════════════════════════
+   TRAITS
+══════════════════════════════════════ */
+      .traits {
+        display: flex;
+        flex-direction: column;
+        gap: 13px;
+      }
+      .trait {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .trait-row {
+        display: flex;
+        justify-content: space-between;
+      }
+      .trait-name {
+        font-size: 12px;
+        color: var(--soft);
+      }
+      .trait-pct {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .bar {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        width: 0%;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          rgba(201, 164, 62, 0.45)
+        );
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ══════════════════════════════════════
+   CONFIDENCE
+══════════════════════════════════════ */
+      .confidence-box {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--r);
+        padding: 14px;
+      }
+      .conf-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 38px;
+        font-weight: 300;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .conf-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .conf-bar {
+        height: 2px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 1px;
+        margin-top: 12px;
+        overflow: hidden;
+      }
+      .conf-bar-fill {
+        height: 100%;
+        background: var(--gold);
+        width: 0%;
+        transition: width 1.4s ease;
+      }
+
+      /* ══════════════════════════════════════
+   CATÁLOGO INFO
+══════════════════════════════════════ */
+      .catalog-info {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--r);
+        padding: 14px;
+      }
+      .catalog-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 34px;
+        font-weight: 300;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .catalog-sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .catalog-cats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 10px;
+      }
+      .catalog-cat {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 20px;
+        background: var(--gold-dim);
+        border: 1px solid var(--gold-line);
+        color: var(--gold);
+      }
+
+      /* ══════════════════════════════════════
+   CHAT
+══════════════════════════════════════ */
+      .chat-panel {
+        grid-area: center;
+        display: flex;
+        flex-direction: column;
+        background: var(--bg);
+        overflow: hidden;
+      }
+
+      .messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 28px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        scroll-behavior: smooth;
+      }
+      .messages::-webkit-scrollbar {
+        width: 3px;
+      }
+      .messages::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 2px;
+      }
+
+      .msg {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        animation: fadeMsg 0.3s ease;
+      }
+      .msg.user {
+        flex-direction: row-reverse;
+      }
+      @keyframes fadeMsg {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 500;
+      }
+      .avatar.alison {
+        background: var(--gold-dim);
+        color: var(--gold);
+        border: 1px solid var(--gold-line);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 13px;
+      }
+      .avatar.usr {
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--soft);
+        font-size: 10px;
+      }
+
+      .bubble {
+        max-width: 72%;
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 13.5px;
+        line-height: 1.65;
+      }
+      .bubble.alison {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-top-left-radius: 4px;
+        color: var(--text);
+      }
+      .bubble.user {
+        background: var(--card2);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-top-right-radius: 4px;
+        color: var(--text);
+      }
+      @media (max-width: 500px) {
+        .bubble {
+          max-width: 84%;
+          font-size: 13px;
+        }
+      }
+
+      .typing-dots {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        padding: 2px 0;
+      }
+      .dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--gold);
+        opacity: 0.4;
+        animation: blink 1.4s infinite;
+      }
+      .dot:nth-child(2) {
+        animation-delay: 0.18s;
+      }
+      .dot:nth-child(3) {
+        animation-delay: 0.36s;
+      }
+      @keyframes blink {
+        0%,
+        80%,
+        100% {
+          opacity: 0.2;
+          transform: scale(0.85);
+        }
+        40% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* ── INPUT ── */
+      .input-area {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 12px 16px;
+        background: var(--surface);
+        display: flex;
+        gap: 10px;
+        align-items: flex-end;
+      }
+      #userInput {
+        flex: 1;
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 10px 14px;
+        color: var(--text);
+        font-family: "Inter", sans-serif;
+        font-size: 13.5px;
+        resize: none;
+        outline: none;
+        line-height: 1.5;
+        max-height: 110px;
+        transition: border-color 0.2s;
+      }
+      #userInput::placeholder {
+        color: var(--muted);
+      }
+      #userInput:focus {
+        border-color: var(--gold-line);
+      }
+      .send-btn {
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        border-radius: 9px;
+        background: var(--gold);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.2s, transform 0.15s;
+      }
+      .send-btn:hover {
+        opacity: 0.88;
+      }
+      .send-btn:active {
+        transform: scale(0.93);
+      }
+      .send-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+      .send-btn svg {
+        color: #1a1200;
+      }
+
+      /* ══════════════════════════════════════
+   RECOMENDACIONES
+══════════════════════════════════════ */
+      .recs-header {
+        padding: 18px 18px 12px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .empty-state {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 32px 20px;
+        text-align: center;
+        gap: 12px;
+      }
+      .empty-glyph {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 44px;
+        color: rgba(201, 164, 62, 0.13);
+        line-height: 1;
+      }
+      .empty-msg {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      .rec-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 14px 20px;
+      }
+
+      .rec-card {
+        background: var(--card);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--r);
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        animation: fadeMsg 0.45s ease;
+      }
+      .rec-top {
+        display: flex;
+        gap: 11px;
+        align-items: flex-start;
+      }
+      .rec-icon {
+        width: 40px;
+        height: 50px;
+        border-radius: 8px;
+        background: var(--gold-dim);
+        border: 1px solid var(--gold-line);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        flex-shrink: 0;
+        overflow: hidden;
+      }
+      .rec-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .rec-meta {
+        flex: 1;
+        min-width: 0;
+      }
+      .rec-name {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .rec-brand {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .rec-cat {
+        font-size: 10px;
+        color: var(--soft);
+        margin-top: 2px;
+        text-transform: capitalize;
+      }
+      .rec-match {
+        display: inline-block;
+        margin-top: 4px;
+        font-size: 10px;
+        font-weight: 500;
+        color: var(--gold);
+        background: var(--gold-dim);
+        padding: 2px 8px;
+        border-radius: 20px;
+      }
+      .notes {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .note {
+        font-size: 10px;
+        padding: 2px 8px;
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        color: var(--soft);
+      }
+      .rec-reason {
+        font-size: 11.5px;
+        color: var(--soft);
+        line-height: 1.65;
+        font-style: italic;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding-top: 10px;
+      }
+      .rec-price {
+        font-size: 12px;
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .rec-btn {
+        width: 100%;
+        padding: 9px;
+        background: transparent;
+        border: 1px solid var(--gold-line);
+        border-radius: 8px;
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: background 0.2s;
+      }
+      .rec-btn:hover {
+        background: var(--gold-dim);
+      }
+
+      /* ══════════════════════════════════════
+   MOBILE PROFILE (inside drawer)
+══════════════════════════════════════ */
+      .mobile-profile {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- BARRA SUPERIOR: volver a tienda -->
+    <div class="store-bar">
+      <a href="javascript:history.back()" class="back-link"
+        >← Volver a la tienda</a
+      >
+      <div class="store-logo">ZHAICOLEX<span>Inspirations</span></div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="intro-overlay" id="intro">
+      <div class="intro-gem">A</div>
+      <div style="text-align: center">
+        <div class="intro-title">Alison AI</div>
+        <div class="intro-sub" style="margin-top: 6px">
+          Tu asesora personal de fragancias
+        </div>
+      </div>
+      <div class="intro-badge" id="catalogBadge">
+        ⟳ Cargando catálogo de Zhaicolex...
+      </div>
+      <button class="intro-btn" id="startBtn" onclick="startApp()" disabled>
+        Comenzar mi análisis
+      </button>
+    </div>
+
+    <!-- APP -->
+    <div class="app" id="appShell">
+      <!-- TOPBAR -->
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-gem">A</div>
+          <div>
+            <div class="brand-name">Alison AI</div>
+            <div class="brand-tagline">Asesora personal de fragancias</div>
+          </div>
+        </div>
+        <div class="status">
+          <div class="pulse"></div>
+          <span>En línea</span>
+          <span class="status-count" id="catalogCount">— perfumes</span>
+        </div>
+      </header>
+
+      <div class="body">
+        <!-- PANEL IZQUIERDO (desktop) -->
+        <aside class="panel-left" id="panelLeft">
+          <div>
+            <div class="section-label" style="margin-bottom: 10px">
+              Perfil detectado
+            </div>
+            <div class="profile-badge" id="profileBadge">
+              <div class="badge-archetype" id="archetypeName">—</div>
+              <div class="badge-desc" id="archetypeDesc">
+                Alison está descubriendo quién eres...
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="section-label" style="margin-bottom: 12px">
+              Dimensiones
+            </div>
+            <div class="traits" id="traitsDesktop"></div>
+          </div>
+          <div class="confidence-box">
+            <div class="section-label" style="margin-bottom: 8px">
+              Confianza del análisis
+            </div>
+            <div class="conf-num" id="confNum">0%</div>
+            <div class="conf-sub" id="confSub">Recopilando información...</div>
+            <div class="conf-bar">
+              <div class="conf-bar-fill" id="confBar"></div>
+            </div>
+          </div>
+          <div class="catalog-info">
+            <div class="section-label" style="margin-bottom: 8px">
+              Catálogo disponible
+            </div>
+            <div class="catalog-num" id="catalogNumD">—</div>
+            <div class="catalog-sub">fragancias de Zhaicolex</div>
+            <div class="catalog-cats" id="catalogCatsD"></div>
+          </div>
+        </aside>
+
+        <!-- CHAT -->
+        <main class="chat-panel">
+          <div class="messages" id="messages"></div>
+          <div class="input-area">
+            <textarea
+              id="userInput"
+              rows="1"
+              placeholder="Escríbele a Alison..."
+            ></textarea>
+            <button
+              class="send-btn"
+              id="sendBtn"
+              onclick="sendMessage()"
+              aria-label="Enviar"
+            >
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+            </button>
+          </div>
+        </main>
+
+        <!-- PANEL DERECHO (desktop) -->
+        <aside class="panel-right" id="panelRight">
+          <div class="recs-header">
+            <div class="section-label">Fragancias para ti</div>
+          </div>
+          <div id="recsArea">
+            <div class="empty-state">
+              <div class="empty-glyph">◈</div>
+              <div class="empty-msg">
+                Alison descubrirá los perfumes<br />que mejor hablen de quién
+                eres.
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- MOBILE BOTTOM TABS -->
+        <nav class="bottom-tabs" id="bottomTabs">
+          <button
+            class="tab-btn active"
+            onclick="switchTab('chat')"
+            id="tab-chat"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+              />
+            </svg>
+            Chat
+          </button>
+          <button class="tab-btn" onclick="switchTab('perfil')" id="tab-perfil">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+            </svg>
+            Perfil
+          </button>
+          <button class="tab-btn" onclick="switchTab('recs')" id="tab-recs">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              />
+            </svg>
+            Recomendaciones
+          </button>
+        </nav>
+      </div>
+
+      <!-- MOBILE DRAWERS -->
+      <div class="mobile-drawer" id="drawer-perfil">
+        <div class="mobile-profile">
+          <div class="section-label">Perfil detectado</div>
+          <div class="profile-badge" id="profileBadgeMobile">
+            <div class="badge-archetype" id="archetypeNameMobile">—</div>
+            <div class="badge-desc" id="archetypeDescMobile">
+              Alison está descubriendo quién eres...
+            </div>
+          </div>
+          <div>
+            <div class="section-label" style="margin-bottom: 12px">
+              Dimensiones
+            </div>
+            <div class="traits" id="traitsMobile"></div>
+          </div>
+          <div class="confidence-box">
+            <div class="section-label" style="margin-bottom: 8px">
+              Confianza del análisis
+            </div>
+            <div class="conf-num" id="confNumMobile">0%</div>
+            <div class="conf-sub" id="confSubMobile">
+              Recopilando información...
+            </div>
+            <div class="conf-bar">
+              <div class="conf-bar-fill" id="confBarMobile"></div>
+            </div>
+          </div>
+          <div class="catalog-info">
+            <div class="section-label" style="margin-bottom: 8px">Catálogo</div>
+            <div class="catalog-num" id="catalogNumM">—</div>
+            <div class="catalog-sub">fragancias disponibles</div>
+            <div class="catalog-cats" id="catalogCatsM"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-drawer" id="drawer-recs">
+        <div class="section-label" style="margin-bottom: 14px">
+          Fragancias para ti
+        </div>
+        <div id="recsAreaMobile">
+          <div class="empty-state">
+            <div class="empty-glyph">◈</div>
+            <div class="empty-msg">
+              Alison descubrirá los perfumes<br />que mejor hablen de quién
+              eres.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUPABASE + LÓGICA DEL CHAT -->
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+      // ═══════════════════════════════════
+      // CONFIG
+      // ═══════════════════════════════════
+      const SUPABASE_URL = "https://nnjoifohytfgamkduunn.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
+      const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+      // La API key de OpenRouter YA NO vive aquí. Ahora vive como secreto
+      // dentro de la Edge Function "alison-chat" en Supabase. El frontend
+      // solo llama a nuestra propia función, que reenvía la petición a
+      // OpenRouter de forma segura desde el servidor.
+      const ALISON_CHAT_ENDPOINT = SUPABASE_URL + "/functions/v1/alison-chat";
+
+      // ═══════════════════════════════════
+      // ESTADO
+      // ═══════════════════════════════════
+      let catalogoCompleto = []; // [{nombre, marca, categoria, tipo, precios, imagen}, ...]
+      let catalogoTexto = ""; // texto formateado para el system prompt
+
+      const state = {
+        messages: [],
+        profile: {
+          elegance: 0,
+          adventure: 0,
+          romance: 0,
+          leadership: 0,
+          creativity: 0,
+        },
+        confidence: 0,
+        archetype: "",
+        isTyping: false,
+      };
+
+      const TRAITS = [
+        { key: "elegance", label: "Elegancia" },
+        { key: "adventure", label: "Aventura" },
+        { key: "romance", label: "Romanticismo" },
+        { key: "leadership", label: "Liderazgo" },
+        { key: "creativity", label: "Creatividad" },
+      ];
+
+      // ═══════════════════════════════════
+      // CARGAR CATÁLOGO REAL DESDE SUPABASE
+      // (100% dinámico — sin listas estáticas)
+      // ═══════════════════════════════════
+      async function cargarCatalogo() {
+        const badge = document.getElementById("catalogBadge");
+        try {
+          const { data, error } = await supabase
+            .from("productos")
+            .select("nombre, marca, categoria, tipo, precios, imagen")
+            .order("categoria", { ascending: true })
+            .order("nombre", { ascending: true });
+
+          if (error) throw error;
+
+          catalogoCompleto = data || [];
+
+          if (catalogoCompleto.length === 0) {
+            badge.textContent =
+              "⚠️ No se encontraron perfumes en el catálogo todavía.";
+            badge.style.color = "#f87171";
+            document.getElementById("startBtn").disabled = false;
+            catalogoTexto = "No hay productos disponibles actualmente.";
+            return;
+          }
+
+          // Construir texto del catálogo agrupado por categoría para el prompt
+          const porCategoria = {};
+          catalogoCompleto.forEach((p) => {
+            const cat = p.categoria || "otro";
+            if (!porCategoria[cat]) porCategoria[cat] = [];
+            const precios = (p.precios || [])
+              .map(
+                (pr) =>
+                  `${pr.size}: $${Number(pr.price).toLocaleString("es-CO")}`
+              )
+              .join(", ");
+            porCategoria[cat].push(
+              `• ${p.nombre} de ${p.marca} (${p.tipo || "Perfume"})${
+                precios ? " — Precios: " + precios : ""
+              }`
+            );
+          });
+          catalogoTexto = Object.entries(porCategoria)
+            .map(
+              ([cat, items]) =>
+                `== ${cat.toUpperCase()} ==\n${items.join("\n")}`
+            )
+            .join("\n\n");
+
+          // Actualizar UI
+          const total = catalogoCompleto.length;
+          badge.textContent = `✓ ${total} fragancias cargadas de Zhaicolex`;
+          badge.style.color = "var(--gold)";
+          document.getElementById("startBtn").disabled = false;
+
+          document.getElementById("catalogNumD").textContent = total;
+          document.getElementById("catalogNumM").textContent = total;
+          document.getElementById(
+            "catalogCount"
+          ).textContent = `${total} perfumes`;
+
+          const catsHTMLd = document.getElementById("catalogCatsD");
+          const catsHTMLm = document.getElementById("catalogCatsM");
+          const categoriasUnicas = [
+            ...new Set(
+              catalogoCompleto.map((p) => p.categoria).filter(Boolean)
+            ),
+          ];
+          categoriasUnicas.forEach((cat) => {
+            const count = catalogoCompleto.filter(
+              (p) => p.categoria === cat
+            ).length;
+            const span = `<span class="catalog-cat">${cat} (${count})</span>`;
+            catsHTMLd.innerHTML += span;
+            catsHTMLm.innerHTML += span;
+          });
+        } catch (err) {
+          console.error("Error cargando catálogo de Supabase:", err);
+          badge.textContent =
+            "⚠️ No se pudo cargar el catálogo. Puedes intentar igual, pero Alison no podrá recomendar productos específicos.";
+          badge.style.color = "#f87171";
+          document.getElementById("startBtn").disabled = false;
+          catalogoTexto =
+            "No se pudo cargar el catálogo completo desde la base de datos.";
+        }
+      }
+
+      // ═══════════════════════════════════
+      // BUSCAR un producto del catálogo por nombre (para tarjetas de recomendación)
+      // ═══════════════════════════════════
+      function buscarProductoEnCatalogo(nombre, marca) {
+        if (!nombre) return null;
+        const nombreLower = nombre.toLowerCase().trim();
+        return (
+          catalogoCompleto.find(
+            (p) =>
+              p.nombre?.toLowerCase().trim() === nombreLower &&
+              (!marca ||
+                p.marca?.toLowerCase().trim() === marca.toLowerCase().trim())
+          ) ||
+          catalogoCompleto.find(
+            (p) => p.nombre?.toLowerCase().trim() === nombreLower
+          ) ||
+          null
+        );
+      }
+
+      // ═══════════════════════════════════
+      // SYSTEM PROMPT (con catálogo real embebido)
+      // ═══════════════════════════════════
+      function buildSystemPrompt() {
+        return `Eres Alison, una asesora experta en fragancias de Zhaicolex Inspirations (tienda colombiana en Cali) con profunda intuición psicológica. Tu misión es descubrir la esencia de la persona a través de una conversación natural, elegante y cálida, y recomendar fragancias EXCLUSIVAMENTE del catálogo real disponible a continuación.
+
+CATÁLOGO REAL DE ZHAICOLEX (ÚNICAMENTE puedes recomendar perfumes de esta lista, usando el nombre y marca EXACTOS):
+${catalogoTexto}
+
+REGLAS CRÍTICAS SOBRE EL CATÁLOGO:
+- NUNCA inventes o recomiendes un perfume que no esté en la lista de arriba.
+- Usa siempre el nombre y la marca EXACTOS tal como aparecen en el catálogo.
+- Si el catálogo no tiene nada que encaje bien, recomienda lo más cercano disponible y sé honesta sobre por qué.
+
+IMPORTANTE SOBRE GÉNERO:
+- Nunca asumas el género de la persona. Usa lenguaje completamente neutro.
+- Di "tu estilo", "tu personalidad", "quien eres", nunca "ella", "él", "la", "lo".
+- Las categorías hombre/mujer/unisex del catálogo son solo clasificación de producto, no determinan a quién recomendar qué.
+
+PERSONALIDAD DE ALISON:
+- Sofisticada pero accesible, nunca condescendiente
+- Curiosa y genuinamente interesada en cada persona
+- Mezcla psicología con el arte de la perfumería
+- Cálida, directa, inteligente
+
+FLUJO:
+1. Saluda y haz 1-2 preguntas sobre estilo de vida o carácter
+2. Con cada respuesta, profundiza para revelar más dimensiones de personalidad
+3. Tras 3-5 intercambios, recomienda fragancias específicas del catálogo y explica por qué
+
+ANÁLISIS: Después de cada respuesta del usuario, incluye al final un bloque JSON oculto entre |||JSON y |||:
+|||JSON
+{
+  "elegance": 0-100,
+  "adventure": 0-100,
+  "romance": 0-100,
+  "leadership": 0-100,
+  "creativity": 0-100,
+  "confidence": 0-100,
+  "archetype": "nombre del arquetipo",
+  "archetypeDesc": "descripción breve y poética en 1-2 oraciones, sin asumir género",
+  "ready_for_recs": false,
+  "recommendations": []
+}
+|||
+
+Cuando confidence >= 70, pon ready_for_recs: true y agrega exactamente 3 recomendaciones, usando SOLO nombres del catálogo:
+"recommendations": [
+  {
+    "name": "Nombre EXACTO del catálogo",
+    "brand": "Marca EXACTA del catálogo",
+    "match": 96,
+    "notes": ["nota1","nota2","nota3"],
+    "reason": "Por qué este perfume refleja la personalidad de esta persona específica, sin asumir género"
+  }
+]
+
+Incluye exactamente 3 recomendaciones, todas reales del catálogo. El texto visible nunca debe mostrar el bloque JSON.`;
+      }
+
+      // ═══════════════════════════════════
+      // RENDERIZAR TRAITS
+      // ═══════════════════════════════════
+      function renderTraits(containerId, suffix) {
+        const container = document.getElementById(containerId);
+        container.innerHTML = "";
+        TRAITS.forEach((t) => {
+          container.innerHTML += `
+      <div class="trait">
+        <div class="trait-row">
+          <span class="trait-name">${t.label}</span>
+          <span class="trait-pct" id="pct-${t.key}${suffix}">—</span>
+        </div>
+        <div class="bar"><div class="bar-fill" id="bar-${t.key}${suffix}"></div></div>
+      </div>`;
+        });
+      }
+      renderTraits("traitsDesktop", "-d");
+      renderTraits("traitsMobile", "-m");
+
+      // ═══════════════════════════════════
+      // INTRO
+      // ═══════════════════════════════════
+      window.startApp = function () {
+        document.getElementById("intro").classList.add("hidden");
+        setTimeout(() => {
+          document.getElementById("appShell").style.opacity = "1";
+          alisonSay(
+            "Hola, bienvenido/a a Zhaicolex Inspirations 👋\n\nSoy Alison, tu asesora personal de fragancias. Estoy aquí para descubrir el perfume que mejor represente quién eres — no el más vendido, sino el que habla de tu esencia.\n\n¿Cómo describirías tu estilo de vida en pocas palabras? ¿Más estructura y sofisticación, o libertad y espontaneidad?"
+          );
+        }, 600);
+      };
+
+      // ═══════════════════════════════════
+      // CHAT
+      // ═══════════════════════════════════
+      function alisonSay(text) {
+        appendMsg("alison", text);
+      }
+
+      function appendMsg(role, text) {
+        const msgs = document.getElementById("messages");
+        const wrap = document.createElement("div");
+        wrap.className = `msg${role === "user" ? " user" : ""}`;
+        const av = document.createElement("div");
+        av.className = `avatar ${role === "alison" ? "alison" : "usr"}`;
+        av.textContent = role === "alison" ? "A" : "Tú";
+        const bub = document.createElement("div");
+        bub.className = `bubble ${role}`;
+        bub.innerHTML = text.replace(/\n/g, "<br>");
+        wrap.appendChild(av);
+        wrap.appendChild(bub);
+        msgs.appendChild(wrap);
+        scrollBottom();
+      }
+
+      function showTyping() {
+        const msgs = document.getElementById("messages");
+        const wrap = document.createElement("div");
+        wrap.className = "msg";
+        wrap.id = "typingBubble";
+        wrap.innerHTML = `<div class="avatar alison">A</div>
+    <div class="bubble alison"><div class="typing-dots">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div></div>`;
+        msgs.appendChild(wrap);
+        scrollBottom();
+      }
+      function removeTyping() {
+        const t = document.getElementById("typingBubble");
+        if (t) t.remove();
+      }
+      function scrollBottom() {
+        const msgs = document.getElementById("messages");
+        setTimeout(() => (msgs.scrollTop = msgs.scrollHeight), 40);
+      }
+
+      // ═══════════════════════════════════
+      // ENVIAR MENSAJE
+      // ═══════════════════════════════════
+      window.sendMessage = async function () {
+        const input = document.getElementById("userInput");
+        const text = input.value.trim();
+        if (!text || state.isTyping) return;
+        input.value = "";
+        input.style.height = "auto";
+        state.isTyping = true;
+        document.getElementById("sendBtn").disabled = true;
+
+        appendMsg("user", text);
+        state.messages.push({ role: "user", content: text });
+        showTyping();
+
+        try {
+          const res = await fetch(ALISON_CHAT_ENDPOINT, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + SUPABASE_KEY,
+              apikey: SUPABASE_KEY,
+            },
+            body: JSON.stringify({
+              max_tokens: 1100,
+              messages: [
+                { role: "system", content: buildSystemPrompt() },
+                ...state.messages,
+              ],
+            }),
+          });
+
+          if (!res.ok) {
+            const errBody = await res.text();
+            console.error("OpenRouter HTTP error:", res.status, errBody);
+            throw new Error(`HTTP ${res.status}`);
+          }
+
+          const data = await res.json();
+
+          if (data.error) {
+            console.error("OpenRouter API error:", data.error);
+            throw new Error(data.error.message || "Error de la API");
+          }
+
+          const fullText = data.choices?.[0]?.message?.content || "";
+
+          const jsonMatch = fullText.match(/\|\|\|JSON\s*([\s\S]*?)\s*\|\|\|/);
+          const visible = fullText
+            .replace(/\|\|\|JSON[\s\S]*?\|\|\|/g, "")
+            .trim();
+
+          if (jsonMatch) {
+            try {
+              const p = JSON.parse(jsonMatch[1]);
+              updateProfile(p);
+              if (p.ready_for_recs && p.recommendations?.length) {
+                updateRecs(p.recommendations);
+              }
+            } catch (e) {
+              console.warn("No se pudo parsear el bloque JSON de Alison:", e);
+            }
+          }
+
+          removeTyping();
+          alisonSay(visible || "Cuéntame un poco más sobre ti.");
+          state.messages.push({ role: "assistant", content: fullText });
+        } catch (err) {
+          console.error("Error en sendMessage:", err);
+          removeTyping();
+          alisonSay(
+            "Disculpa, hubo un problema de conexión. ¿Intentamos de nuevo?"
+          );
+        }
+
+        state.isTyping = false;
+        document.getElementById("sendBtn").disabled = false;
+      };
+
+      // ═══════════════════════════════════
+      // ACTUALIZAR PERFIL
+      // ═══════════════════════════════════
+      function setTrait(key, val, suffix) {
+        const pct = document.getElementById(`pct-${key}${suffix}`);
+        const bar = document.getElementById(`bar-${key}${suffix}`);
+        if (pct) pct.textContent = val + "%";
+        if (bar) setTimeout(() => (bar.style.width = val + "%"), 80);
+      }
+
+      function updateProfile(p) {
+        TRAITS.forEach((t) => {
+          const val = p[t.key] || 0;
+          setTrait(t.key, val, "-d");
+          setTrait(t.key, val, "-m");
+        });
+
+        if (p.confidence) {
+          ["confNum", "confNumMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = p.confidence + "%";
+          });
+          ["confBar", "confBarMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) setTimeout(() => (el.style.width = p.confidence + "%"), 80);
+          });
+          const sub =
+            p.confidence >= 70
+              ? "Perfil listo para recomendaciones"
+              : "Recopilando información...";
+          ["confSub", "confSubMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = sub;
+          });
+        }
+
+        if (p.archetype) {
+          ["archetypeName", "archetypeNameMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = p.archetype;
+          });
+          ["archetypeDesc", "archetypeDescMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = p.archetypeDesc || "";
+          });
+          ["profileBadge", "profileBadgeMobile"].forEach((id) => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add("visible");
+          });
+        }
+      }
+
+      // ═══════════════════════════════════
+      // RECOMENDACIONES (enlazadas al catálogo real)
+      // ═══════════════════════════════════
+      function buildRecCard(r) {
+        const producto = buscarProductoEnCatalogo(r.name, r.brand);
+        const imagen = producto?.imagen || "";
+        const categoria = producto?.categoria || r.categoria || "";
+        const precios = producto?.precios || [];
+        const precioMin = precios.length
+          ? Math.min(...precios.map((p) => Number(p.price) || 0))
+          : null;
+
+        const card = document.createElement("div");
+        card.className = "rec-card";
+
+        const iconHtml = imagen
+          ? `<img src="${imagen}" alt="${r.name}" onerror="this.parentElement.textContent='🌿'" />`
+          : "🌿";
+
+        const catUrlMap = {
+          hombre: "hombre.html",
+          mujer: "mujer.html",
+          unisex: "unisex.html",
+        };
+        const catUrl = catUrlMap[categoria] || "index.html";
+
+        card.innerHTML = `
+        <div class="rec-top">
+          <div class="rec-icon">${iconHtml}</div>
+          <div class="rec-meta">
+            <div class="rec-name">${r.name}</div>
+            <div class="rec-brand">${r.brand}</div>
+            ${categoria ? `<div class="rec-cat">${categoria}</div>` : ""}
+            <span class="rec-match">Coincidencia: ${r.match}%</span>
+          </div>
+        </div>
+        <div class="notes">${(r.notes || [])
+          .map((n) => `<span class="note">${n}</span>`)
+          .join("")}</div>
+        ${
+          precioMin
+            ? `<div class="rec-price">Desde $ ${precioMin.toLocaleString(
+                "es-CO"
+              )} COP</div>`
+            : ""
+        }
+        <div class="rec-reason">${r.reason}</div>
+        <button class="rec-btn" onclick="window.location.href='${catUrl}'">Ver en tienda →</button>`;
+        return card;
+      }
+
+      function updateRecs(recs) {
+        ["recsArea", "recsAreaMobile"].forEach((areaId) => {
+          const area = document.getElementById(areaId);
+          area.innerHTML = '<div class="rec-list"></div>';
+          const list = area.querySelector(".rec-list");
+          recs.forEach((r, i) => {
+            setTimeout(() => list.appendChild(buildRecCard(r)), i * 280);
+          });
+        });
+      }
+
+      // ═══════════════════════════════════
+      // MOBILE TABS
+      // ═══════════════════════════════════
+      let activeTab = "chat";
+
+      window.switchTab = function (name) {
+        activeTab = name;
+        ["chat", "perfil", "recs"].forEach((t) => {
+          document
+            .getElementById(`tab-${t}`)
+            ?.classList.toggle("active", t === name);
+        });
+        document
+          .querySelectorAll(".mobile-drawer")
+          .forEach((d) => d.classList.remove("open"));
+        if (name !== "chat") {
+          document.getElementById(`drawer-${name}`)?.classList.add("open");
+        }
+        if (name === "chat") scrollBottom();
+      };
+
+      // ═══════════════════════════════════
+      // INPUT AUTO-RESIZE + ENTER
+      // ═══════════════════════════════════
+      const inputEl = document.getElementById("userInput");
+      inputEl.addEventListener("input", () => {
+        inputEl.style.height = "auto";
+        inputEl.style.height = Math.min(inputEl.scrollHeight, 110) + "px";
+      });
+      inputEl.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          window.sendMessage();
+        }
+      });
+
+      // ═══════════════════════════════════
+      // INIT
+      // ═══════════════════════════════════
+      cargarCatalogo();
+    </script>
+  </body>
+</html>
