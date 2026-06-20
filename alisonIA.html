@@ -1138,10 +1138,10 @@
       const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
       const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-      // La API key de OpenRouter YA NO vive aquí. Ahora vive como secreto
-      // dentro de la Edge Function "bright-action" en Supabase. El frontend
+      // La API key de Gemini YA NO vive aquí. Ahora vive como secreto
+      // dentro de la Edge Function "alison-chat" en Supabase. El frontend
       // solo llama a nuestra propia función, que reenvía la petición a
-      // OpenRouter de forma segura desde el servidor.
+      // Gemini de forma segura desde el servidor.
       const ALISON_CHAT_ENDPOINT = SUPABASE_URL + "/functions/v1/alison-chat";
 
       // ═══════════════════════════════════
@@ -1452,15 +1452,19 @@ Incluye exactamente 3 recomendaciones, todas reales del catálogo. El texto visi
 
           if (!res.ok) {
             const errBody = await res.text();
-            console.error("OpenRouter HTTP error:", res.status, errBody);
-            throw new Error(`HTTP ${res.status}`);
+            console.error("Gemini HTTP error:", res.status, errBody);
+            const err = new Error(`HTTP ${res.status}`);
+            err.status = res.status;
+            throw err;
           }
 
           const data = await res.json();
 
           if (data.error) {
-            console.error("OpenRouter API error:", data.error);
-            throw new Error(data.error.message || "Error de la API");
+            console.error("Gemini API error:", data.error);
+            const err = new Error(data.error.message || "Error de la API");
+            err.status = data.error.code;
+            throw err;
           }
 
           const fullText = data.choices?.[0]?.message?.content || "";
@@ -1488,9 +1492,16 @@ Incluye exactamente 3 recomendaciones, todas reales del catálogo. El texto visi
         } catch (err) {
           console.error("Error en sendMessage:", err);
           removeTyping();
-          alisonSay(
-            "Disculpa, hubo un problema de conexión. ¿Intentamos de nuevo?"
-          );
+
+          if (err.status === 429) {
+            alisonSay(
+              "Estoy atendiendo a muchas personas en este momento 💛 Dame unos segundos y escríbeme de nuevo, por favor."
+            );
+          } else {
+            alisonSay(
+              "Disculpa, hubo un problema de conexión. ¿Intentamos de nuevo?"
+            );
+          }
         }
 
         state.isTyping = false;
