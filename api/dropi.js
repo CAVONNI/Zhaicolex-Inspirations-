@@ -10,16 +10,25 @@ export default async function handler(req, res) {
   const { endpoint } = req.query;
 
   try {
-    const response = await fetch(`https://app.dropi.co/api/${endpoint}`, {
+    const url = `https://app.dropi.co/api/${endpoint}`;
+    
+    const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${DROPI_TOKEN}`,
         "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     });
 
-    const data = await response.json();
-    return res.status(200).json(data);
+    const text = await response.text();
+    
+    // Devolver el texto crudo para ver qué responde Dropi
+    return res.status(200).send(text);
+    
   } catch (error) {
-    return res.status(500).json({ error: "Error conectando con Dropi" });
+    return res.status(500).json({ 
+      error: error.message,
+      stack: error.stack
+    });
   }
 }
