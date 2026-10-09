@@ -1,36 +1,22 @@
+// api/dropi.js  (Vercel Serverless Function)
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
-  const DROPI_TOKEN = process.env.DROPI_TOKEN;
-  const { endpoint } = req.query;
-
-  // Verificar que el token existe
-  if (!DROPI_TOKEN) {
-    return res.status(500).json({ error: "Token no encontrado en variables de entorno" });
-  }
+  const url = process.env.DROPI_PRODUCTS_URL; // endpoint de productos que te confirme Dropi
+  const token = process.env.DROPI_TOKEN;
+  if (!url || !token)
+    return res.status(500).json({ error: "Faltan variables de entorno" });
 
   try {
-    const url = `https://app.dropi.co/api/${endpoint || 'publications'}`;
-    
-    const response = await fetch(url, {
+    const qs = new URLSearchParams(req.query).toString();
+    const r = await fetch(`${url}${url.includes("?") ? "&" : "?"}${qs}`, {
       headers: {
-        Authorization: `Bearer ${DROPI_TOKEN}`,
+        "dropi-integration-key": token,
         "Content-Type": "application/json",
-        "Accept": "application/json",
       },
     });
-
-    return res.status(200).json({
-      status: response.status,
-      statusText: response.statusText,
-      url: url,
-      tokenPrimeros10: DROPI_TOKEN.substring(0, 10),
-      body: await response.text()
-    });
-    
-  } catch (error) {
-    return res.status(500).json({ 
-      error: error.message
-    });
+    const data = await r.json();
+    res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=600");
+    return res.status(r.status).json(data);
+  } catch (e) {
+    return res.status(502).json({ error: "Dropi no disponible" });
   }
 }

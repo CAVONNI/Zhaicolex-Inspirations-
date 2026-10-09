@@ -11,6 +11,124 @@
       rel="stylesheet"
     />
     <style>
+
+      /* ── POPUP PROMOCIONAL ── */
+.promo-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 99998;
+  visibility: hidden;
+  pointer-events: none;
+  transition: background 0.5s ease, visibility 0s linear 0.5s;
+}
+.promo-overlay.show {
+  background: rgba(0, 0, 0, 0.8);
+  visibility: visible;
+  pointer-events: auto;
+  transition: background 0.5s ease, visibility 0s;
+}
+.promo-box {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+  opacity: 0;
+  transform: scale(0.3) rotate(-6deg);
+  border-radius: 4px;
+  overflow: visible;
+  box-shadow: 0 0 0 1px var(--gold), 0 25px 80px rgba(201, 168, 76, 0.45);
+}
+.promo-overlay.show .promo-box {
+  animation: promoEntrada 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    promoFlotar 3s ease-in-out 0.9s infinite,
+    promoBrillo 2.2s ease-in-out 0.9s infinite;
+}
+.promo-overlay.hide .promo-box {
+  animation: promoSalida 0.5s ease forwards;
+}
+.promo-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  background: var(--black);
+}
+.promo-close {
+  position: absolute;
+  top: -14px;
+  left: -14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  border: 2px solid var(--black);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s, background 0.25s;
+}
+.promo-close:hover {
+  background: var(--gold-light);
+  transform: rotate(90deg) scale(1.1);
+}
+.promo-timer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0 0 4px 4px;
+  overflow: hidden;
+}
+.promo-timer span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: var(--gold);
+  transform-origin: left;
+}
+.promo-overlay.show .promo-timer span {
+  animation: promoBarra 10s linear forwards;
+}
+
+@keyframes promoEntrada {
+  0% { opacity: 0; transform: scale(0.3) rotate(-6deg); }
+  60% { opacity: 1; transform: scale(1.06) rotate(1deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0); }
+}
+@keyframes promoFlotar {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -8px; }
+}
+@keyframes promoBrillo {
+  0%, 100% { box-shadow: 0 0 0 1px var(--gold), 0 25px 60px rgba(201, 168, 76, 0.3); }
+  50% { box-shadow: 0 0 0 1px var(--gold-light), 0 25px 100px rgba(226, 192, 104, 0.7); }
+}
+@keyframes promoSalida {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.7) translateY(30px); }
+}
+@keyframes promoBarra {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@media (max-width: 480px) {
+  .promo-box { max-width: 92%; }
+  .promo-close { top: -10px; left: -6px; }
+}
+
       #intro {
         position: fixed;
         inset: 0;
@@ -393,7 +511,7 @@
       }
       .cat-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 2px;
         max-width: 1100px;
         margin: 0 auto;
@@ -566,7 +684,6 @@
         text-transform: uppercase;
         margin-bottom: 8px;
       }
-      /* Stars */
       .stars {
         display: flex;
         gap: 2px;
@@ -576,7 +693,6 @@
         color: var(--gold);
         font-size: 11px;
       }
-      /* Price options */
       .price-options {
         display: flex;
         flex-direction: column;
@@ -643,7 +759,6 @@
         color: var(--black);
         transform: translateY(-1px);
       }
-      /* Resultado búsqueda */
       #resultado-busqueda {
         padding: 0 40px 20px;
         display: none;
@@ -716,13 +831,9 @@
         margin-bottom: 30px;
       }
 
-      /* ── MINICART SECTION WRAPPER ── */
-      .minicart {
-        /* mantenemos clase pero ahora solo es un wrapper */
-      }
       .minicart > h2 {
         display: none;
-      } /* el título lo muestra .section-header */
+      }
 
       /* ── FOOTER ── */
       footer {
@@ -805,7 +916,7 @@
       }
       .footer-columns {
         display: none;
-      } /* sustituido por footer-top */
+      }
       .footer-bottom {
         display: flex;
         justify-content: space-between;
@@ -937,7 +1048,7 @@
       /* ── RESPONSIVE ── */
       @media (max-width: 1024px) {
         .cat-grid {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
         }
         .cart-container {
           grid-template-columns: repeat(2, 1fr);
@@ -1048,7 +1159,6 @@
     </style>
   </head>
   <body>
- 
     <body>
       <!-- Intro -->
       <div id="intro">
@@ -1062,6 +1172,7 @@
 
       <script src="script.js"></script>
     </body>
+
     <!-- HEADER -->
     <header>
       <div class="logo">
@@ -1074,6 +1185,8 @@
           <li><a href="unisex.html">Unisex</a></li>
           <li><a href="hombre.html">Hombre</a></li>
           <li><a href="mujer.html">Mujer</a></li>
+
+          <li><a href="ropa.html">Outfit</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -1272,6 +1385,19 @@
             <div class="cat-arrow">→</div>
           </div>
         </a>
+        <!-- ✅ NUEVA TARJETA Outfit -->
+        <a href="ropa.html" class="cat-card">
+          <img
+            src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=600&q=80"
+            alt="Outfit"
+          />
+          <div class="cat-card-content">
+            <span class="cat-label">Nueva sección</span>
+            <span class="cat-name">Outfit</span>
+            <span class="cat-desc">Moda que te define</span>
+            <div class="cat-arrow">→</div>
+          </div>
+        </a>
       </div>
     </section>
 
@@ -1319,7 +1445,6 @@
         <aside class="minicart">
           <h2>Mas Destacadas</h2>
           <div class="cart-container">
-            <!-- 1 Million -->
             <div class="cart-item">
               <img src="imagenes/1_million.png" alt="1 Million" />
               <div class="cart-info">
@@ -1332,7 +1457,6 @@
                 </div>
               </div>
             </div>
-            <!-- 1 Million Elixir -->
             <div class="cart-item">
               <img src="imagenes/1_million_elixir.jpg" alt="1 Million Elixir" />
               <div class="cart-info">
@@ -1345,7 +1469,6 @@
                 </div>
               </div>
             </div>
-            <!-- 1 Million Intense -->
             <div class="cart-item">
               <img
                 src="imagenes/1_million_intense.jpg"
@@ -1361,7 +1484,6 @@
                 </div>
               </div>
             </div>
-            <!-- 1 Million Lucky -->
             <div class="cart-item">
               <img src="imagenes/1_million_lucky.jpg" alt="1 Million Lucky" />
               <div class="cart-info">
@@ -1390,7 +1512,6 @@
         <aside class="minicart">
           <h2>Las Mas Preferidas</h2>
           <div class="cart-container">
-            <!-- 1 Million Privé -->
             <div class="cart-item">
               <img src="imagenes/1_million_prive.webp" alt="1 Million Privé" />
               <div class="cart-info">
@@ -1403,7 +1524,6 @@
                 </div>
               </div>
             </div>
-            <!-- 1 Million Royal -->
             <div class="cart-item">
               <img src="imagenes/1_million_royal.jpg" alt="1 Million Royal" />
               <div class="cart-info">
@@ -1416,7 +1536,6 @@
                 </div>
               </div>
             </div>
-            <!-- Coconut Passion -->
             <div class="cart-item">
               <img src="imagenes/coconut_passion.jpg" alt="Coconut Passion" />
               <div class="cart-info">
@@ -1429,7 +1548,6 @@
                 </div>
               </div>
             </div>
-            <!-- Coco Mademoiselle -->
             <div class="cart-item">
               <img
                 src="imagenes/coco_mademoiselle.png"
@@ -1500,6 +1618,7 @@
             <li><a href="hombre.html">Hombre</a></li>
             <li><a href="mujer.html">Mujer</a></li>
             <li><a href="unisex.html">Unisex</a></li>
+            <li><a href="ropa.html">Outfit</a></li>
             <li><a href="inicio_sesion.html">Formulario de compra</a></li>
             <li><a href="#" id="verSobreNosotros">Preguntas frecuentes</a></li>
           </ul>
@@ -1585,8 +1704,8 @@
           const type =
             cartInfo.querySelector("p:nth-child(3)")?.textContent || "Perfume";
           const image = item.querySelector("img")?.src || "";
-        }); // cierre forEach
-      } // cierre función
+        });
+      }
 
       function addToCart(brand, name, type, size, price, image) {
         const cartKey = "zhaicolezCart_" + sessionId;
@@ -1761,6 +1880,15 @@
       });
     </script>
 
+    <!-- POPUP PROMOCIONAL -->
+<div id="promoPopup" class="promo-overlay" aria-hidden="true">
+  <div class="promo-box" role="dialog" aria-label="Promoción">
+    <button class="promo-close" id="promoClose" aria-label="Cerrar">&times;</button>
+    <img src="baner-promo/PROMO.svg" alt="Promoción Zhaicolex" class="promo-img" />
+    <div class="promo-timer"><span id="promoTimerBar"></span></div>
+  </div>
+</div>
+
     <!-- BOTONES FLOTANTES -->
     <a
       href="https://wa.me/573151821269?text=Hola,%20estoy%20interesado%20en%20un%20producto"
@@ -1769,10 +1897,9 @@
       >WhatsApp</a
     >
     <a href="alisonIA.html" class="btn-carrito">IA</a>
-
     <button class="btn-arriba" onclick="irArriba()">↑</button>
 
-    <!-- FIREBASE - LÓGICA ORIGINAL INTACTA -->
+    <!-- FIREBASE -->
     <script type="module">
       import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
       import {
@@ -1798,14 +1925,6 @@
       const app = initializeApp(firebaseConfig);
       const db = getFirestore(app);
 
-      const TITULOS = {
-        hombre: "Perfumes para Hombre",
-        mujer: "Perfumes para Mujer",
-        unisex: "Perfumes Unisex",
-        "index-destacado": "Más Destacadas",
-        "index-preferido": "Las Más Preferidas",
-      };
-
       const q = query(
         collection(db, "productos"),
         where("categoria", "==", CATEGORIA),
@@ -1820,7 +1939,6 @@
           section = document.createElement("div");
           section.id = "seccion-firebase-" + CATEGORIA;
 
-          // wrapper con section-header y productos-section al estilo nuevo
           const wrapper = document.createElement("div");
           const header = document.createElement("div");
           header.className = "section-header";
@@ -1894,17 +2012,46 @@
         }
       });
     </script>
+
     <script>
       window.addEventListener("load", () => {
         setTimeout(() => {
           document.getElementById("intro").style.opacity = "0";
-
           setTimeout(() => {
             document.getElementById("intro").remove();
-
             document.getElementById("contenido").classList.add("visible");
           }, 1000);
         }, 2500);
+      });
+    </script>
+    <script>
+      window.addEventListener("load", () => {
+        const popup = document.getElementById("promoPopup");
+        const cerrar = document.getElementById("promoClose");
+        if (!popup) return;
+    
+        let autoCierre;
+    
+        function cerrarPromo() {
+          clearTimeout(autoCierre);
+          popup.classList.add("hide");
+          setTimeout(() => popup.remove(), 500);
+        }
+    
+        // Espera a que termine el logo de intro (2.5s + 1s de fade) y luego aparece
+        setTimeout(() => {
+          popup.classList.add("show");
+          popup.setAttribute("aria-hidden", "false");
+          autoCierre = setTimeout(cerrarPromo, 10000); // se cierra solo a los 10 s
+        }, 4000);
+    
+        cerrar.addEventListener("click", cerrarPromo);
+        popup.addEventListener("click", (e) => {
+          if (e.target === popup) cerrarPromo(); // clic fuera de la imagen también cierra
+        });
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") cerrarPromo();
+        });
       });
     </script>
   </body>

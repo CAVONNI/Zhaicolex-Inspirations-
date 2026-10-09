@@ -1131,6 +1131,87 @@ window.location.href =
 
 }
     </script>
+    <script>
+      // ══════════════════════════════════════════════
+// SINCRONIZACIÓN DE PERFUMES CON SUPABASE (NUEVO)
+// ══════════════════════════════════════════════
+
+// Convierte tipo/categoría de la BD a las categorías del formulario
+function categoriaParaForm(p) {
+  const tipo = (p.tipo || "").toLowerCase();
+  const cat = (p.categoria || "").toLowerCase();
+
+  let genero;
+  if (cat === "hombre") genero = "masculino";
+  else if (cat === "mujer") genero = "femenino";
+  else if (cat === "unisex") genero = "unisex";
+  // index-destacado / index-preferido: se deduce por el tipo
+  else if (tipo.includes("hombre")) genero = "masculino";
+  else if (tipo.includes("mujer")) genero = "femenino";
+  else genero = "unisex";
+
+  return tipo.includes("nicho") ? genero + "-nicho" : genero;
+}
+
+async function sincronizarPerfumesDesdeBD() {
+  try {
+    const { data, error } = await clienteSupabase
+      .from("productos")
+      .select("nombre, tipo, categoria")
+      .order("nombre", { ascending: true });
+
+    if (error) throw error;
+    // Si la BD está vacía se mantiene la lista del código como respaldo
+    if (!data || data.length === 0) return;
+
+    const vistos = new Set();
+    const nuevos = [];
+    data.forEach((p) => {
+      if (!p.nombre) return;
+      const nombre = p.nombre.trim();
+      const cat = categoriaParaForm(p);
+      const key = cat + "|" + nombre.toLowerCase();
+      if (vistos.has(key)) return;
+      vistos.add(key);
+      nuevos.push({ nombre, cat });
+    });
+
+    // Reemplaza el contenido del arreglo existente (sin tocar su lógica)
+    perfumes.length = 0;
+    perfumes.push(...nuevos);
+
+    // Si el perfume seleccionado ya no existe, se limpia la selección
+    if (
+      perfumeSeleccionado &&
+      !perfumes.some((p) => p.nombre === perfumeSeleccionado)
+    ) {
+      perfumeSeleccionado = null;
+      selBox.classList.remove("visible");
+      selTexto.textContent = "";
+    }
+
+    renderGrid();
+  } catch (err) {
+    console.warn("No se pudo sincronizar perfumes con la BD:", err);
+  }
+}
+
+sincronizarPerfumesDesdeBD();
+
+// Actualización en vivo cuando agregas/quitas productos desde el admin
+try {
+  clienteSupabase
+    .channel("productos-form")
+    .on(
+      "postgres_changes",
+      { event: "*", schema: "public", table: "productos" },
+      () => sincronizarPerfumesDesdeBD()
+    )
+    .subscribe();
+} catch (e) {
+  console.warn("Realtime no disponible:", e);
+}
+      </script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="supabase.js"></script>  
 </body>

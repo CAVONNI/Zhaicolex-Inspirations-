@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
       rel="stylesheet"
@@ -17,13 +16,11 @@
         padding: 0;
         font-family: Arial, Helvetica, sans-serif;
       }
-
       body {
         background: #f8f8f8;
         color: #000;
       }
 
-      /* HEADER */
       header {
         background: #fff;
         border-bottom: 1px solid #e5e5e5;
@@ -32,36 +29,30 @@
         align-items: center;
         justify-content: space-between;
       }
-
       .logo {
         font-size: 22px;
         font-weight: bold;
         letter-spacing: 2px;
       }
-
       nav ul {
         list-style: none;
         display: flex;
         gap: 24px;
       }
-
       nav ul li a {
         font-size: 14px;
         text-decoration: none;
         color: #000;
       }
-
       nav ul li a:hover {
         text-decoration: underline;
       }
 
-      /* CONTENEDOR PRINCIPAL */
       .container {
         max-width: 1200px;
         margin: 40px auto;
         padding: 0 20px;
       }
-
       .cart-header {
         background: #fff;
         padding: 24px;
@@ -69,42 +60,35 @@
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
-
       .cart-header h1 {
         font-size: 28px;
         margin-bottom: 8px;
       }
-
       .cart-content {
         display: grid;
         grid-template-columns: 1fr 380px;
         gap: 24px;
       }
 
-      /* PRODUCTOS */
       .products-section {
         background: #fff;
         padding: 24px;
         border-radius: 8px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
-
       .empty-cart {
         text-align: center;
         padding: 60px 20px;
       }
-
       .empty-cart h2 {
         font-size: 24px;
         margin-bottom: 12px;
         color: #666;
       }
-
       .empty-cart p {
         color: #999;
         margin-bottom: 24px;
       }
-
       .btn-primary {
         background: #000;
         color: #fff;
@@ -117,7 +101,6 @@
         display: inline-block;
         transition: background 0.3s;
       }
-
       .btn-primary:hover {
         background: #333;
       }
@@ -128,11 +111,9 @@
         padding: 20px 0;
         border-bottom: 1px solid #e5e5e5;
       }
-
       .cart-item:last-child {
         border-bottom: none;
       }
-
       .item-image {
         width: 100px;
         height: 100px;
@@ -141,29 +122,24 @@
         border-radius: 4px;
         flex-shrink: 0;
       }
-
       .item-details {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 8px;
       }
-
       .item-brand {
         font-weight: bold;
         font-size: 14px;
       }
-
       .item-name {
         font-size: 16px;
         color: #333;
       }
-
       .item-type {
         font-size: 13px;
         color: #666;
       }
-
       .item-size {
         font-size: 13px;
         color: #000;
@@ -174,14 +150,22 @@
         display: inline-block;
         width: fit-content;
       }
-
+      .item-source-badge {
+        font-size: 10px;
+        color: #fff;
+        background: #000;
+        padding: 2px 8px;
+        border-radius: 20px;
+        display: inline-block;
+        width: fit-content;
+        letter-spacing: 1px;
+      }
       .item-actions {
         display: flex;
         align-items: center;
         gap: 16px;
         margin-top: 8px;
       }
-
       .quantity-controls {
         display: flex;
         align-items: center;
@@ -190,7 +174,6 @@
         border-radius: 4px;
         padding: 4px 8px;
       }
-
       .quantity-btn {
         background: none;
         border: none;
@@ -199,17 +182,14 @@
         padding: 4px 8px;
         color: #333;
       }
-
       .quantity-btn:hover {
         color: #000;
       }
-
       .quantity {
         font-size: 14px;
         min-width: 30px;
         text-align: center;
       }
-
       .remove-btn {
         background: none;
         border: none;
@@ -218,18 +198,15 @@
         font-size: 13px;
         text-decoration: underline;
       }
-
       .remove-btn:hover {
         color: #000;
       }
-
       .item-price {
         font-weight: bold;
         font-size: 18px;
         text-align: right;
       }
 
-      /* RESUMEN */
       .summary-section {
         background: #fff;
         padding: 24px;
@@ -239,21 +216,18 @@
         position: sticky;
         top: 20px;
       }
-
       .summary-section h2 {
         font-size: 20px;
         margin-bottom: 20px;
         padding-bottom: 16px;
         border-bottom: 1px solid #e5e5e5;
       }
-
       .summary-row {
         display: flex;
         justify-content: space-between;
         margin-bottom: 12px;
         font-size: 14px;
       }
-
       .summary-row.total {
         font-size: 18px;
         font-weight: bold;
@@ -268,13 +242,11 @@
         gap: 8px;
         margin-bottom: 16px;
       }
-
       .cliente-datos label {
         font-size: 13px;
         font-weight: 500;
         color: #333;
       }
-
       .cliente-datos input {
         padding: 10px;
         border: 1px solid #ddd;
@@ -282,7 +254,6 @@
         font-size: 14px;
         font-family: Arial, Helvetica, sans-serif;
       }
-
       .cliente-datos input:focus {
         outline: none;
         border-color: #000;
@@ -300,64 +271,306 @@
         margin-top: 20px;
         transition: background 0.3s;
       }
-
       .checkout-btn:hover {
         background: #333;
       }
-
       .continue-shopping {
         text-align: center;
         margin-top: 16px;
       }
-
       .continue-shopping a {
         color: #666;
         text-decoration: none;
         font-size: 14px;
       }
-
       .continue-shopping a:hover {
         text-decoration: underline;
         color: #000;
       }
 
-      /* RESPONSIVE */
+      /* ── MODALES BASE ── */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9998;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-box {
+        background: #fff;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-cerrar {
+        position: absolute;
+        top: 14px;
+        right: 18px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #999;
+        cursor: pointer;
+      }
+      .modal-eyebrow {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: #888;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .modal-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 6px;
+      }
+      .modal-desc {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+
+      /* ── OPCIONES DE PAGO ── */
+      .pago-opciones {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .pago-opcion {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 18px;
+        border: 2px solid #e5e5e5;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: #fff;
+        text-align: left;
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+      }
+      .pago-opcion:hover {
+        border-color: #000;
+        background: #f8f8f8;
+      }
+      .pago-opcion.disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      .pago-opcion.disabled:hover {
+        border-color: #e5e5e5;
+        background: #fff;
+      }
+      .pago-opcion-icon {
+        font-size: 28px;
+        flex-shrink: 0;
+      }
+      .pago-opcion-text strong {
+        display: block;
+        font-size: 15px;
+        margin-bottom: 3px;
+      }
+      .pago-opcion-text span {
+        font-size: 12px;
+        color: #888;
+      }
+      .pago-opcion-badge {
+        margin-left: auto;
+        font-size: 10px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        padding: 4px 8px;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .badge-warn {
+        background: #fff3cd;
+        color: #856404;
+      }
+      .badge-ok {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      /* Aviso mixto */
+      .aviso-mixto {
+        background: #fff8e1;
+        border: 1px solid #ffe082;
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-size: 12px;
+        color: #7a5c00;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+      .aviso-mixto strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 13px;
+      }
+
+      /* Separador visual entre opciones */
+      .pago-separador {
+        text-align: center;
+        font-size: 11px;
+        color: #bbb;
+        letter-spacing: 2px;
+        margin: 4px 0;
+      }
+
+      /* ── MODAL CONTRAENTREGA ── */
+      .contra-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .contra-form label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 2px;
+        display: block;
+      }
+      .contra-form input {
+        width: 100%;
+        padding: 11px 14px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .contra-form input:focus {
+        border-color: #000;
+      }
+      .contra-info {
+        background: #f8f8f8;
+        border-radius: 8px;
+        padding: 14px;
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 20px;
+        border-left: 3px solid #000;
+        line-height: 1.6;
+      }
+      .contra-submit {
+        width: 100%;
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 8px;
+        transition: background 0.2s;
+      }
+      .contra-submit:hover {
+        background: #333;
+      }
+
+      /* ── MODAL SEPARAR PEDIDO ── */
+      .separar-pasos {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+      .separar-paso {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 14px;
+        border-radius: 8px;
+        background: #f8f8f8;
+      }
+      .separar-paso-num {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: #000;
+        color: #fff;
+        font-size: 13px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .separar-paso-num.active {
+        background: #000;
+      }
+      .separar-paso-text strong {
+        display: block;
+        font-size: 13px;
+        margin-bottom: 2px;
+      }
+      .separar-paso-text span {
+        font-size: 12px;
+        color: #888;
+      }
+      .separar-btn {
+        width: 100%;
+        background: #000;
+        color: #fff;
+        border: none;
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+      .separar-btn:hover {
+        background: #333;
+      }
+
+      /* ── RESPONSIVE ── */
       @media (max-width: 968px) {
         .cart-content {
           grid-template-columns: 1fr;
         }
-
         .summary-section {
           position: static;
         }
       }
-
       @media (max-width: 600px) {
         header {
           padding: 16px 20px;
         }
-
         .logo {
           font-size: 18px;
         }
-
         nav ul {
           gap: 16px;
         }
-
         .cart-item {
           flex-direction: column;
         }
-
         .item-image {
           width: 100%;
           height: 200px;
         }
-
         .item-price {
           text-align: left;
         }
       }
+
       .whatsapp-centro {
         position: fixed;
         bottom: 20px;
@@ -372,17 +585,11 @@
         font-weight: bold;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         z-index: 1000;
-        transition: background-color 0.3s;
-      }
-
-      .whatsapp-centro:hover {
-        background-color: #000;
       }
       .btn-arriba {
         position: fixed;
-        bottom: 110px; /* ⬆ lo sube respecto al botón de WhatsApp */
+        bottom: 110px;
         right: 20px;
-
         width: 45px;
         height: 45px;
         border-radius: 50%;
@@ -399,26 +606,22 @@
   </head>
   <body>
     <script src="funciones.js"></script>
-    <!-- HEADER -->
+
     <header>
       <div class="logo">ZHAICOLEX INSPIRATIONS</div>
       <nav>
         <ul>
           <li><a href="index.html">Volver al catálogo</a></li>
-          <li></li>
         </ul>
       </nav>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
     <div class="container">
       <div class="cart-header">
         <h1>Mi Carrito</h1>
         <p id="item-count">0 productos</p>
       </div>
-
       <div class="cart-content">
-        <!-- PRODUCTOS -->
         <div class="products-section">
           <div id="cart-items">
             <div class="empty-cart">
@@ -429,32 +632,31 @@
           </div>
         </div>
 
-        <!-- RESUMEN -->
         <div class="summary-section" id="summary" style="display: none">
           <h2>Resumen del pedido</h2>
-
-          <!-- Datos del cliente (nuevo) -->
           <div class="cliente-datos">
             <label for="clienteNombre">Nombre completo</label>
-            <input type="text" id="clienteNombre" placeholder="Tu nombre completo" />
-
+            <input
+              type="text"
+              id="clienteNombre"
+              placeholder="Tu nombre completo"
+            />
             <label for="clienteCorreo">Correo electrónico</label>
-            <input type="text" id="clienteCorreo" placeholder="Para enviarte la confirmación" />
+            <input
+              type="text"
+              id="clienteCorreo"
+              placeholder="Para enviarte la confirmación"
+            />
           </div>
-
           <div class="summary-row">
-            <span>Subtotal</span>
-            <span id="subtotal">$ 0</span>
+            <span>Subtotal</span><span id="subtotal">$ 0</span>
           </div>
           <div class="summary-row">
-            <span>Envío</span>
-            <span id="shipping">A calcular</span>
+            <span>Envío</span><span id="shipping">A calcular</span>
           </div>
           <div class="summary-row total">
-            <span>Total</span>
-            <span id="total">$ 0</span>
+            <span>Total</span><span id="total">$ 0</span>
           </div>
-          <!-- DESPUÉS -->
           <button class="checkout-btn" onclick="mostrarTerminos()">
             Realizar pedido
           </button>
@@ -465,11 +667,206 @@
       </div>
     </div>
 
+    <!-- ── MODAL MÉTODO DE PAGO ── -->
+    <div class="modal-overlay" id="pagoOverlay">
+      <div class="modal-box">
+        <button class="modal-cerrar" onclick="cerrar('pagoOverlay')">✕</button>
+        <div class="modal-eyebrow">Paso final</div>
+        <div class="modal-title" id="pagoTitulo">¿Cómo quieres pagar?</div>
+        <div class="modal-desc" id="pagoDesc">
+          Elige tu método de pago preferido.
+        </div>
+        <div id="avisoMixto" style="display: none" class="aviso-mixto">
+          <strong>⚠️ Tienes ropa y perfumes en el carrito</strong>
+          Los perfumes no aplican para contraentrega. Puedes pagar todo con
+          Wompi en un solo cobro, o separar el pedido para enviar la ropa
+          contraentrega y los perfumes por Wompi.
+        </div>
+        <div class="pago-opciones" id="pagoOpciones"></div>
+      </div>
+    </div>
+
+    <!-- ── MODAL SEPARAR PEDIDO ── -->
+    <div class="modal-overlay" id="separarOverlay">
+      <div class="modal-box">
+        <button class="modal-cerrar" onclick="cerrar('separarOverlay')">
+          ✕
+        </button>
+        <div class="modal-eyebrow">Pedido separado</div>
+        <div class="modal-title">Procesaremos en dos pasos</div>
+        <div class="modal-desc">
+          Primero gestionamos tu ropa contraentrega, luego continuamos con el
+          pago de tus perfumes.
+        </div>
+        <div class="separar-pasos">
+          <div class="separar-paso">
+            <div class="separar-paso-num">1</div>
+            <div class="separar-paso-text">
+              <strong> Ropa — Contraentrega</strong>
+              <span>Completas tus datos de envío. Pagas al recibir.</span>
+            </div>
+          </div>
+          <div class="separar-paso">
+            <div class="separar-paso-num">2</div>
+            <div class="separar-paso-text">
+              <strong>🌸 Perfumes — Wompi</strong>
+              <span>Se abre automáticamente el pago en línea.</span>
+            </div>
+          </div>
+        </div>
+        <button class="separar-btn" onclick="iniciarFlujoSeparado()">
+          Entendido, comenzar
+        </button>
+      </div>
+    </div>
+
+    <!-- ── MODAL CONTRAENTREGA ── -->
+    <div class="modal-overlay" id="contraOverlay">
+      <div class="modal-box">
+        <button class="modal-cerrar" onclick="cerrar('contraOverlay')">
+          ✕
+        </button>
+        <div class="modal-eyebrow" id="contraEyebrow">Paso 1 de 2 — Ropa</div>
+        <div class="modal-title">Datos de entrega</div>
+        <div class="modal-desc">
+          Completa tu información para el envío contraentrega de tu ropa.
+        </div>
+        <div class="contra-info" id="contraInfo">
+          Dropi gestionará el envío. Pagas al recibir. Una vez confirmemos tu
+          pedido te notificaremos por WhatsApp.
+        </div>
+        <div class="contra-form">
+          <div>
+            <label>Nombre completo *</label
+            ><input
+              type="text"
+              id="contraNombre"
+              placeholder="Tu nombre completo"
+            />
+          </div>
+          <div>
+            <label>Teléfono *</label
+            ><input
+              type="tel"
+              id="contraTelefono"
+              placeholder="Tu número de celular"
+            />
+          </div>
+          <div>
+            <label>Dirección de entrega *</label
+            ><input
+              type="text"
+              id="contraDir"
+              placeholder="Calle, número, barrio"
+            />
+          </div>
+          <div>
+            <label>Ciudad *</label
+            ><input
+              type="text"
+              id="contraCiudad"
+              placeholder="Ciudad de entrega"
+            />
+          </div>
+          <div>
+            <label>Departamento *</label
+            ><input type="text" id="contraDpto" placeholder="Departamento" />
+          </div>
+          <div>
+            <label>Nota adicional (opcional)</label
+            ><input
+              type="text"
+              id="contraNota"
+              placeholder="Indicaciones especiales"
+            />
+          </div>
+          <button
+            class="contra-submit"
+            id="contraBtnConfirmar"
+            onclick="confirmarContraentrega()"
+          >
+            Confirmar pedido contraentrega
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MODAL TÉRMINOS ── -->
+    <div class="modal-overlay" id="terminosOverlay">
+      <div class="modal-box">
+        <button class="modal-cerrar" onclick="cerrar('terminosOverlay')">
+          ✕
+        </button>
+        <h2 style="font-size: 24px; margin-bottom: 8px">
+          TÉRMINOS Y CONDICIONES
+        </h2>
+        <p style="font-size: 12px; color: #777; margin-bottom: 20px">
+          Última actualización: 6 de enero de 2026
+        </p>
+        <p style="margin-bottom: 16px">
+          Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al realizar una
+          compra aceptas los presentes Términos y Condiciones.
+        </p>
+        <h3 style="font-size: 14px; margin: 18px 0 8px">1. Productos</h3>
+        <p style="font-size: 13px; color: #555; margin-bottom: 12px">
+          Las imágenes son referenciales. Los precios están en COP y pueden
+          cambiar sin previo aviso.
+        </p>
+        <h3 style="font-size: 14px; margin: 18px 0 8px">2. Pedidos y pagos</h3>
+        <p style="font-size: 13px; color: #555; margin-bottom: 12px">
+          Los pedidos se confirman una vez verificado el pago. Para
+          contraentrega, el pago se realiza al recibir.
+        </p>
+        <h3 style="font-size: 14px; margin: 18px 0 8px">3. Envíos</h3>
+        <p style="font-size: 13px; color: #555; margin-bottom: 12px">
+          Envíos a nivel nacional en Colombia. Los tiempos son estimados.
+        </p>
+        <h3 style="font-size: 14px; margin: 18px 0 8px">4. Devoluciones</h3>
+        <p style="font-size: 13px; color: #555; margin-bottom: 24px">
+          No se aceptan devoluciones de productos cosméticos abiertos. Cambios
+          por error o defecto en 24 horas.
+        </p>
+        <h3 style="font-size: 14px; margin: 18px 0 8px">
+          5. Protección de datos
+        </h3>
+        <p style="font-size: 13px; color: #555; margin-bottom: 24px">
+          Información tratada conforme a la Ley 1581 de 2012 de Colombia.
+        </p>
+        <div
+          style="
+            border-top: 1px solid #e5e5e5;
+            padding-top: 20px;
+            margin-top: 10px;
+          "
+        >
+          <p style="font-size: 13px; color: #444; margin-bottom: 16px">
+            Al continuar confirmas que has leído y aceptado estos términos.
+          </p>
+          <button
+            onclick="aceptarYPagar()"
+            style="
+              width: 100%;
+              background: #000;
+              color: #fff;
+              border: none;
+              padding: 14px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 15px;
+              font-weight: bold;
+            "
+          >
+            Aceptar y continuar
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script>
       let cart = [];
       let sessionId = "";
+      let flujoSeparado = false; // true cuando se procesa ropa primero y luego perfumes
 
-      // Generar ID de sesión único
       function generateSessionId() {
         return (
           "session_" +
@@ -478,173 +875,127 @@
           Math.random().toString(36).substr(2, 9)
         );
       }
-
-      // Obtener o crear ID de sesión
       function getSessionId() {
-        // Buscar en sessionStorage (se borra al cerrar navegador/pestaña)
         let session = sessionStorage.getItem("zhaicolezSessionId");
-
         if (!session) {
-          // Crear nueva sesión
           session = generateSessionId();
           sessionStorage.setItem("zhaicolezSessionId", session);
-          console.log("Nueva sesión creada:", session);
-        } else {
-          console.log("Sesión existente:", session);
         }
-
         return session;
       }
-
-      // Cargar carrito de la sesión actual
       function loadCart() {
         sessionId = getSessionId();
-        const cartKey = "zhaicolezCart_" + sessionId;
-        const savedCart = localStorage.getItem(cartKey);
-
-        if (savedCart) {
-          cart = JSON.parse(savedCart);
-          console.log("Carrito cargado para sesión:", sessionId, cart);
-        } else {
-          cart = [];
-          console.log("Carrito nuevo para sesión:", sessionId);
-        }
-
+        const saved = localStorage.getItem("zhaicolezCart_" + sessionId);
+        cart = saved ? JSON.parse(saved) : [];
         renderCart();
       }
-
-      // Escuchar mensajes de otras ventanas (catálogo)
-      window.addEventListener("message", function (event) {
-        if (event.data.action === "addToCart") {
-          addToCartFromCatalog(event.data.product);
-        }
+      window.addEventListener("message", function (e) {
+        if (e.data.action === "addToCart") addToCartFromCatalog(e.data.product);
       });
-
-      // Guardar carrito en localStorage con ID de sesión
       function saveCart() {
-        const cartKey = "zhaicolezCart_" + sessionId;
-        localStorage.setItem(cartKey, JSON.stringify(cart));
-        console.log("Carrito guardado:", cartKey, cart);
+        localStorage.setItem(
+          "zhaicolezCart_" + sessionId,
+          JSON.stringify(cart)
+        );
       }
-
-      // Limpiar carritos antiguos (opcional - limpia sesiones de más de 7 días)
       function cleanOldCarts() {
         const now = Date.now();
-        const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 días en milisegundos
-
+        const maxAge = 7 * 24 * 60 * 60 * 1000;
         for (let i = 0; i < localStorage.length; i++) {
           const key = localStorage.key(i);
           if (key && key.startsWith("zhaicolezCart_session_")) {
             try {
-              const timestamp = parseInt(key.split("_")[2]);
-              if (now - timestamp > maxAge) {
+              if (now - parseInt(key.split("_")[2]) > maxAge)
                 localStorage.removeItem(key);
-                console.log("Carrito antiguo eliminado:", key);
-              }
-            } catch (e) {
-              console.log("Error al limpiar carrito:", e);
-            }
+            } catch (e) {}
           }
         }
       }
-
-      // Agregar producto desde catálogo
       function addToCartFromCatalog(product) {
-        const existingIndex = cart.findIndex(
-          (item) =>
-            item.brand === product.brand &&
-            item.name === product.name &&
-            item.size === product.size
+        const idx = cart.findIndex(
+          (i) =>
+            i.brand === product.brand &&
+            i.name === product.name &&
+            i.size === product.size
         );
-
-        if (existingIndex !== -1) {
-          cart[existingIndex].quantity += 1;
-        } else {
-          cart.push({ ...product, quantity: 1 });
-        }
-
+        if (idx !== -1) cart[idx].quantity += 1;
+        else cart.push({ ...product, quantity: 1 });
         saveCart();
         renderCart();
       }
 
-      // Renderizar carrito
+      // ── Detectores de contenido ──
+      function tieneRopa() {
+        return cart.some((i) => i.source === "Outfit");
+      }
+      function tienePerfumes() {
+        return cart.some((i) => i.source !== "Outfit");
+      }
+      function esMixto() {
+        return tieneRopa() && tienePerfumes();
+      }
+
       function renderCart() {
         const cartItemsDiv = document.getElementById("cart-items");
         const summaryDiv = document.getElementById("summary");
         const itemCount = document.getElementById("item-count");
-
         if (cart.length === 0) {
-          cartItemsDiv.innerHTML = `
-          <div class="empty-cart">
-            <h2>Tu carrito está vacío</h2>
-            <p>Agrega productos desde nuestro catálogo</p>
-            <a href="index.html" class="btn-primary">Ir al catálogo</a>
-          </div>
-        `;
+          cartItemsDiv.innerHTML = `<div class="empty-cart"><h2>Tu carrito está vacío</h2><p>Agrega productos desde nuestro catálogo</p><a href="index.html" class="btn-primary">Ir al catálogo</a></div>`;
           summaryDiv.style.display = "none";
           itemCount.textContent = "0 productos";
           return;
         }
-
-        // Renderizar productos
         cartItemsDiv.innerHTML = cart
           .map(
             (item, index) => `
-        <div class="cart-item">
-          <img src="${item.image}" alt="${item.name}" class="item-image" />
-          <div class="item-details">
-            <div class="item-brand">${item.brand}</div>
-            <div class="item-name">${item.name}</div>
-            <div class="item-type">${item.type}</div>
-            <div class="item-size">${item.size}</div>
-            <div class="item-actions">
-              <div class="quantity-controls">
-                <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
-                <span class="quantity">${item.quantity}</span>
-                <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" class="item-image" />
+            <div class="item-details">
+              <div class="item-brand">${item.brand}</div>
+              <div class="item-name">${item.name}</div>
+              <div class="item-type">${item.type}</div>
+              <div class="item-size">${item.size}</div>
+              ${
+                item.source === "Outfit"
+                  ? '<span class="item-source-badge">Outfit</span>'
+                  : ""
+              }
+              <div class="item-actions">
+                <div class="quantity-controls">
+                  <button class="quantity-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                  <span class="quantity">${item.quantity}</span>
+                  <button class="quantity-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                </div>
+                <button class="remove-btn" onclick="removeItem(${index})">Eliminar</button>
               </div>
-              <button class="remove-btn" onclick="removeItem(${index})">Eliminar</button>
             </div>
-          </div>
-          <div class="item-price">$ ${(
-            item.price * item.quantity
-          ).toLocaleString("es-CO")}</div>
-        </div>
-      `
+            <div class="item-price">$ ${(
+              item.price * item.quantity
+            ).toLocaleString("es-CO")}</div>
+          </div>`
           )
           .join("");
 
-        // Actualizar resumen
-        const subtotal = cart.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        );
+        const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
         document.getElementById(
           "subtotal"
         ).textContent = `$ ${subtotal.toLocaleString("es-CO")}`;
         document.getElementById(
           "total"
         ).textContent = `$ ${subtotal.toLocaleString("es-CO")}`;
-
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        const totalItems = cart.reduce((s, i) => s + i.quantity, 0);
         itemCount.textContent = `${totalItems} producto${
           totalItems !== 1 ? "s" : ""
         }`;
-
         summaryDiv.style.display = "block";
       }
 
-      // Actualizar cantidad
       function updateQuantity(index, change) {
         cart[index].quantity += change;
-        if (cart[index].quantity <= 0) {
-          cart.splice(index, 1);
-        }
+        if (cart[index].quantity <= 0) cart.splice(index, 1);
         saveCart();
         renderCart();
       }
-
-      // Eliminar producto
       function removeItem(index) {
         if (confirm("¿Estás seguro de eliminar este producto?")) {
           cart.splice(index, 1);
@@ -653,100 +1004,25 @@
         }
       }
 
-      // Cargar carrito al iniciar
       loadCart();
-      cleanOldCarts(); // Limpiar carritos antiguos
+      cleanOldCarts();
       function irArriba() {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    </script>
 
-    <!-- EmailJS (nuevo: para el correo de confirmación al cliente) -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-      emailjs.init({ publicKey: "IRzgTp65xhOEEqyLJ" });
-    </script>
+      // ── Helpers modales ──
+      function abrir(id) {
+        document.getElementById(id).classList.add("open");
+      }
+      function cerrar(id) {
+        document.getElementById(id).classList.remove("open");
+      }
 
-    <script>
-     async function checkout() {
-  const nombre = document.getElementById("clienteNombre").value.trim();
-  const correo = document.getElementById("clienteCorreo").value.trim();
-
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const totalEnCentavos = Math.round(total * 100);
-  const referencia = "pedido_" + Date.now();
-
-  // Pedir la firma al worker de Cloudflare
-  const res = await fetch(`https://zhaicolez-firma.maycolrealpe2006.workers.dev/?ref=${referencia}&monto=${totalEnCentavos}`);
-  const { integrity } = await res.json();
-
-  const checkoutWidget = new WidgetCheckout({
-    currency: "COP",
-    amountInCents: totalEnCentavos,
-    reference: referencia,
-    publicKey: "pub_prod_xr6r8K4K1LmUAdj3j2ysVlUcY7IRtoR4",
-    redirectUrl: window.location.href,
-    signature: { integrity }
-  });
-
-  checkoutWidget.open(function (result) {
-    const transaction = result ? result.transaction : null;
-    const estadoPago = transaction ? transaction.status : "CANCELADO";
-
-    const message = cart.map(item =>
-      `${item.brand} - ${item.name}\nTamaño: ${item.size}\nCantidad: ${item.quantity}\nPrecio: $${(item.price * item.quantity).toLocaleString("es-CO")}`
-    ).join("\n\n");
-
-    // ── Notificación a Telegram vía Supabase Edge Function: SIEMPRE, sin importar el resultado del pago ──
-    fetch("https://nnjoifohytfgamkduunn.supabase.co/functions/v1/notificar-pedido", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uam9pZm9oeXRmZ2Fta2R1dW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyMzc2NjIsImV4cCI6MjA5NjgxMzY2Mn0.l17Szwu7BrKIH49wLqN-6C3_yjS4jHIMLLMQ-FL_lC4",
-      },
-      body: JSON.stringify({
-        nombre: nombre,
-        correo: correo,
-        detalleItems: message,
-        total: total.toLocaleString("es-CO"),
-        referencia: referencia,
-        estado: estadoPago,
-      }),
-    }).catch(err => console.error("Error notificando pedido a Telegram:", err));
-
-    // ── Correo de confirmación y WhatsApp: SOLO si el pago fue aprobado ──
-    if (estadoPago === "APPROVED") {
-      emailjs.send("service_jv99csq", "template_36ltojh", {
-        nombre: nombre,
-        perfume: message,
-        cantidad: cart.reduce((sum, item) => sum + item.quantity, 0),
-        gramaje: cart.map(i => i.size).join(", "),
-        contacto: "—",
-        nota: "Referencia: " + referencia,
-        email: correo,
-      }).catch(err => console.error("Error enviando correo:", err));
-
-      const whatsappMessage = encodeURIComponent(
-        `✅ ¡Hola! Ya realicé el pago.\n\n📦 Pedido:\n\n${message}\n\n💰 Total: $${total.toLocaleString("es-CO")}\n\n🧾 Referencia: ${referencia}`
-      );
-      window.open(`https://wa.me/573151821269?text=${whatsappMessage}`, "_blank");
-    }
-  });
-}
-    </script>
-
-    <script src="https://checkout.wompi.co/widget.js"></script>
-    <button class="btn-arriba" onclick="irArriba()">↑</button>
-    <script>
+      // ── Mostrar términos ──
       function mostrarTerminos() {
-        // Validar datos del cliente (nuevo)
         const nombre = document.getElementById("clienteNombre").value.trim();
         const correo = document.getElementById("clienteCorreo").value.trim();
         const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
         if (!nombre) {
           alert("Por favor ingresa tu nombre antes de continuar.");
           return;
@@ -755,128 +1031,402 @@
           alert("Por favor ingresa un correo electrónico válido.");
           return;
         }
+        abrir("terminosOverlay");
+      }
 
-        // Crear modal si no existe
-        if (document.getElementById("modalTerminos")) {
-          document.getElementById("modalTerminos").style.display = "block";
+      // ── Al aceptar términos → decidir flujo ──
+      async function aceptarYPagar() {
+        cerrar("terminosOverlay");
+        if (esMixto()) {
+          // Carrito mixto: mostrar modal de elección
+          mostrarModalPagoMixto();
+        } else if (tieneRopa()) {
+          // Solo ropa: mostrar opciones de pago para ropa
+          mostrarModalPagoRopa();
+        } else {
+          // Solo perfumes: ir directo a Wompi
+          await checkout();
+        }
+      }
+
+      // ── Modal pago — solo ropa ──
+      function mostrarModalPagoRopa() {
+        document.getElementById("pagoTitulo").textContent =
+          "¿Cómo quieres pagar?";
+        document.getElementById("pagoDesc").textContent =
+          "Tu pedido es de ropa. Elige tu método de pago.";
+        document.getElementById("avisoMixto").style.display = "none";
+        document.getElementById("pagoOpciones").innerHTML = `
+          <button class="pago-opcion" onclick="elegirWompi()">
+            <span class="pago-opcion-icon">💳</span>
+            <div class="pago-opcion-text"><strong>Pagar ahora con Wompi</strong><span>Tarjeta, PSE, Nequi, transferencia</span></div>
+            <span class="pago-opcion-badge badge-ok">INMEDIATO</span>
+          </button>
+          <div class="pago-separador">— o —</div>
+          <button class="pago-opcion" onclick="elegirContraentrega()">
+            <span class="pago-opcion-icon"></span>
+            <div class="pago-opcion-text"><strong>Pago contraentrega</strong><span>Pagas cuando recibes tu pedido · Dropi gestiona el envío</span></div>
+            <span class="pago-opcion-badge badge-ok">DISPONIBLE</span>
+          </button>`;
+        abrir("pagoOverlay");
+      }
+
+      // ── Modal pago — mixto (ropa + perfumes) ──
+      function mostrarModalPagoMixto() {
+        document.getElementById("pagoTitulo").textContent =
+          "¿Cómo quieres pagar?";
+        document.getElementById("pagoDesc").textContent =
+          "Tienes ropa y perfumes en tu carrito.";
+        document.getElementById("avisoMixto").style.display = "block";
+        document.getElementById("pagoOpciones").innerHTML = `
+          <button class="pago-opcion" onclick="elegirWompiTodo()">
+            <span class="pago-opcion-icon">💳</span>
+            <div class="pago-opcion-text"><strong>Pagar todo con Wompi</strong><span>Un solo cobro para ropa y perfumes</span></div>
+            <span class="pago-opcion-badge badge-ok">RECOMENDADO</span>
+          </button>
+          <div class="pago-separador">— o —</div>
+          <button class="pago-opcion" onclick="elegirSeparar()">
+            <span class="pago-opcion-icon">📦</span>
+            <div class="pago-opcion-text"><strong>Separar el pedido</strong><span>Ropa contraentrega · Perfumes por Wompi</span></div>
+            <span class="pago-opcion-badge badge-warn">2 PASOS</span>
+          </button>`;
+        abrir("pagoOverlay");
+      }
+
+      function elegirWompi() {
+        cerrar("pagoOverlay");
+        checkout();
+      }
+      function elegirWompiTodo() {
+        cerrar("pagoOverlay");
+        checkout();
+      }
+
+      function elegirContraentrega() {
+        cerrar("pagoOverlay");
+        flujoSeparado = false;
+        prepararContraModal(false);
+        abrir("contraOverlay");
+      }
+
+      function elegirSeparar() {
+        cerrar("pagoOverlay");
+        abrir("separarOverlay");
+      }
+
+      // ── Iniciar flujo separado ──
+      function iniciarFlujoSeparado() {
+        cerrar("separarOverlay");
+        flujoSeparado = true;
+        prepararContraModal(true);
+        const nombre = document.getElementById("clienteNombre").value.trim();
+        if (nombre) document.getElementById("contraNombre").value = nombre;
+        abrir("contraOverlay");
+      }
+
+      function prepararContraModal(esSeparado) {
+        if (esSeparado) {
+          document.getElementById("contraEyebrow").textContent =
+            "Paso 1 de 2 — Ropa";
+          document.getElementById("contraInfo").textContent =
+            " Primero gestionamos tu ropa. Luego continuarás con el pago de tus perfumes por Wompi.";
+          document.getElementById("contraBtnConfirmar").textContent =
+            "Confirmar ropa y continuar con perfumes →";
+        } else {
+          document.getElementById("contraEyebrow").textContent =
+            "Envío contraentrega";
+          document.getElementById("contraInfo").textContent =
+            " Dropi gestionará el envío. Pagas al recibir tu pedido.";
+          document.getElementById("contraBtnConfirmar").textContent =
+            "Confirmar pedido contraentrega";
+        }
+        // Pre-llenar nombre
+        const nombre = document.getElementById("clienteNombre").value.trim();
+        if (nombre) document.getElementById("contraNombre").value = nombre;
+      }
+
+      // ── Confirmar contraentrega ──
+      async function confirmarContraentrega() {
+        const nombre = document.getElementById("contraNombre").value.trim();
+        const telefono = document.getElementById("contraTelefono").value.trim();
+        const dir = document.getElementById("contraDir").value.trim();
+        const ciudad = document.getElementById("contraCiudad").value.trim();
+        const dpto = document.getElementById("contraDpto").value.trim();
+        const nota = document.getElementById("contraNota").value.trim();
+
+        if (!nombre || !telefono || !dir || !ciudad || !dpto) {
+          alert("Por favor completa todos los campos obligatorios.");
           return;
         }
 
-        const modal = document.createElement("div");
-        modal.id = "modalTerminos";
-        modal.style.cssText = `
-          display:block;
-          position:fixed;
-          inset:0;
-          background:rgba(0,0,0,0.6);
-          z-index:9999;
-        `;
+        // Solo los productos de ropa
+        const itemsRopa = cart.filter((i) => i.source === "Outfit");
+        const totalRopa = itemsRopa.reduce(
+          (s, i) => s + i.price * i.quantity,
+          0
+        );
+        const referencia = "contra_" + Date.now();
 
-        modal.innerHTML = `
-          <div style="
-            background:#fff;
-            width:90%;
-            max-width:600px;
-            max-height:85vh;
-            overflow-y:auto;
-            margin:4% auto;
-            padding:30px;
-            border-radius:14px;
-            position:relative;
-            font-family:Arial, Helvetica, sans-serif;
-            line-height:1.7;
-            color:#222;
-            box-shadow:0 10px 35px rgba(0,0,0,0.25);
-          ">
-            <span id="cerrarTerminos" style="
-              position:absolute; top:15px; right:18px;
-              cursor:pointer; font-size:28px; color:#555;
-            ">&times;</span>
-    
-            <h2 style="font-size:28px; margin-bottom:8px; color:#000; letter-spacing:1px;">
-              TÉRMINOS Y CONDICIONES
-            </h2>
-            <p style="font-size:13px; color:#777; margin-bottom:28px;">
-              Última actualización: 6 de enero de 2026
-            </p>
-            <p style="margin-bottom:22px;">
-              Bienvenido a <strong>Zhaicolex Inspirations</strong>. Al acceder, navegar o realizar
-              una compra a través de nuestros canales digitales, redes sociales o medios de contacto,
-              aceptas cumplir con los presentes Términos y Condiciones.
-            </p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">1. Información general</h3>
-            <p style="margin-bottom:18px;">Zhaicolex Inspirations es una perfumería dedicada a la comercialización de perfumes árabes, nicho y de diseñador, en presentaciones originales y/o réplicas.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">2. Productos</h3>
-            <p style="margin-bottom:12px;">• Las imágenes de los productos son referenciales.</p>
-            <p style="margin-bottom:12px;">• Los precios están expresados en pesos colombianos (COP) y pueden cambiar sin previo aviso.</p>
-            <p style="margin-bottom:12px;">• La disponibilidad de los productos está sujeta a inventario.</p>
-            <p style="margin-bottom:18px;">• La duración y fijación de los perfumes puede variar según el tipo de piel.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">3. Pedidos y pagos</h3>
-            <p style="margin-bottom:12px;">• Los pedidos se confirman únicamente una vez verificado el pago completo.</p>
-            <p style="margin-bottom:18px;">• Zhaicolex Inspirations podrá rechazar pedidos por errores de precio, falta de stock o sospecha de fraude.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">4. Envíos</h3>
-            <p style="margin-bottom:12px;">• Realizamos envíos a nivel nacional en Colombia.</p>
-            <p style="margin-bottom:18px;">• Los tiempos de entrega son estimados y pueden variar por causas externas.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">5. Cambios y devoluciones</h3>
-            <p style="margin-bottom:12px;">• Por tratarse de productos cosméticos, no se aceptan devoluciones una vez abierto el producto.</p>
-            <p style="margin-bottom:18px;">• Solo se aceptarán cambios por errores de envío o productos defectuosos, reportados dentro de las primeras 24 horas.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">6. Garantía</h3>
-            <p style="margin-bottom:12px;">• La garantía cubre únicamente defectos de fábrica.</p>
-            <p style="margin-bottom:18px;">• No cubre daños ocasionados por mal uso o almacenamiento inadecuado.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">7. Propiedad intelectual</h3>
-            <p style="margin-bottom:18px;">Todo el contenido de Zhaicolex Inspirations está protegido por derechos de autor y propiedad intelectual.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">8. Protección de datos</h3>
-            <p style="margin-bottom:18px;">La información personal será tratada conforme a la Ley 1581 de 2012 de Colombia.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">9. Responsabilidad</h3>
-            <p style="margin-bottom:18px;">Zhaicolex Inspirations no se hace responsable por reacciones alérgicas derivadas del uso de los productos.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">10. Modificaciones</h3>
-            <p style="margin-bottom:18px;">Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento.</p>
-    
-            <h3 style="margin-bottom:10px; margin-top:25px;">11. Contacto</h3>
-            <p style="margin-bottom:28px;">Para dudas o solicitudes puedes comunicarte mediante nuestros canales oficiales.</p>
-    
-            <div style="margin-top:35px; padding-top:20px; border-top:1px solid #e5e5e5;">
-              <p style="font-size:14px; color:#444; margin-bottom:20px;">
-                Al realizar una compra confirmas que has leído y aceptado estos términos y condiciones.
-              </p>
-              <button id="aceptarTerminos" style="
-                width:100%; background:#000; color:#fff; border:none;
-                padding:14px; border-radius:8px; cursor:pointer;
-                font-size:15px; font-weight:bold;
-              ">
-                Aceptar y continuar
-              </button>
-            </div>
-          </div>
-        `;
+        const messageRopa = itemsRopa
+          .map(
+            (item) =>
+              `${item.brand} - ${item.name}\nTalla: ${item.size}\nCantidad: ${
+                item.quantity
+              }\nPrecio: $${(item.price * item.quantity).toLocaleString(
+                "es-CO"
+              )}`
+          )
+          .join("\n\n");
 
-        document.body.appendChild(modal);
+          const messageNotif = itemsRopa
+  .map(
+    (item) =>
+      `${item.brand} - ${item.name}\nTalla: ${item.size}\nCantidad: ${item.quantity}\nPrecio: $${(item.price * item.quantity).toLocaleString("es-CO")}\nDropi ID: ${item.dropiId ?? "-"} | Variación: ${item.variationId ?? "-"}`
+  )
+  .join("\n\n");
 
-        // Cerrar con la X o clic fuera
-        modal.addEventListener("click", (e) => {
-          if (e.target.id === "cerrarTerminos" || e.target === modal) {
-            modal.style.display = "none";
+        // Notificar a Supabase/Telegram
+        fetch(
+          "https://nnjoifohytfgamkduunn.supabase.co/functions/v1/notificar-pedido",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uam9pZm9oeXRmZ2Fta2R1dW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyMzc2NjIsImV4cCI6MjA5NjgxMzY2Mn0.l17Szwu7BrKIH49wLqN-6C3_yjS4jHIMLLMQ-FL_lC4",
+            },
+            body: JSON.stringify({
+              nombre,
+              correo: "contraentrega",
+              detalleItems: messageNotif,
+              total: totalRopa.toLocaleString("es-CO"),
+              referencia,
+              estado: "CONTRAENTREGA",
+              direccion: `${dir}, ${ciudad}, ${dpto}`,
+              telefono,
+              nota: nota || "Sin nota",
+            }),
           }
-        });
+        ).catch((err) => console.error("Error notificando:", err));
 
-        // Aceptar → lanzar el pago
-        document
-          .getElementById("aceptarTerminos")
-          .addEventListener("click", () => {
-            modal.style.display = "none";
-            checkout(); // ← aquí se llama al pago real
-          });
+        // WhatsApp con datos de ropa
+        const whatsappRopa = encodeURIComponent(
+          ` *PEDIDO CONTRAENTREGA — ROPA*\n\n` +
+            `👤 Cliente: ${nombre}\n📞 Teléfono: ${telefono}\n` +
+            `📍 Dirección: ${dir}\n🏙️ Ciudad: ${ciudad}, ${dpto}\n` +
+            `${nota ? `📝 Nota: ${nota}\n` : ""}` +
+            `\n📦 Productos:\n\n${messageRopa}\n\n` +
+            `💰 Total ropa: $${totalRopa.toLocaleString(
+              "es-CO"
+            )}\n🧾 Ref: ${referencia}`
+        );
+
+        cerrar("contraOverlay");
+        window.open(
+          `https://wa.me/573151821269?text=${whatsappRopa}`,
+          "_blank"
+        );
+
+        if (flujoSeparado) {
+          // Hay perfumes → continuar con Wompi solo para perfumes
+          setTimeout(async () => {
+            alert(
+              "✅ ¡Pedido de ropa recibido!\n\nAhora procesaremos el pago de tus perfumes."
+            );
+            await checkoutSoloPerfumes();
+          }, 800);
+        } else {
+          alert(
+            `✅ ¡Pedido contraentrega recibido!\n\nTe contactaremos al ${telefono} para confirmar antes del envío.`
+          );
+        }
       }
     </script>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      emailjs.init({ publicKey: "IRzgTp65xhOEEqyLJ" });
+    </script>
+
+    <script>
+      // ── CHECKOUT WOMPI — todo el carrito (lógica original intacta) ──
+      async function checkout() {
+        const nombre = document.getElementById("clienteNombre").value.trim();
+        const correo = document.getElementById("clienteCorreo").value.trim();
+        const total = cart.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        const totalEnCentavos = Math.round(total * 100);
+        const referencia = "pedido_" + Date.now();
+
+        const res = await fetch(
+          `https://zhaicolez-firma.maycolrealpe2006.workers.dev/?ref=${referencia}&monto=${totalEnCentavos}`
+        );
+        const { integrity } = await res.json();
+
+        const checkoutWidget = new WidgetCheckout({
+          currency: "COP",
+          amountInCents: totalEnCentavos,
+          reference: referencia,
+          publicKey: "pub_prod_xr6r8K4K1LmUAdj3j2ysVlUcY7IRtoR4",
+          redirectUrl: window.location.href,
+          signature: { integrity },
+        });
+
+        checkoutWidget.open(function (result) {
+          const transaction = result ? result.transaction : null;
+          const estadoPago = transaction ? transaction.status : "CANCELADO";
+          const message = cart
+            .map(
+              (item) =>
+                `${item.brand} - ${item.name}\nTamaño: ${
+                  item.size
+                }\nCantidad: ${item.quantity}\nPrecio: $${(
+                  item.price * item.quantity
+                ).toLocaleString("es-CO")}`
+            )
+            .join("\n\n");
+
+          fetch(
+            "https://nnjoifohytfgamkduunn.supabase.co/functions/v1/notificar-pedido",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uam9pZm9oeXRmZ2Fta2R1dW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyMzc2NjIsImV4cCI6MjA5NjgxMzY2Mn0.l17Szwu7BrKIH49wLqN-6C3_yjS4jHIMLLMQ-FL_lC4",
+              },
+              body: JSON.stringify({
+                nombre,
+                correo,
+                detalleItems: message,
+                total: total.toLocaleString("es-CO"),
+                referencia,
+                estado: estadoPago,
+              }),
+            }
+          ).catch((err) => console.error("Error notificando:", err));
+
+          if (estadoPago === "APPROVED") {
+            emailjs
+              .send("service_jv99csq", "template_36ltojh", {
+                nombre,
+                perfume: message,
+                cantidad: cart.reduce((sum, item) => sum + item.quantity, 0),
+                gramaje: cart.map((i) => i.size).join(", "),
+                contacto: "—",
+                nota: "Referencia: " + referencia,
+                email: correo,
+              })
+              .catch((err) => console.error("Error correo:", err));
+
+            const whatsappMessage = encodeURIComponent(
+              `✅ ¡Hola! Ya realicé el pago.\n\n📦 Pedido:\n\n${message}\n\n💰 Total: $${total.toLocaleString(
+                "es-CO"
+              )}\n\n🧾 Referencia: ${referencia}`
+            );
+            window.open(
+              `https://wa.me/573151821269?text=${whatsappMessage}`,
+              "_blank"
+            );
+          }
+        });
+      }
+
+      // ── CHECKOUT WOMPI — solo perfumes (flujo separado) ──
+      async function checkoutSoloPerfumes() {
+        const nombre = document.getElementById("clienteNombre").value.trim();
+        const correo = document.getElementById("clienteCorreo").value.trim();
+
+        const itemsPerfumes = cart.filter((i) => i.source !== "Outfit");
+        const total = itemsPerfumes.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+        const totalEnCentavos = Math.round(total * 100);
+        const referencia = "perfumes_" + Date.now();
+
+        const res = await fetch(
+          `https://zhaicolez-firma.maycolrealpe2006.workers.dev/?ref=${referencia}&monto=${totalEnCentavos}`
+        );
+        const { integrity } = await res.json();
+
+        const checkoutWidget = new WidgetCheckout({
+          currency: "COP",
+          amountInCents: totalEnCentavos,
+          reference: referencia,
+          publicKey: "pub_prod_xr6r8K4K1LmUAdj3j2ysVlUcY7IRtoR4",
+          redirectUrl: window.location.href,
+          signature: { integrity },
+        });
+
+        checkoutWidget.open(function (result) {
+          const transaction = result ? result.transaction : null;
+          const estadoPago = transaction ? transaction.status : "CANCELADO";
+          const message = itemsPerfumes
+            .map(
+              (item) =>
+                `${item.brand} - ${item.name}\nTamaño: ${
+                  item.size
+                }\nCantidad: ${item.quantity}\nPrecio: $${(
+                  item.price * item.quantity
+                ).toLocaleString("es-CO")}`
+            )
+            .join("\n\n");
+
+          fetch(
+            "https://nnjoifohytfgamkduunn.supabase.co/functions/v1/notificar-pedido",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization:
+                  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5uam9pZm9oeXRmZ2Fta2R1dW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEyMzc2NjIsImV4cCI6MjA5NjgxMzY2Mn0.l17Szwu7BrKIH49wLqN-6C3_yjS4jHIMLLMQ-FL_lC4",
+              },
+              body: JSON.stringify({
+                nombre,
+                correo,
+                detalleItems: message,
+                total: total.toLocaleString("es-CO"),
+                referencia,
+                estado: estadoPago,
+              }),
+            }
+          ).catch((err) => console.error("Error notificando:", err));
+
+          if (estadoPago === "APPROVED") {
+            emailjs
+              .send("service_jv99csq", "template_36ltojh", {
+                nombre,
+                perfume: message,
+                cantidad: itemsPerfumes.reduce(
+                  (sum, item) => sum + item.quantity,
+                  0
+                ),
+                gramaje: itemsPerfumes.map((i) => i.size).join(", "),
+                contacto: "—",
+                nota: "Referencia: " + referencia,
+                email: correo,
+              })
+              .catch((err) => console.error("Error correo:", err));
+
+            const whatsappMessage = encodeURIComponent(
+              `✅ ¡Hola! Ya realicé el pago de mis perfumes.\n\n🌸 Perfumes:\n\n${message}\n\n💰 Total: $${total.toLocaleString(
+                "es-CO"
+              )}\n\n🧾 Referencia: ${referencia}`
+            );
+            window.open(
+              `https://wa.me/573151821269?text=${whatsappMessage}`,
+              "_blank"
+            );
+          }
+        });
+      }
+    </script>
+
+    <script src="https://checkout.wompi.co/widget.js"></script>
+    <button class="btn-arriba" onclick="irArriba()">↑</button>
   </body>
 </html>
