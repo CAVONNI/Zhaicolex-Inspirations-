@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin — Zhaicolez Inspirations</title>
+    <title>Admin — Zhaicolex Inspirations</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -330,7 +330,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     <!-- APP -->
     <div id="app">
       <div class="topbar">
-        <div class="topbar-logo">ZHAICOLEZ — ADMIN</div>
+        <div class="topbar-logo">ZHAICOLEX — ADMIN</div>
         <div class="topbar-right">
           <a href="index.html" target="_blank">Ver catálogo ↗</a>
           <button class="logout-btn" onclick="cerrarSesion()">Cerrar sesión</button>
@@ -506,7 +506,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     ════════════════════════════════════════════ -->
     <script>
       const CLOUDINARY_CLOUD  = "ds3crkmlw";          // ← tu cloud name
-      const CLOUDINARY_PRESET = "zhaicolez_uploads";  // ← el preset que creaste
+      const CLOUDINARY_PRESET = "ZHAICOLEX_uploads";  // ← el preset que creaste
 
       // ── Estado de la imagen actual ──
       let imagenActualUrl = "";   // URL final guardada en Supabase
@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           const fd = new FormData();
           fd.append("file", file);
           fd.append("upload_preset", CLOUDINARY_PRESET);
-          fd.append("folder", "zhaicolez");
+          fd.append("folder", "ZHAICOLEX");
 
           const xhr = new XMLHttpRequest();
           xhr.open("POST",
@@ -913,6 +913,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 };
     </script>
    
-  
+   <script src="admin-outfit.js"></script>
   </body>
 </html>

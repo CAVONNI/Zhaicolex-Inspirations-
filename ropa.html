@@ -167,6 +167,7 @@ header{padding:0 20px}
 .header-left{gap:16px}
 }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <header>
@@ -187,8 +188,8 @@ header{padding:0 20px}
   </div>
   <div class="hero-stats">
     <div class="stat"><span class="stat-num" id="totalProducts">—</span><span class="stat-label">PRENDAS</span></div>
-    <div class="stat"><span class="stat-num"></span><span class="stat-label">ENVÍO NACIONAL</span></div>
-    <div class="stat"><span class="stat-num"></span><span class="stat-label">#YOMECAMBIOAZHAICOLEX</span></div>
+    <div class="stat"><span class="stat-num">🚚</span><span class="stat-label">ENVÍO NACIONAL</span></div>
+    <div class="stat"><span class="stat-num">★</span><span class="stat-label">DROPI VERIFIED</span></div>
   </div>
 </div>
 
@@ -197,7 +198,7 @@ header{padding:0 20px}
     <div class="sidebar-title">FILTROS</div>
     <div class="search-box">
       <input type="text" id="searchInput" placeholder="Buscar prenda..." />
-      <span class="search-icon">BUSCAR</span>
+      <span class="search-icon">🔍</span>
     </div>
     <div class="filter-group">
       <div class="filter-group-title open" onclick="toggleGroup(this)">Categoría <span class="arrow">▾</span></div>
@@ -291,7 +292,9 @@ header{padding:0 20px}
 const SESSION_KEY = "zhaicolezSessionId";
 const CART_PREFIX = "zhaicolezCart_";
 const WHATSAPP = "573151821269";
-const PRODUCTS_URL = "products.json"; // luego se puede cambiar por /api/dropi
+const PRODUCTS_URL = "products.json"; // respaldo si Supabase no responde
+const SUPABASE_URL = "https://nnjoifohytfgamkduunn.supabase.co";
+const SUPABASE_KEY = "sb_publishable_cR293kbLIbpDhfr6h65UFw_KHbgJCjr";
 const PER_PAGE = 9;
 
 // ===================== STATE =====================
@@ -325,28 +328,73 @@ window.addEventListener("pageshow", loadCart);
 window.addEventListener("storage", loadCart);
 
 // ===================== DATOS =====================
+function fromSupabase(p) {
+  const vs = (p.outfit_variantes || []).filter((v) => v.stock > 0);
+  if (!vs.length) return null; // agotado: no se muestra
+  const sizes = [], tags = [], vmap = {}, vids = {};
+  vs.forEach((v) => {
+    const talla = v.talla && v.talla !== "Única" ? v.talla : null;
+    const label = [talla, v.color].filter(Boolean).join(" · ") || "Único";
+    if (label in vids) return;
+    vmap[label] = v.dropi_variacion_id ?? null;
+    vids[label] = v.id;
+    sizes.push(label);
+    if (talla && !tags.includes(talla.toUpperCase())) tags.push(talla.toUpperCase());
+  });
+  return {
+    id: p.id,
+    dropiId: p.dropi_id,
+    name: p.nombre,
+    brand: p.marca || "Zhaicolex",
+    category: p.categoria,
+    price: p.precio_oferta || p.precio,
+    image: (p.imagenes || [])[0] || "",
+    sizes, sizeTags: tags, variationMap: vmap, variantIds: vids,
+    desc: p.descripcion || "",
+    badge: p.precio_oferta ? "OFERTA" : p.destacado ? "TOP" : null,
+  };
+}
+
 async function loadProducts() {
+  let list = [];
   try {
-    const res = await fetch(PRODUCTS_URL, { cache: "no-cache" });
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
-    const list = Array.isArray(data) ? data : data.products || [];
-    allProducts = list
-      .filter((p) => p && p.name && Number(p.price) > 0)
-      .map((p) => ({
-        ...p,
-        category: (p.category || "casual").toLowerCase(),
-        brand: p.brand || "Zhaicolex",
-        sizes: p.sizes && p.sizes.length ? p.sizes : ["Único"],
-        sizeTags: p.sizeTags || [],
-        variationMap: p.variationMap || {},
-        desc: p.desc || "",
-      }));
+    // Cliente público: sin sesión, para que la tienda no dependa del login del admin
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
+    });
+    const { data, error } = await sb
+      .from("outfit_productos")
+      .select("id,nombre,marca,categoria,descripcion,precio,precio_oferta,imagenes,destacado,dropi_id,creado_en,outfit_variantes(id,talla,color,stock,dropi_variacion_id)")
+      .eq("activo", true)
+      .order("creado_en", { ascending: false });
+    if (error) throw error;
+    list = (data || []).map(fromSupabase).filter(Boolean);
   } catch (e) {
-    console.error("No se pudo cargar el catálogo:", e);
-    allProducts = [];
-    $("connectNotice").style.display = "flex";
+    console.warn("Supabase no disponible, usando products.json", e);
   }
+  if (!list.length) {
+    try {
+      const res = await fetch(PRODUCTS_URL, { cache: "no-cache" });
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const d = await res.json();
+      list = Array.isArray(d) ? d : d.products || [];
+    } catch (e) {
+      console.error("No se pudo cargar el catálogo:", e);
+      $("connectNotice").style.display = "flex";
+    }
+  }
+  allProducts = list
+    .filter((p) => p && p.name && Number(p.price) > 0)
+    .map((p) => ({
+      ...p,
+      category: (p.category || "casual").toLowerCase(),
+      brand: p.brand || "Zhaicolex",
+      sizes: p.sizes && p.sizes.length ? p.sizes : ["Único"],
+      sizeTags: p.sizeTags || [],
+      variationMap: p.variationMap || {},
+      variantIds: p.variantIds || {},
+      desc: p.desc || "",
+    }));
   $("totalProducts").textContent = allProducts.length || "—";
 }
 
@@ -633,6 +681,7 @@ function addToCart(product, size) {
     source: "Outfit",
     dropiId: product.dropiId || product.id || null,
     variationId: product.variationMap[size] ?? null,
+    variantId: product.variantIds?.[size] ?? null,
   });
 
   try { localStorage.setItem(key, JSON.stringify(cartData)); }
@@ -657,5 +706,6 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove("show"), 2500);
 }
 </script>
+
 </body>
 </html>
